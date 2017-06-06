@@ -1,0 +1,15 @@
+[Unit]
+# file location: /etc/systemd/system/home-assistant@homeassistant.service
+Description=Home Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=%i
+ExecStart=/usr/local/bin/hass
+sendSIGKILL=no
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target
