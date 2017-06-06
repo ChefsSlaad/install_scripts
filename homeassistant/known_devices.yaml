@@ -1,0 +1,390 @@
+phonekoosje:
+  hide_if_away: false
+  mac: 54:14:73:66:19:B6
+  name: Koosje
+  picture:
+  track: true
+  vendor:
+
+phoneroosmarijn:
+  hide_if_away: false
+  mac: 6C:AD:F8:68:FE:C2
+  name: Roosmarijn
+  picture:
+  track: true
+  vendor: xiaomi
+
+phonemarc:
+  hide_if_away: false
+  mac: C0:EE:FB:05:2D:90
+  name: Marc
+  track: true
+  vendor: OnePlus
+
+broadlink_spminit1b9c1dd:
+  hide_if_away: false
+  mac: B4:43:0D:B9:C1:DD
+  name: BroadLink SPmini-T1-b9-c1-dd
+  picture:
+  track: false
+  vendor: Broadlink Pty Ltd
+
+tabletkoosje:
+  hide_if_away: false
+  mac: 88:9B:39:D8:39:E5
+  name: tablet-koosje
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+iphone:
+  hide_if_away: false
+  mac: CC:08:E0:E2:46:61
+  name: iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+pitop:
+  hide_if_away: false
+  mac: B8:27:EB:02:8D:C9
+  name: pi-top
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+tabletmarc:
+  hide_if_away: false
+  mac: B4:9D:0B:50:06:2A
+  name: tablet-marc
+  picture:
+  track: false
+  vendor: BQ
+
+phoneroosmarijn_2:
+  hide_if_away: false
+  mac: 20:82:C0:3C:F5:79
+  name: phone-roosmarijn
+  picture:
+  track: false
+  vendor: Xiaomi Communications Co Ltd
+
+wk_televisie:
+  hide_if_away: false
+  mac: D0:AE:EC:10:D3:16
+  name: wk televisie
+  picture:
+  track: false
+  vendor: Alpha Networks Inc.
+
+laptop:
+  hide_if_away: false
+  mac: C8:F7:33:FA:63:15
+  name: laptop
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+printer:
+  hide_if_away: false
+  mac: 00:15:99:B3:E7:EE
+  name: printer
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+18fe34f0dabd:
+  hide_if_away: false
+  mac: 18:FE:34:F0:DA:BD
+  name: 18fe34f0dabd
+  picture:
+  track: true
+  vendor: Espressif Inc.
+
+wk_audio:
+  hide_if_away: false
+  mac: 54:60:09:E4:BA:F4
+  name: wk audio
+  picture:
+  track: false
+  vendor: Google, Inc.
+
+rb344078:
+  hide_if_away: false
+  mac: 3C:A9:F4:4A:DB:04
+  name: laptop marc
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+tabletkids:
+  hide_if_away: false
+  mac: 60:A4:4C:BA:C5:91
+  name: tablet-kids
+  picture:
+  track: false
+  vendor: ASUSTek COMPUTER INC.
+
+b827eb1c2961:
+  hide_if_away: false
+  mac: B8:27:EB:1C:29:61
+  name: b827eb1c2961
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+c0eefb59f33f:
+  hide_if_away: false
+  mac: C0:EE:FB:59:F3:3F
+  name: c0eefb59f33f
+  picture:
+  track: false
+  vendor: OnePlus Tech (Shenzhen) Ltd
+
+iphonerob:
+  hide_if_away: false
+  mac: 74:1B:B2:5F:AE:45
+  name: iPhone-Rob
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+nezaphone:
+  hide_if_away: false
+  mac: E0:5F:45:1F:06:06
+  name: Nezaphone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+eriksiphone:
+  hide_if_away: false
+  mac: 18:65:90:50:46:0B
+  name: Eriks-iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+ipad:
+  hide_if_away: false
+  mac: B0:65:BD:36:32:CB
+  name: iPad
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+iphonevanjoke:
+  hide_if_away: false
+  mac: 40:33:1A:48:E2:D1
+  name: iPhone-van-Joke
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+broadlink_spminit1f10d10:
+  hide_if_away: false
+  mac: 34:EA:34:F1:0D:10
+  name: BroadLink SPmini-T1-f1-0d-10
+  picture:
+  track: false
+  vendor: HangZhou Gubei Electronics Technology Co.,Ltd
+
+mbpinspidee:
+  hide_if_away: false
+  mac: 68:A8:6D:52:4E:76
+  name: mbp-inspidee
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+mobieltjewt:
+  hide_if_away: false
+  mac: 70:EC:E4:A7:83:A4
+  name: MobieltjeWT
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+iphone_2:
+  hide_if_away: false
+  mac: A4:31:35:D8:B2:B2
+  name: iPhone
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+e0db10750a67:
+  hide_if_away: false
+  mac: E0:DB:10:75:0A:67
+  name: e0db10750a67
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+robot3:
+  hide_if_away: false
+  mac: B8:27:EB:BC:0B:D2
+  name: robot3
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+robot1:
+  hide_if_away: false
+  mac: B8:27:EB:40:18:9B
+  name: robot1
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+robot2:
+  hide_if_away: false
+  mac: B8:27:EB:6B:63:B1
+  name: robot2
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+slaapkamer_licht:
+  hide_if_away: false
+  mac: AC:CF:23:05:58:69
+  name: Slaapkamer licht
+  picture:
+  track: true
+  vendor: Hi-flying electronics technology Co.,Ltd
+
+slaapkamer_licht_2:
+  hide_if_away: false
+  mac: AC:CF:23:08:BB:DD
+  name: slaapkamer licht
+  picture:
+  track: false
+  vendor: Hi-flying electronics technology Co.,Ltd
+
+mint:
+  hide_if_away: false
+  mac: FC:F8:AE:B8:6D:57
+  name: mint
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+android87c4378bdb5facc4:
+  hide_if_away: false
+  mac: 08:08:C2:94:C5:AE
+  name: android-87c4378bdb5facc4
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+0090a2d530cf:
+  hide_if_away: false
+  mac: 00:90:A2:D5:30:CF
+  name: '*'
+  picture:
+  track: false
+  vendor: CyberTAN Technology Inc.
+
+esp_144154:
+  hide_if_away: false
+  mac: A0:20:A6:14:41:54
+  name: ESP 144154
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+b85a7393e4c0:
+  hide_if_away: false
+  mac: B8:5A:73:93:E4:C0
+  name: b85a7393e4c0
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+stigchelvaio:
+  hide_if_away: false
+  mac: C4:85:08:1A:F0:7C
+  name: stigchel-VAIO
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+441ca8e3c25b:
+  hide_if_away: false
+  mac: 44:1C:A8:E3:C2:5B
+  name: 441ca8e3c25b
+  picture:
+  track: false
+  vendor: Hon Hai Precision Ind. Co.,Ltd.
+
+android4243456da87a40fc:
+  hide_if_away: false
+  mac: 00:EE:BD:5B:C8:C1
+  name: android-4243456da87a40fc
+  picture:
+  track: false
+  vendor: HTC Corporation
+
+54724f52b832:
+  hide_if_away: false
+  mac: 54:72:4F:52:B8:32
+  name: 54724f52b832
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+a8667f753ec0:
+  hide_if_away: false
+  mac: A8:66:7F:75:3E:C0
+  name: a8667f753ec0
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+4400104827d1:
+  hide_if_away: false
+  mac: 44:00:10:48:27:D1
+  name: 4400104827d1
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+74e2f50d868c:
+  hide_if_away: false
+  mac: 74:E2:F5:0D:86:8C
+  name: 74e2f50d868c
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+34aa8b15b3f8:
+  hide_if_away: false
+  mac: 34:AA:8B:15:B3:F8
+  name: 34aa8b15b3f8
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+android2e886b94606cbb3d:
+  hide_if_away: false
+  mac: B0:A2:E7:8F:A6:83
+  name: android-2e886b94606cbb3d
+  picture:
+  track: false
+  vendor: Shenzhen TINNO Mobile Technology Corp.
+
+android3ea5f742406e00ea:
+  hide_if_away: false
+  mac: E8:50:8B:A7:DA:C2
+  name: android-3ea5f742406e00ea
+  picture:
+  track: false
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+esp_15a921:
+  hide_if_away: false
+  mac: 60:01:94:15:A9:21
+  name: ESP 15A921
+  picture:
+  track: false
+  vendor: Espressif Inc.
