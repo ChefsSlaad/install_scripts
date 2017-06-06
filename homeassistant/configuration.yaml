@@ -1,0 +1,211 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 52.0733556
+  longitude: 5.1339184
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 2
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Amsterdam
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  # api_password: PASSWORD
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+#enable MQTT server
+mqtt:
+#  discovery: true
+#  discovery_prefix: homeassistant
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor:
+  platform: yr
+
+
+# test mqtt light switch
+light:
+  - platform: mqtt_json
+    name: woonkamer_tafel
+    state_topic: "home/woonkamer/tafel"
+    command_topic: "home/woonkamer/tafel/set"
+    rgb: true
+    brightness: true
+    white_value: true
+
+
+#  - platform: flux_led
+#    devices:
+#      192.168.1.71:
+#        name: slaapkamer_gordijn
+#        mode: 'rgb'
+
+
+# track devices (mobile phones) for presence detetction
+device_tracker:
+  - platform: ddwrt
+    host: 192.168.1.1
+    track_new_devices: False
+    username: admin
+    password: Chrono120
+
+
+media_player:
+  - platform: mpd
+    location: keuken
+    friendly_name: muziek keuken
+    host: 192.168.1.50
+  - platform: mpd
+    location: slaapkamer
+    friendly_name: muziek slaapkamer
+    host: 192.168.1.70
+  - platform: cast
+    location: woonkamer
+    friendly_name: muziek woonkamer
+    host: 192.168.1.30
+  - platform: cast
+    location: woonkamer
+    friendly_name: cast woonkamer
+    host: 192.168.1.31
+
+
+#switch:
+# -  platform: command_line
+#    switches: 
+#      wk_servieskast:
+#        friendly_name: servieskast
+#        command_on: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.35 --on"
+#        command_off: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.35 --off"
+#        command_state: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.35 --status"
+#      wk_boekenkast:
+#        friendly_name: boekenkast
+#        command_on: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --on"
+#        command_off: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --off"
+#        command_state: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --status"
+
+switch wk_servieskast: 
+  platform: broadlink
+  host: 192.168.1.35
+  mac: B4:43:0D:B9:C1:DD
+  type:  sp2
+  friendly_name: 'servieskast'
+
+switch wk_boekenkast:
+  platform: broadlink
+  host: 192.168.1.36
+  mac: 34:EA:34:F1:0D:10
+  type:  sp3
+  friendly_name: 'boekenkast'
+
+
+
+
+group:
+  koosjeenmarc:
+    - device_tracker.phonekoosje
+    - device_tracker.phonemarc  
+  woonkamer_licht:
+    - switch.servieskast
+    - switch.boekenkast
+
+
+automation sunset_lights_on:
+  alias: Lichten aan bij thuiskomst
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+
+automation night_lights_off:
+  alias: Lichten uit om 22:30
+  trigger:
+    platform: time
+    hours: 22   
+    minutes: 30
+    seconds: 00
+  action: 
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht
+
+
+automation morning_lights_on:
+  alias: Lichten aan om 6:30
+  trigger:
+    platform: time
+    after: '06:30:00'
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+
+
+automation morning_lights_off:
+  alias: Lichten uit bij vertrek
+  trigger:
+    platform: time
+    after: '08:00:00'
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'not_home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht
+
+
+
+script:
+  turn_lights_on:
+    sequence:
+      # This is written using the Script Syntax
+      - service: homeassistant.turn_on
+        entity_id: group.woonkamer_licht
+
+  play_a_song:
+    sequence:
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.keuken
+        media_content_type: music
+        media_content_id: http://192.168.1.10:8000/music/Bastille%20-%20All%20This%20Bad%20Blood/CD1/mp3tag.m3u
+
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.keuken
+        volume_level: 0.20
