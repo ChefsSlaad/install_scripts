@@ -1,0 +1,10 @@
+
+koosjeenmarc:
+  entities:
+    - device_tracker.phonekoosje
+    - device_tracker.phonemarc
+woonkamer_licht:
+  entities:
+    - switch.servieskast
+    - switch.boekenkast
+

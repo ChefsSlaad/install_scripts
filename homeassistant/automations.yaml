@@ -1,0 +1,52 @@
+-id:sunset_lights_on
+  alias: Lichten aan bij thuiskomst
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+
+-id:night_lights_off
+  alias: Lichten uit om 22:30
+  trigger:
+    platform: time
+    hours: 22   
+    minutes: 30
+    seconds: 00
+  action: 
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht
+
+
+-id: morning_lights_on
+  alias: Lichten aan om 6:30
+  trigger:
+    platform: time
+    at: '06:30:00'
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+
+
+-id: morning_lights_off
+  alias: Lichten uit bij vertrek
+  trigger:
+    platform: time
+    at: '08:00:00'
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'not_home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht
