@@ -44,7 +44,7 @@ mkdir ~/projects
 
 
 # github repositories
-setiing up github
+echo setting up github
 cd ~/projects
 
 git config --global user.email "wagner.marc@gmail.com"

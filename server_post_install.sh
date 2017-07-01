@@ -24,7 +24,7 @@ sudo apt-get -qq upgrade > /dev/null
 echo installing new apps
 sudo apt-get -qq install \
     ssh git gitk gitg curl gparted \
-    dkms python3-pip rygel
+    dkms python3-pip rygel nmap
 
 sudo apt-get -y -qq remove \
 
@@ -49,6 +49,11 @@ sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
 ###################################
     
 mkdir ~/projects 
+
+echo setting up github
+git config --global user.email "wagner.marc@gmail.com"
+git config --global user.name "Marc Wagner"
+
 
 echo downloading the github files
 git -C ~/projects clone https://github.com/marcwagner/install_scripts.git
@@ -138,13 +143,23 @@ curl -L https://install.pi-hole.net | sudo bash /dev/stdin --unattended
 echo setting up homeassistant
 echo - creating user homeassistant
 sudo useradd -m homeassistant
-sudo mkdir /.homeassistant/
+sudo mkdir /home/homeassistant/.homeassistant/
 
 echo - copying congiguration files
-sudo cp ~/projects/install_scripts/homeassistant/*.yaml /home/homeassistant/
-sudo cp ~/projects/install_scripts/homeassistant/homeassistant@homeassistant.service /etc/systemd/system/homeassistant@homeassistant.service
+cd /home/homeassistant/.homeassistant/
+sudo ln -s ~/projects/install_scripts/homeassistant/configuration.yaml \
+                 /home/homeassistant/.homeassistant/configuration.yaml 
+sudo ln -s ~/projects/install_scripts/homeassistant/automations.yaml \
+                 /home/homeassistant/.homeassistant/automations.yaml 
+sudo ln -s ~/projects/install_scripts/homeassistant/groups.yaml \
+                 /home/homeassistant/.homeassistant/groups.yaml 
+sudo ln -s ~/projects/install_scripts/homeassistant/known_devices.yaml \
+                 /home/homeassistant/.homeassistant/known_devices.yaml 
 
+sudo chown -h homeassistant:homeassistant /home/homeassistant/.homeassistant/*.yaml
 
+sudo cp ~/projects/install_scripts/homeassistant/homeassistant@homeassistant.service \
+                             /etc/systemd/system/homeassistant@homeassistant.service
 
 echo - starting homeassistant service
 sudo systemctl --system daemon-reload
