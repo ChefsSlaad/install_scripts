@@ -61,6 +61,7 @@ tts:
 
 group: !include groups.yaml
 automation: !include automations.yaml
+script: !include scripts.yaml
 
 
 #enable MQTT server
@@ -144,22 +145,3 @@ switch wk_boekenkast:
 
 
 
-script:
-  turn_lights_on:
-    sequence:
-      # This is written using the Script Syntax
-      - service: homeassistant.turn_on
-        entity_id: group.woonkamer_licht
-
-  play_a_song:
-    sequence:
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.keuken
-        media_content_type: music
-        media_content_id: http://192.168.1.10:8000/music/Bastille%20-%20All%20This%20Bad%20Blood/CD1/mp3tag.m3u
-
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.keuken
-        volume_level: 0.20
