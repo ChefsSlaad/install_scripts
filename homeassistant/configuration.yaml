@@ -5,7 +5,7 @@ homeassistant:
   latitude: 52.0733556
   longitude: 5.1339184
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 2
+  elevation: 3
   # metric for Metric, imperial for Imperial
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -13,7 +13,7 @@ homeassistant:
 
 
 # Show links to resources in log and frontend
-introduction:
+# introduction:
 
 # Enables the frontend
 frontend:
@@ -141,61 +141,6 @@ switch wk_boekenkast:
   mac: 34:EA:34:F1:0D:10
   type:  sp3
   friendly_name: 'boekenkast'
-
-
-
-automation sunset_lights_on:
-  alias: Lichten aan bij thuiskomst
-  trigger:
-    platform: sun
-    event: sunset
-    offset: "-01:00:00"
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'home'
-  action:
-    service: homeassistant.turn_on
-    entity_id: group.woonkamer_licht
-
-automation night_lights_off:
-  alias: Lichten uit om 22:30
-  trigger:
-    platform: time
-    hours: 22   
-    minutes: 30
-    seconds: 00
-  action: 
-    service: homeassistant.turn_off
-    entity_id: group.woonkamer_licht
-
-
-automation morning_lights_on:
-  alias: Lichten aan om 6:30
-  trigger:
-    platform: time
-    at: '06:30:00'
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'home'
-  action:
-    service: homeassistant.turn_on
-    entity_id: group.woonkamer_licht
-
-
-automation morning_lights_off:
-  alias: Lichten uit bij vertrek
-  trigger:
-    platform: time
-    at: '08:00:00'
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'not_home'
-  action:
-    service: homeassistant.turn_off
-    entity_id: group.woonkamer_licht
 
 
 
