@@ -11,21 +11,33 @@ homeassistant:
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Amsterdam
 
+
 # Show links to resources in log and frontend
-# introduction:
+introduction:
 
 # Enables the frontend
 frontend:
 
+# Enables configuration UI
+config:
+
 http:
   # Uncomment this to add a password (recommended!)
   # api_password: PASSWORD
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
 
 # Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
 
 # Discover some devices automatically
-# discovery:
+discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -36,18 +48,27 @@ history:
 # View all events in a logbook
 logbook:
 
+# Weather Prediction
+sensor:
+  platform: yr
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  platform: google
+
+group: !include groups.yaml
+automation: !include automations.yaml
+
+
 #enable MQTT server
 mqtt:
 #  discovery: true
 #  discovery_prefix: homeassistant
 
-# Track the sun
-sun:
-
-# Weather Prediction
-sensor:
-  platform: yr
-
+ 
 
 # test mqtt light switch
 light:
@@ -58,13 +79,11 @@ light:
     rgb: true
     brightness: true
     white_value: true
-
-
-#  - platform: flux_led
-#    devices:
-#      192.168.1.71:
-#        name: slaapkamer_gordijn
-#        mode: 'rgb'
+  - platform: flux_led
+    devices:
+      192.168.1.71:
+        name: slaapkamer_gordijn
+        mode: 'rgb'
 
 
 # track devices (mobile phones) for presence detetction
@@ -125,16 +144,6 @@ switch wk_boekenkast:
 
 
 
-
-group:
-  koosjeenmarc:
-    - device_tracker.phonekoosje
-    - device_tracker.phonemarc  
-  woonkamer_licht:
-    - switch.servieskast
-    - switch.boekenkast
-
-
 automation sunset_lights_on:
   alias: Lichten aan bij thuiskomst
   trigger:
@@ -165,7 +174,7 @@ automation morning_lights_on:
   alias: Lichten aan om 6:30
   trigger:
     platform: time
-    after: '06:30:00'
+    at: '06:30:00'
 #  condition:
 #    condition: state
 #    entity_id: group.koosjeenmarc
@@ -179,7 +188,7 @@ automation morning_lights_off:
   alias: Lichten uit bij vertrek
   trigger:
     platform: time
-    after: '08:00:00'
+    at: '08:00:00'
 #  condition:
 #    condition: state
 #    entity_id: group.koosjeenmarc
