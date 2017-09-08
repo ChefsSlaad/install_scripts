@@ -1,0 +1,259 @@
+turn_lights_on:
+  sequence:
+      # This is written using the Script Syntax
+    - service: homeassistant.turn_on
+      entity_id: group.woonkamer_licht
+
+play_a_song:
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.keuken
+      media_content_type: music
+      media_content_id: http://192.168.1.10:8000/music/Bastille%20-%20All%20This%20Bad%20Blood/CD1/mp3tag.m3u
+
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.keuken
+      volume_level: 0.20
+
+
+
+slow_lights_on_bedroom:
+  sequence:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        rgb_color: [0,0,0]
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 5
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 10
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 15
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 20
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 25
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 30
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 35
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 40
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 45
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 50
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 55
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 60
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 65
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 70
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 75
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 80
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 85
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 90
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 95
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 100
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 105
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 110
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 115
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 120
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 125
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 130
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 135
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 140
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 145
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 150
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 155
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 160
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 165
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 170
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 175
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 180
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 185
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 190
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 195
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 200
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 205
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 210
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 215
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 220
+    - delay: 0:0:05
+    - service: homeassistant.turn_on
+      data:
+        entity_id: light.slaapkamer_gordijn
+        brightness: 225
+    - delay: 0:10:00
+    - service: homeassistant.turn_off
+      entity_id: light.slaapkamer_gordijn
+
+
+
+

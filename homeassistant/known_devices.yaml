@@ -124,3 +124,12 @@ phoneroosmarijn:
   picture:
   track: false
   vendor: Xiaomi Communications Co Ltd
+
+android67d4b3854eba1ddd:
+  hide_if_away: false
+  icon:
+  mac: 94:65:2D:A3:A0:2D
+  name: android-67d4b3854eba1ddd
+  picture:
+  track: false
+  vendor: OnePlus Technology (Shenzhen) Co., Ltd
