@@ -144,6 +144,7 @@ echo setting up homeassistant
 echo - creating user homeassistant
 sudo useradd -m homeassistant
 sudo mkdir /home/homeassistant/.homeassistant/
+sudo mkdir /home/homeassistant/scripts/
 
 echo - copying congiguration files
 cd /home/homeassistant/.homeassistant/
@@ -160,10 +161,13 @@ sudo chown -h homeassistant:homeassistant /home/homeassistant/.homeassistant/*.y
 
 sudo cp ~/projects/install_scripts/homeassistant/homeassistant@homeassistant.service \
                              /etc/systemd/system/homeassistant@homeassistant.service
+sudo cp ~/projects/install_scripts/homeassistant/check_hass_errors.sh \
+                     /home/homeassistant/scripts/check_hass_errors.sh
 
 echo - starting homeassistant service
 sudo systemctl --system daemon-reload
 sudo systemctl enable homeassistant@homeassistant.service
 sudo systemctl start homeassistant@homeassistant.service
 
-
+echo - setting up error_check script
+sudo su -c '(crontab -l 2>/dev/null; echo "*/10 * * * * /home/homeassistant/scripts/check_hass_errors.sh") | crontab -' root
