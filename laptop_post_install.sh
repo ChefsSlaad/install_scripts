@@ -44,7 +44,7 @@ mkdir ~/projects
 mkdir ~/keukenprinses_share
 
 # mount nfs shares
-echo '192.168.1.10:/home/marc /home/marc/keukenprinses_share nfs rsize=8192,wsize=8192,timeo=14,intr' |  sudo tee -a /etc/exports
+echo '192.168.1.10:/home/marc /home/marc/keukenprinses_share nfs rsize=8192,wsize=8192,timeo=14,intr' |  sudo tee -a /etc/fstab
 sudo mount -a
 
 
