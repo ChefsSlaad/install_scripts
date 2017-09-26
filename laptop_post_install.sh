@@ -16,7 +16,7 @@ sudo apt-get -y --force-yes upgrade
 #install apps
 sudo apt-get -y install \
     git gitk gitg virtualbox virtualbox-guest-additions-iso curl gparted \
-    dkms google-chrome-stable screen python3-pip
+    dkms google-chrome-stable screen python3-pip nfs-common
 
 
 # uninstall apps
@@ -41,6 +41,11 @@ rm -rf ~/Videos
 rm -rf ~/Music
 rm ~/examples.desktop
 mkdir ~/projects
+mkdir ~/keukenprinses_share
+
+# mount nfs shares
+echo '192.168.1.10:/home/marc /home/marc/keukenprinses_share nfs rsize=8192,wsize=8192,timeo=14,intr' |  sudo tee -a /etc/exports
+sudo mount -a
 
 
 # github repositories
