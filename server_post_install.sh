@@ -24,7 +24,8 @@ sudo apt-get -qq upgrade > /dev/null
 echo installing new apps
 sudo apt-get -qq install \
     ssh git gitk gitg curl gparted \
-    dkms python3-pip rygel nmap
+    dkms python3-pip rygel nmap \
+    nfs-kernel-server
 
 sudo apt-get -y -qq remove \
 
@@ -59,6 +60,17 @@ echo downloading the github files
 git -C ~/projects clone https://github.com/marcwagner/install_scripts.git
 git -C ~/projects clone https://github.com/pi-hole/pi-hole.git
 
+
+###################################
+#       setting up nfs shares     #
+###################################
+echo setting up nfs shares
+
+echo - editing /etc/exports
+echo '/home/marc/ 192.168.1.133(rw,sync,no_root_squash,no_subtree_check) ' | sudo tee -a /etc/exports
+
+echo - starting nfs-server
+sudo systemctl start nfs-kernel-server.service
 
 ###################################
 #      Setting up backup script   #
