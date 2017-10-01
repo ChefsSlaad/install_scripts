@@ -205,3 +205,30 @@ android38bbe61e2bf573ad:
   picture:
   track: false
   vendor: OnePlus Tech (Shenzhen) Ltd
+
+40331a48e2d1:
+  hide_if_away: false
+  icon:
+  mac: 40:33:1A:48:E2:D1
+  name: 40331a48e2d1
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+iphonevansandor:
+  hide_if_away: false
+  icon:
+  mac: 5C:8D:4E:09:82:D0
+  name: iPhonevanSandor
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+wk_audio:
+  hide_if_away: false
+  icon:
+  mac: 54:60:09:E4:BA:F4
+  name: wk audio
+  picture:
+  track: false
+  vendor: Google, Inc.

@@ -134,6 +134,7 @@ switch wk_servieskast:
   host: 192.168.1.35
   mac: B4:43:0D:B9:C1:DD
   type:  sp2
+  icon: mdi:lightbulb
   friendly_name: 'servieskast'
 
 switch wk_boekenkast:
@@ -141,7 +142,12 @@ switch wk_boekenkast:
   host: 192.168.1.36
   mac: 34:EA:34:F1:0D:10
   type:  sp2
+  icon: mdi:lightbulb
   friendly_name: 'boekenkast'
 
-
+input_boolean:
+  wake_up_slowly_active:
+    name: ochtend_alarm_aan
+    initial: off
+    icon: mdi:alarm-check
 
