@@ -55,15 +55,18 @@
   alias: langzaam wakker worden
   trigger:
     platform: time
-    at: '06:00:00'
+    at: '05:59:00'
   condition:
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+#      - condition: state
+#        entity_id: input_boolean.wake_up_slowly_active
+#        state: on
   action:
     service: homeassistant.turn_on
     entity_id: script.slow_lights_on_bedroom

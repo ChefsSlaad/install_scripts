@@ -57,8 +57,8 @@ git config --global user.name "Marc Wagner"
 
 
 echo downloading the github files
-git -C ~/projects clone https://github.com/marcwagner/install_scripts.git
-git -C ~/projects clone https://github.com/pi-hole/pi-hole.git
+git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
+git -C ~/projects clone git@github.com:pi-hole/pi-hole.git
 
 
 ###################################
