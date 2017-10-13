@@ -232,3 +232,12 @@ wk_audio:
   picture:
   track: false
   vendor: Google, Inc.
+
+esp_15a921:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:15:A9:21
+  name: ESP 15A921
+  picture:
+  track: false
+  vendor: Espressif Inc.

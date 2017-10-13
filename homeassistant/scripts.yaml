@@ -137,7 +137,7 @@ slow_lights_on_bedroom:
       data:
         entity_id: light.slaapkamer_gordijn
         rgb_color: [80,40,0]
-    - delay: 0:5:00
+    - delay: 0:05:00
     - service: homeassistant.turn_off
       data:
         entity_id: light.slaapkamer_gordijn

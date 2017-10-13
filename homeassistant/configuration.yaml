@@ -80,6 +80,14 @@ light:
     rgb: true
     brightness: true
     white_value: true
+  - platform: mqtt_json
+    name: woonkamer_gordijn
+    state_topic: "home/woonkamer/gordijn"
+    command_topic: "home/woonkamer/gordijn/set"
+    rgb: true
+    brightness: true
+    white_value: true
+
   - platform: flux_led
     devices:
       192.168.1.71:
