@@ -35,7 +35,7 @@ fi
 
 # check if anothe backup is running (such as monthly backup)
 # and exit accordingly
-if [ $(pgrep rsync) -gt 1]; then  
+if [ -n "$(pgrep rsync)" ]; then  
     echo $(date) daily backup could not start, a backup job is allready running >>$LOGFILE
     exit 0
 fi
@@ -47,9 +47,9 @@ fi
 cd ${BACKUP_FOTO_DAILY}
 
 # check is SOURCE dir contains files. if not, exit the script
-if    ls -1qA $SOURCE_FOTO | grep -q .
-then  ! echo "$(date) docs backup started"
-else  echo "$(date) daily docs backup failed $SOURCE_FOTO is empty"
+if ls -1qA $SOURCE_FOTO | grep -q .; then  
+    echo "$(date) foto backup started"  >> $LOGFILE
+else  echo "$(date) daily docs backup failed $SOURCE_FOTO is empty"  >> $LOGFILE
       exit 1
 fi
 
@@ -63,25 +63,24 @@ LAST_FOTO_PATH_M="${BACKUP_FOTO_MONTH}/${LAST_FOTO_MONTH}"
 TODY_FOTO_PATH_M="${BACKUP_FOTO_MONTH}/${THIS_MONTH}"
 
 if [ -z "${LAST_FOTO_DAILY}" ]; then
-    echo $(date) initial documents backup started  >> $LOGFILE
+    echo $(date) initial fotos backup started  >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -a --progress ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_M}/
     ionice -c 3 nice -n +19 rsync -a --link-dest=${TODY_FOTO_PATH_M}/ ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_D}/ >> $BACKUP_OUT
 elif [ "${LAST_FOTO_MONTH}" != "${THIS_MONTH}" ]; then
-    echo $(date) monthly documents backup started >> $LOGFILE
+    echo $(date) monthly fotos backup started >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -aq --link-dest=${LAST_FOTO_PATH_M}/ ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_M}/ >> $BACKUP_OUT
 
 elif [ "${LAST_FOTO_DAILY}" != "${TODAY}" ]; then
-    echo $(date) daily documents backup started >> $LOGFILE
+    echo $(date) daily fotos backup started >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -aq --link-dest=${LAST_FOTO_PATH_D}/ ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_D}/ >> $BACKUP_OUT
-
 else
-    echo $(date) documents are up to date >> $LOGFILE
+    echo $(date) fotos are up to date >> $LOGFILE
 fi
 
 #chmod u+w -Rf ${BACKUP_FOTO_DAILY}/*
 [ -z "$FOTO_TO_DELETE" ] || rm -rf $FOTO_TO_DELETE
 
-echo $(date) docs backup finished >> $LOGFILE
+echo $(date) fotos backup finished >> $LOGFILE
 
 
 
@@ -92,9 +91,9 @@ echo $(date) docs backup finished >> $LOGFILE
 cd ${BACKUP_DOCS_DAILY}
 
 # check is SOURCE dir contains files. if not, exit the script
-if    ls -1qA $SOURCE_DOCS | grep -q .
-then  ! echo "$(date) docs backup started"
-else  echo "$(date) daily docs backup failed $SOURCE_DOCS is empty"
+if ls -1qA $SOURCE_DOCS | grep -q .; then
+     echo "$(date) documents backup started" >> $LOGFILE
+else echo "$(date) daily docs backup failed $SOURCE_DOCS is empty" >> $LOGFILE
       exit 1
 fi
 
@@ -126,4 +125,4 @@ fi
 #chmod u+w -Rf ${BACKUP_DOCS_DAILY}/*
 [ -z "$DOCS_TO_DELETE" ] || rm -rf $DOCS_TO_DELETE
 
-echo $(date) docs backup finished >> $LOGFILE
+echo $(date) documents backup finished >> $LOGFILE
