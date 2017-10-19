@@ -64,7 +64,7 @@ git -C ~/projects clone git@github.com:pi-hole/pi-hole.git
 ###################################
 #       setting up nfs shares     #
 ###################################
-echo setting up nfs shares
+echo setting up nfs shares to laptop_marc
 
 echo - editing /etc/exports
 echo '/home/marc/ 192.168.1.133(rw,sync,no_root_squash,no_subtree_check) ' | sudo tee -a /etc/exports
@@ -83,8 +83,8 @@ echo - creating user fotosync
 sudo useradd -m -d /home/fotosync fotosync
 
 echo - adding mounts to fstab 
-echo '//192.168.1.130/fotos /media/fotos                    cifs    username=foto_sync,password=Foto_1234,rw,noexec   0       0' | sudo tee -a /etc/fstab
-echo '//192.168.1.130/Documents /media/documents            cifs    username=foto_sync,password=Foto_1234,rw,noexec   0       0' | sudo tee -a /etc/fstab 
+echo '//192.168.1.130/fotos /media/fotos         cifs    username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
+echo '//192.168.1.130/Documents /media/documents  cifs username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab 
 echo - creating mount points
 sudo mkdir /media/fotos && sudo chown fotosync:fotosync /media/fotos
 sudo mkdir /media/documents && sudo chown fotosync:fotosync /media/documents
@@ -102,15 +102,13 @@ echo - copying scripts
 cp ~/projects/install_scripts/backups/* /home/fotosync/scripts/
 
 echo - setting the correct file ownerships
-sudo chown -R fotosync:fotosync /home/fotosync
+sudo chown -R fotosync:fotosync /home/fotosync/*
 
 echo - mounting laptop fotos
 sudo mount -a
 
 echo - setting crontab
-sudo su -c '(crontab -l 2>/dev/null; echo " 10 20  *   *   *     /home/fotosync/scripts/daily_sync.sh") | crontab -' fotosync
-sudo su -c '(crontab -l 2>/dev/null; echo "  0 20  *   *   *     /home/fotosync/scripts/monthly_sync.sh") | crontab -' fotosync
-
+sudo su -c '(crontab -l 2>/dev/null; echo " /30 *  *   *   *     /home/fotosync/scripts/daily_laptop_backup_script.sh") | crontab -' fotosync
 
 
 ###################################
