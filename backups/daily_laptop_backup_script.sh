@@ -49,7 +49,7 @@ cd ${BACKUP_FOTO_DAILY}
 # check is SOURCE dir contains files. if not, exit the script
 if ls -1qA $SOURCE_FOTO | grep -q .; then  
     echo "$(date) foto backup started"  >> $LOGFILE
-else  echo "$(date) daily docs backup failed $SOURCE_FOTO is empty"  >> $LOGFILE
+else  echo "$(date) daily foto backup failed $SOURCE_FOTO is empty"  >> $LOGFILE
       exit 1
 fi
 

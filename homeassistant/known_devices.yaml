@@ -241,3 +241,12 @@ esp_15a921:
   picture:
   track: false
   vendor: Espressif Inc.
+
+60a44cbac591:
+  hide_if_away: false
+  icon:
+  mac: 60:A4:4C:BA:C5:91
+  name: 60a44cbac591
+  picture:
+  track: false
+  vendor: ASUSTek COMPUTER INC.
