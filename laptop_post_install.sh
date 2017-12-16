@@ -18,6 +18,14 @@ sudo apt-get -y install \
     git gitk gitg virtualbox virtualbox-guest-additions-iso curl gparted \
     dkms google-chrome-stable screen python3-pip nfs-common
 
+# install the citrix reciever  .deb package
+### define later
+
+
+# link the required certificates
+sudo ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/
+
+
 
 # uninstall apps
 sudo apt-get -y remove \
