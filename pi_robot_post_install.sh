@@ -102,7 +102,7 @@ echo
 echo
 echo replacing configuration files
 echo 
-sudo cp projects/install_scripts/ap_config/dhcpd.conf /etc/dhcpcd.conf
+sudo cp projects/install_scripts/ap_config/dhcpcd.conf /etc/dhcpcd.conf
 sudo cp projects/install_scripts/ap_config/dnsmasq.conf /etc/dnsmasq.conf
 sudo cp projects/install_scripts/ap_config/hostapd.conf /etc/hostapd/hostapd.conf
 sudo cp projects/install_scripts/ap_config/hostapd /etc/default/hostapd
