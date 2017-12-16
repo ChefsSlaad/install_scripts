@@ -8,6 +8,15 @@
 
 
 ###################################
+#         set hostname           #
+###################################
+
+echo setting hostname
+
+sudo echo 'robot1' > /etc/hostname
+
+
+###################################
 #         add repositories        #
 ###################################
 
@@ -70,6 +79,7 @@ git config --global user.name "Marc Wagner"
 
 echo downloading the github files
 ## remember to use ssh
+git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
 
 
 
@@ -94,13 +104,9 @@ sudo cp projects/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
 sudo cp procjects/ap_config/interfaces /etc/network/interfaces
 
 
+# adding bridge interface
 sudo brctl addbr br0
 sudo brctl addif br0 eth0
-
-
-
-
-
 
 
     
