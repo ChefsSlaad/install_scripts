@@ -17,6 +17,8 @@ echo
 
 echo 'robot1' | sudo tee /etc/hostname
 
+sed -i 's/127.0.0.1	localhost/127.0.0.1	robot1/' /etc/hosts
+
 
 ###################################
 #         add repositories        #
@@ -31,7 +33,7 @@ echo
 ###################################
 #         Basic Update            #
 ###################################
-
+sed -i 's/127.0.0.1	localhost/127.0.0.1	robot1/' /etc/hosts
 echo updating system
 sudo dpkg --configure -a > /dev/null
 sudo apt-get -qq update  > /dev/null
@@ -93,8 +95,8 @@ git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
 ###################################
 
 echo
-echo Setting up access point
-echo stopping Accessppoint # allready done
+echo Setting up Access point
+echo stopping Access point # allready done
 echo 
 #sudo systemctl stop dnsmasq
 #sudo systemctl stop hostapd
@@ -102,9 +104,9 @@ echo
 echo
 echo replacing configuration files
 echo 
-sudo cp projects/install_scripts/ap_config/dhcpcd.conf /etc/dhcpcd.conf
-sudo cp projects/install_scripts/ap_config/dnsmasq.conf /etc/dnsmasq.conf
-sudo cp projects/install_scripts/ap_config/hostapd.conf /etc/hostapd/hostapd.conf
+sudo cp projects/install_scripts/ap_config/dhcpcd.conf /etc/dhcpcd.conf    
+sudo cp projects/install_scripts/ap_config/dnsmasq.conf /etc/dnsmasq.conf           # 
+sudo cp projects/install_scripts/ap_config/hostapd.conf /etc/hostapd/hostapd.conf   # access point config files
 sudo cp projects/install_scripts/ap_config/hostapd /etc/default/hostapd
 sudo cp projects/install_scripts/ap_config/sysctl.conf /etc/sysctl.conf
 sudo cp projects/install_scripts/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
@@ -115,6 +117,22 @@ sudo cp projects/install_scripts/ap_config/interfaces /etc/network/interfaces
 sudo brctl addbr br0
 sudo brctl addif br0 eth0
 
+
+###################################################
+#      Setting Up Station as systemd service      #
+###################################################
+
+echo
+echo Setting up sattion service
+echo 
+
+echo copying config files
+
+
+sudo cp projects/install_scripts/ap_config/wpa_supplicant.service \ 
+                       /etc/systemd/system/wpa_supplicant.service
+
+sudo systemctl daemon-reload
 
     
 ###################################
