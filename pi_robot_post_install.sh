@@ -102,13 +102,13 @@ echo
 echo
 echo replacing configuration files
 echo 
-sudo cp projects/install_scrpist/ap_config/dhcpd.conf /etc/dhcpcd.conf
-sudo cp projects/install_scrpist/ap_config/dnsmasq.conf /etc/dnsmasq.conf
-sudo cp projects/install_scrpist/ap_config/hostapd.conf /etc/hostapd/hostapd.conf
-sudo cp projects/install_scrpist/ap_config/hostapd /etc/default/hostapd
-sudo cp projects/install_scrpist/ap_config/sysctl.conf /etc/sysctl.conf
-sudo cp projects/install_scrpist/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
-sudo cp projects/install_scrpist/ap_config/interfaces /etc/network/interfaces
+sudo cp projects/install_scripts/ap_config/dhcpd.conf /etc/dhcpcd.conf
+sudo cp projects/install_scripts/ap_config/dnsmasq.conf /etc/dnsmasq.conf
+sudo cp projects/install_scripts/ap_config/hostapd.conf /etc/hostapd/hostapd.conf
+sudo cp projects/install_scripts/ap_config/hostapd /etc/default/hostapd
+sudo cp projects/install_scripts/ap_config/sysctl.conf /etc/sysctl.conf
+sudo cp projects/install_scripts/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
+sudo cp projects/install_scripts/ap_config/interfaces /etc/network/interfaces
 
 
 # adding bridge interface
