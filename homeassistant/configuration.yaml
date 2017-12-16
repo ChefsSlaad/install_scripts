@@ -52,6 +52,7 @@ logbook:
 sensor:
   platform: yr
 
+
 # Track the sun
 sun:
 
@@ -81,13 +82,41 @@ light:
     brightness: true
     white_value: true
   - platform: mqtt_json
-    name: woonkamer_gordijn
-    state_topic: "home/woonkamer/gordijn"
-    command_topic: "home/woonkamer/gordijn/set"
+    name: woonkamer_gordijn_kort
+    state_topic: "home/woonkamer/gordijn_kort"
+    command_topic: "home/woonkamer/gordijn_kort/set"
     rgb: true
     brightness: true
     white_value: true
-
+  - platform: mqtt_json
+    name: woonkamer_gordijn_lang
+    state_topic: "home/woonkamer/gordijn_lang"
+    command_topic: "home/woonkamer/gordijn_lang/set"
+    rgb: true
+    brightness: true
+    white_value: true
+  - platform: mqtt
+    name: boekenkast rechts
+    state_topic: "home/woonkamer/boekenkast/light/light1"
+    command_topic: "home/woonkamer/boekenkast/light/light1/set"
+    retain: true
+  - platform: mqtt
+    name: boekenkast links
+    state_topic: "home/woonkamer/boekenkast/light/light2"
+    command_topic: "home/woonkamer/boekenkast/light/light2/set"
+    retain: true
+  - platform: mqtt
+    name: schermerlamp
+    state_topic: "home/woonkamer/bank_schermerlamp"
+    command_topic: "home/woonkamer/bank_schermerlamp/set"
+    retain: true
+  - platform: mqtt
+    name: kerstboom
+    state_topic: "home/woonkamer/kerstboom"
+    command_topic: "home/woonkamer/kerstboom/set"
+    retain: true
+    
+    
   - platform: flux_led
     devices:
       192.168.1.71:
@@ -95,13 +124,59 @@ light:
         mode: 'rgb'
 
 
+binary_sensor:
+  - platform: mqtt
+    name: woonkamer beweging microwave
+    device_class: motion  
+    state_topic: "home/woonkamer/boekenkast/sensor/microwave"
+  - platform: mqtt
+    name: woonkamer beweging pir
+    device_class: motion  
+    state_topic: "home/woonkamer/boekenkast/sensor/pir"
+  - platform: template 
+    sensors: 
+      woonkamer_movement: 
+        friendly_name: "woonkamer beweging"
+#        delay_off: 
+#          minutes: 5 
+        entity_id: 
+          - binary_sensor.woonkamer_beweging_microwave
+          - binary_sensor.woonkamer_beweging_pir
+        device_class: motion
+        value_template: >- 
+          {{ is_state('binary_sensor.woonkamer_beweging_pir', 'on') or 
+          is_state('binary_sensor.woonkamer_beweging_microwave', 'on') 
+          }}
+
+#      iemand_thuis:
+#        friendly_name: "someone home" 
+#        entity_id:
+#          - device_tracker.phonemarc
+#          - device_tracker.phonekoosje
+#        device_class: presence
+#        value_template: >- 
+#          {{ is_state('device_tracker.phonemarc', 'home') or 
+#          is_state(device_tracker.phonekoosje', 'home')
+#          }}
+
+
+#sensor:
+  # Tracking entity to entity
+#  - platform: google_travel_time
+#    name: Phone To Home
+#    api_key: !secret google_device_tracker_api_key
+#    origin: device_tracker.phonemarc
+#    destination: zone.home
+
+
 # track devices (mobile phones) for presence detetction
 device_tracker:
   - platform: ddwrt
     host: 192.168.1.1
     track_new_devices: False
+    consider_home: 300
     username: admin
-    password: Chrono120
+    password: !secret router_password
 
 
 media_player:
@@ -145,12 +220,12 @@ switch:
     icon: mdi:lightbulb
     friendly_name: 'servieskast'
 
-  - platform: broadlink
-    host: 192.168.1.36
-    mac: 34:EA:34:F1:0D:10
-    type:  sp2
-    icon: mdi:lightbulb
-    friendly_name: 'boekenkast'
+#  - platform: broadlink
+#    host: 192.168.1.36
+#    mac: 34:EA:34:F1:0D:10
+#    type:  sp2
+#    icon: mdi:lightbulb
+#    friendly_name: 'bank schemerlamp'
 
 input_boolean:
   wake_up_slowly_active:

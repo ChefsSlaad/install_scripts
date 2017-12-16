@@ -56,10 +56,10 @@ laptop_marc:
 phonemarc:
   hide_if_away: false
   icon:
-  mac: C0:EE:FB:05:2D:90
+  mac: 94:65:2D:A3:A0:2D
   name: phone-marc
   picture:
-  track: false
+  track: true
   vendor: OnePlus Tech (Shenzhen) Ltd
 
 wk_chromecast:
@@ -86,7 +86,7 @@ phonekoosje:
   mac: 54:14:73:66:19:B6
   name: phone-koosje
   picture:
-  track: false
+  track: true
   vendor: "Wingtech Group (HongKong\xEF\xBC\u2030Limited"
 
 c8f733fa6315:
@@ -124,15 +124,6 @@ phoneroosmarijn:
   picture:
   track: false
   vendor: Xiaomi Communications Co Ltd
-
-android67d4b3854eba1ddd:
-  hide_if_away: false
-  icon:
-  mac: 94:65:2D:A3:A0:2D
-  name: android-67d4b3854eba1ddd
-  picture:
-  track: false
-  vendor: OnePlus Technology (Shenzhen) Co., Ltd
 
 esp_08d6a0:
   hide_if_away: false
@@ -250,3 +241,93 @@ esp_15a921:
   picture:
   track: false
   vendor: ASUSTek COMPUTER INC.
+
+600194378c6c:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:37:8C:6C
+  name: 600194378c6c
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+esp_14fe68:
+  hide_if_away: false
+  icon:
+  mac: A0:20:A6:14:FE:68
+  name: ESP 14FE68
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+esp_1451f8:
+  hide_if_away: false
+  icon:
+  mac: A0:20:A6:14:51:F8
+  name: ESP 1451F8
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+esp_145a74:
+  hide_if_away: false
+  icon:
+  mac: A0:20:A6:14:5A:74
+  name: ESP 145A74
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+esp_35a044:
+  hide_if_away: false
+  icon:
+  mac: 2C:3A:E8:35:A0:44
+  name: ESP 35A044
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+robot2:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:6B:63:B1
+  name: robot2
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+esp_68c953:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:68:C9:53
+  name: ESP 68C953
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+iphonevanclaire:
+  hide_if_away: false
+  icon:
+  mac: 70:3E:AC:C2:5B:71
+  name: iPhonevanClaire
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+60019466f714:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:66:F7:14
+  name: 60019466f714
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+raspberrypi:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:1C:29:61
+  name: raspberrypi
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
