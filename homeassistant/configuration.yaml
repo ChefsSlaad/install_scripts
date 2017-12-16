@@ -61,6 +61,7 @@ tts:
 
 group: !include groups.yaml
 automation: !include automations.yaml
+script: !include scripts.yaml
 
 
 #enable MQTT server
@@ -79,6 +80,14 @@ light:
     rgb: true
     brightness: true
     white_value: true
+  - platform: mqtt_json
+    name: woonkamer_gordijn
+    state_topic: "home/woonkamer/gordijn"
+    command_topic: "home/woonkamer/gordijn/set"
+    rgb: true
+    brightness: true
+    white_value: true
+
   - platform: flux_led
     devices:
       192.168.1.71:
@@ -128,38 +137,24 @@ media_player:
 #        command_off: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --off"
 #        command_state: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --status"
 
-switch wk_servieskast: 
-  platform: broadlink
-  host: 192.168.1.35
-  mac: B4:43:0D:B9:C1:DD
-  type:  sp2
-  friendly_name: 'servieskast'
+switch:
+  - platform: broadlink
+    host: 192.168.1.35
+    mac: B4:43:0D:B9:C1:DD
+    type:  sp2
+    icon: mdi:lightbulb
+    friendly_name: 'servieskast'
 
-switch wk_boekenkast:
-  platform: broadlink
-  host: 192.168.1.36
-  mac: 34:EA:34:F1:0D:10
-  type:  sp3
-  friendly_name: 'boekenkast'
+  - platform: broadlink
+    host: 192.168.1.36
+    mac: 34:EA:34:F1:0D:10
+    type:  sp2
+    icon: mdi:lightbulb
+    friendly_name: 'boekenkast'
 
+input_boolean:
+  wake_up_slowly_active:
+    name: ochtend_alarm_aan
+    initial: on
+    icon: mdi:alarm-check
 
-
-script:
-  turn_lights_on:
-    sequence:
-      # This is written using the Script Syntax
-      - service: homeassistant.turn_on
-        entity_id: group.woonkamer_licht
-
-  play_a_song:
-    sequence:
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.keuken
-        media_content_type: music
-        media_content_id: http://192.168.1.10:8000/music/Bastille%20-%20All%20This%20Bad%20Blood/CD1/mp3tag.m3u
-
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.keuken
-        volume_level: 0.20

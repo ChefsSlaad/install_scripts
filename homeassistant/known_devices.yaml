@@ -124,3 +124,129 @@ phoneroosmarijn:
   picture:
   track: false
   vendor: Xiaomi Communications Co Ltd
+
+android67d4b3854eba1ddd:
+  hide_if_away: false
+  icon:
+  mac: 94:65:2D:A3:A0:2D
+  name: android-67d4b3854eba1ddd
+  picture:
+  track: false
+  vendor: OnePlus Technology (Shenzhen) Co., Ltd
+
+esp_08d6a0:
+  hide_if_away: false
+  icon:
+  mac: A0:20:A6:08:D6:A0
+  name: ESP 08D6A0
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+androide787a85a59f0a405:
+  hide_if_away: false
+  icon:
+  mac: 88:D7:F6:93:8C:80
+  name: android-e787a85a59f0a405
+  picture:
+  track: false
+  vendor: ASUSTek COMPUTER INC.
+
+3ca9f44adb04:
+  hide_if_away: false
+  icon:
+  mac: 3C:A9:F4:4A:DB:04
+  name: 3ca9f44adb04
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+18fe34f0dabd:
+  hide_if_away: false
+  icon:
+  mac: 18:FE:34:F0:DA:BD
+  name: '*'
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+e05f45143a51:
+  hide_if_away: false
+  icon:
+  mac: E0:5F:45:14:3A:51
+  name: e05f45143a51
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+android2e886b94606cbb3d:
+  hide_if_away: false
+  icon:
+  mac: B0:A2:E7:8F:A6:83
+  name: android-2e886b94606cbb3d
+  picture:
+  track: false
+  vendor: Shenzhen TINNO Mobile Technology Corp.
+
+iphonevananneke:
+  hide_if_away: false
+  icon:
+  mac: 1C:91:48:63:DA:9E
+  name: iPhonevanAnneke
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+android38bbe61e2bf573ad:
+  hide_if_away: false
+  icon:
+  mac: C0:EE:FB:59:F3:3F
+  name: android-38bbe61e2bf573ad
+  picture:
+  track: false
+  vendor: OnePlus Tech (Shenzhen) Ltd
+
+40331a48e2d1:
+  hide_if_away: false
+  icon:
+  mac: 40:33:1A:48:E2:D1
+  name: 40331a48e2d1
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+iphonevansandor:
+  hide_if_away: false
+  icon:
+  mac: 5C:8D:4E:09:82:D0
+  name: iPhonevanSandor
+  picture:
+  track: false
+  vendor: Apple, Inc.
+
+wk_audio:
+  hide_if_away: false
+  icon:
+  mac: 54:60:09:E4:BA:F4
+  name: wk audio
+  picture:
+  track: false
+  vendor: Google, Inc.
+
+esp_15a921:
+  hide_if_away: false
+  icon:
+  mac: 60:01:94:15:A9:21
+  name: ESP 15A921
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+60a44cbac591:
+  hide_if_away: false
+  icon:
+  mac: 60:A4:4C:BA:C5:91
+  name: 60a44cbac591
+  picture:
+  track: false
+  vendor: ASUSTek COMPUTER INC.

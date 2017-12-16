@@ -1,5 +1,5 @@
--id:sunset_lights_on
-  alias: Lichten aan bij thuiskomst
+- id: sunset_lights_on
+  alias: "Lichten aan bij thuiskomst" 
   trigger:
     platform: sun
     event: sunset
@@ -12,8 +12,8 @@
     service: homeassistant.turn_on
     entity_id: group.woonkamer_licht
 
--id:night_lights_off
-  alias: Lichten uit om 22:30
+- id: night_lights_off
+  alias: "Lichten uit om 22:30"
   trigger:
     platform: time
     hours: 22   
@@ -24,8 +24,8 @@
     entity_id: group.woonkamer_licht
 
 
--id: morning_lights_on
-  alias: Lichten aan om 6:30
+- id: morning_lights_on
+  alias: "Lichten aan om 6:30"
   trigger:
     platform: time
     at: '06:30:00'
@@ -38,7 +38,7 @@
     entity_id: group.woonkamer_licht
 
 
--id: morning_lights_off
+- id: morning_lights_off
   alias: Lichten uit bij vertrek
   trigger:
     platform: time
@@ -50,3 +50,23 @@
   action:
     service: homeassistant.turn_off
     entity_id: group.woonkamer_licht
+
+- id: sunrise_alarm
+  alias: langzaam wakker worden
+  trigger:
+    platform: time
+    at: '05:59:00'
+  condition:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+#      - condition: state
+#        entity_id: input_boolean.wake_up_slowly_active
+#        state: on
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.slow_lights_on_bedroom
