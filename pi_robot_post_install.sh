@@ -11,16 +11,20 @@
 #         set hostname           #
 ###################################
 
+echo
 echo setting hostname
+echo
 
-sudo echo 'robot1' > /etc/hostname
+echo 'robot1' | sudo tee /etc/hostname
 
 
 ###################################
 #         add repositories        #
 ###################################
 
+echo
 echo adding repositories
+echo
 #sudo add-apt-repository -y "deb http://dl.google.com/linux/chrome/deb/ stable main"
 #sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 
@@ -76,8 +80,9 @@ echo setting up github
 git config --global user.email "wagner.marc@gmail.com"
 git config --global user.name "Marc Wagner"
 
-
+echo
 echo downloading the github files
+echo
 ## remember to use ssh
 git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
 
@@ -87,21 +92,23 @@ git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
 #      Setting Up Accespoint      #
 ###################################
 
+echo
 echo Setting up access point
-
 echo stopping Accessppoint # allready done
-
+echo 
 #sudo systemctl stop dnsmasq
 #sudo systemctl stop hostapd
 
+echo
 echo replacing configuration files
-sudo cp projects/ap_config/dhcpd.conf /etc/dhcpcd.conf
-sudo cp projects/ap_config/dnsmasq.conf /etc/dnsmasq.conf
-sudo cp projects/ap_config/hostapd.conf /etc/hostapd/hostapd.conf
-sudo cp projects/ap_config/hostapd /etc/default/hostapd
-sudo cp projects/ap_config/sysctl.conf /etc/sysctl.conf
-sudo cp projects/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
-sudo cp procjects/ap_config/interfaces /etc/network/interfaces
+echo 
+sudo cp projects/install_scrpist/ap_config/dhcpd.conf /etc/dhcpcd.conf
+sudo cp projects/install_scrpist/ap_config/dnsmasq.conf /etc/dnsmasq.conf
+sudo cp projects/install_scrpist/ap_config/hostapd.conf /etc/hostapd/hostapd.conf
+sudo cp projects/install_scrpist/ap_config/hostapd /etc/default/hostapd
+sudo cp projects/install_scrpist/ap_config/sysctl.conf /etc/sysctl.conf
+sudo cp projects/install_scrpist/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
+sudo cp projects/install_scrpist/ap_config/interfaces /etc/network/interfaces
 
 
 # adding bridge interface
