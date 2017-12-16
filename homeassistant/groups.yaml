@@ -5,6 +5,8 @@ koosjeenmarc:
     - device_tracker.phonemarc
 woonkamer_licht:
   entities:
+    - light.schermerlamp
     - switch.servieskast
-    - switch.boekenkast
+    - light.boekenkast_links
+    - light.boekenkast_rechts
 

@@ -166,6 +166,8 @@ sudo ln -s ~/projects/install_scripts/homeassistant/groups.yaml \
                  /home/homeassistant/.homeassistant/groups.yaml 
 sudo ln -s ~/projects/install_scripts/homeassistant/known_devices.yaml \
                  /home/homeassistant/.homeassistant/known_devices.yaml 
+sudo ln -s ~/projects/install_scripts/homeassistant/secrets.yaml \
+                 /home/homeassistant/.homeassistant/secrets.yaml 
 
 sudo chown -h homeassistant:homeassistant /home/homeassistant/.homeassistant/*.yaml
 
