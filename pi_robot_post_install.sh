@@ -44,6 +44,10 @@ sudo apt-get -qq upgrade > /dev/null
 #      install and unistall apps  #
 ###################################
 
+echo removing pre-installed apps
+
+sudo apt-get purge dns-root-data
+
 echo installing new apps
 sudo apt-get -qq install \
     ssh git gitk gitg curl gparted \
@@ -100,39 +104,38 @@ echo stopping Access point # allready done
 echo 
 #sudo systemctl stop dnsmasq
 #sudo systemctl stop hostapd
+sudo systemctl disable hostapd
+sudo systemctl disable dnsmasq
+
+
 
 echo
 echo replacing configuration files
 echo 
-sudo cp projects/install_scripts/ap_config/dhcpcd.conf /etc/dhcpcd.conf    
+#sudo cp projects/install_scripts/ap_config/dhcpcd.conf /etc/dhcpcd.conf    
 sudo cp projects/install_scripts/ap_config/dnsmasq.conf /etc/dnsmasq.conf           # 
 sudo cp projects/install_scripts/ap_config/hostapd.conf /etc/hostapd/hostapd.conf   # access point config files
 sudo cp projects/install_scripts/ap_config/hostapd /etc/default/hostapd
 sudo cp projects/install_scripts/ap_config/sysctl.conf /etc/sysctl.conf
-sudo cp projects/install_scripts/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
-sudo cp projects/install_scripts/ap_config/interfaces /etc/network/interfaces
-
-
-# adding bridge interface
-sudo brctl addbr br0
-sudo brctl addif br0 eth0
+#sudo cp projects/install_scripts/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
+#sudo cp projects/install_scripts/ap_config/interfaces /etc/network/interfaces
 
 
 ###################################################
 #      Setting Up Station as systemd service      #
 ###################################################
 
-echo
-echo Setting up sattion service
-echo 
 
-echo copying config files
+echo configuring hotspot switching service
+
+sudo cp projects/install_scripts/ap_config/autohotspotN  /usr/bin/autohotspotN
+sudo cp projects/install_scripts/ap_config/autohotspot.service /etc/systemd/system/autohotspot.service
+sudo systemctl enable autohotspot.service
+
+sudo chmod +x /usr/bin/autohotspotN
 
 
-sudo cp projects/install_scripts/ap_config/wpa_supplicant.service \ 
-                       /etc/systemd/system/wpa_supplicant.service
 
-sudo systemctl daemon-reload
 
     
 ###################################
