@@ -1,9 +1,22 @@
 
-koosjeenmarc:
+devices_present:
+  icon: mdi:cellphone-wireless
   entities:
     - device_tracker.phonekoosje
     - device_tracker.phonemarc
+    - device_tracker.phoneroosmarijn
+    - device_tracker.tabletmarc
+    - device_tracker.tabletkinderen
+    - device_tracker.tablet_koosje
+    - device_tracker.wk_chromecast
+    - device_tracker.wk_televisie
+    - device_tracker.laptop_marc
+        
+    
+    
+    
 woonkamer_licht:
+  icon: mdi:lightbulb
   entities:
     - light.schermerlamp
     - switch.servieskast

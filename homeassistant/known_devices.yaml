@@ -8,14 +8,79 @@ printer:
   track: false
   vendor: Samsung Electronics Co.,Ltd
 
-tabletkoosje:
+phonemarc:
+  hide_if_away: false
+  icon:
+  mac: 94:65:2D:A3:A0:2D
+  name: phone-marc
+  picture:
+  track: true
+  vendor: OnePlus Tech (Shenzhen) Ltd
+
+phonekoosje:
+  hide_if_away: false
+  icon:
+  mac: 54:14:73:66:19:B6
+  name: phone-koosje
+  picture:
+  track: true
+  vendor: "Wingtech Group (HongKong\xEF\xBC\u2030Limited"
+
+phoneroosmarijn:
+  hide_if_away: false
+  icon:
+  mac: 20:82:C0:3C:F5:79
+  name: phone-roosmarijn
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+tabletmarc:
+  hide_if_away: false
+  icon:
+  mac: B4:9D:0B:50:06:2A
+  name: tablet-marc
+  picture:
+  track: true
+  vendor: BQ
+
+Tablet_Koosje:
+  hide_if_away: false
+  icon:
+  mac: 88:D7:F6:93:8C:80
+  name: Tablet Koosje
+  picture:
+  track: true
+  vendor: ASUSTek COMPUTER INC.
+
+
+tabletkinderen:
   hide_if_away: false
   icon:
   mac: 88:9B:39:D8:39:E5
-  name: tablet-koosje
+  name: tablet-kinderen
   picture:
-  track: false
+  track: true
   vendor: Samsung Electronics Co.,Ltd
+
+
+wk_chromecast:
+  hide_if_away: false
+  icon:
+  mac: 6C:AD:F8:68:FE:C2
+  name: wk chromecast
+  picture:
+  track: true
+  vendor: AzureWave Technology Inc.
+
+wk_televisie:
+  hide_if_away: false
+  icon:
+  mac: D0:AE:EC:10:D3:16
+  name: wk televisie
+  picture:
+  track: true
+  vendor: Alpha Networks Inc.
 
 wk_boekenkast:
   hide_if_away: false
@@ -26,14 +91,6 @@ wk_boekenkast:
   track: false
   vendor: HangZhou Gubei Electronics Technology Co.,Ltd
 
-tabletmarc:
-  hide_if_away: false
-  icon:
-  mac: B4:9D:0B:50:06:2A
-  name: tablet-marc
-  picture:
-  track: false
-  vendor: BQ
 
 wk_servieskast:
   hide_if_away: false
@@ -50,44 +107,9 @@ laptop_marc:
   mac: FC:F8:AE:B8:6D:57
   name: laptop marc
   picture:
-  track: false
+  track: true
   vendor: Intel Corporate
 
-phonemarc:
-  hide_if_away: false
-  icon:
-  mac: 94:65:2D:A3:A0:2D
-  name: phone-marc
-  picture:
-  track: true
-  vendor: OnePlus Tech (Shenzhen) Ltd
-
-wk_chromecast:
-  hide_if_away: false
-  icon:
-  mac: 6C:AD:F8:68:FE:C2
-  name: wk chromecast
-  picture:
-  track: false
-  vendor: AzureWave Technology Inc.
-
-wk_televisie:
-  hide_if_away: false
-  icon:
-  mac: D0:AE:EC:10:D3:16
-  name: wk televisie
-  picture:
-  track: false
-  vendor: Alpha Networks Inc.
-
-phonekoosje:
-  hide_if_away: false
-  icon:
-  mac: 54:14:73:66:19:B6
-  name: phone-koosje
-  picture:
-  track: true
-  vendor: "Wingtech Group (HongKong\xEF\xBC\u2030Limited"
 
 c8f733fa6315:
   hide_if_away: false
@@ -107,24 +129,6 @@ a43135d8b2b2:
   track: false
   vendor: Apple, Inc.
 
-accf2308bbdd:
-  hide_if_away: false
-  icon:
-  mac: AC:CF:23:08:BB:DD
-  name: accf2308bbdd
-  picture:
-  track: false
-  vendor: Hi-flying electronics technology Co.,Ltd
-
-phoneroosmarijn:
-  hide_if_away: false
-  icon:
-  mac: 20:82:C0:3C:F5:79
-  name: phone-roosmarijn
-  picture:
-  track: false
-  vendor: Xiaomi Communications Co Ltd
-
 esp_08d6a0:
   hide_if_away: false
   icon:
@@ -134,14 +138,16 @@ esp_08d6a0:
   track: false
   vendor: Espressif Inc.
 
-androide787a85a59f0a405:
+
+accf2308bbdd:
   hide_if_away: false
   icon:
-  mac: 88:D7:F6:93:8C:80
-  name: android-e787a85a59f0a405
+  mac: AC:CF:23:08:BB:DD
+  name: accf2308bbdd
   picture:
   track: false
-  vendor: ASUSTek COMPUTER INC.
+  vendor: Hi-flying electronics technology Co.,Ltd
+
 
 3ca9f44adb04:
   hide_if_away: false
@@ -331,3 +337,21 @@ raspberrypi:
   picture:
   track: false
   vendor: Raspberry Pi Foundation
+
+raspberrypi_2:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:BC:0B:D2
+  name: raspberrypi
+  picture:
+  track: false
+  vendor: unknown
+
+0028f8a9370b:
+  hide_if_away: false
+  icon:
+  mac: 00:28:F8:A9:37:0B
+  name: 0028f8a9370b
+  picture:
+  track: false
+  vendor: unknown

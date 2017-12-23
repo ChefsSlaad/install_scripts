@@ -112,6 +112,7 @@ light:
     retain: true
   - platform: mqtt
     name: kerstboom
+    icon: mdi:pine-tree
     state_topic: "home/woonkamer/kerstboom"
     command_topic: "home/woonkamer/kerstboom/set"
     retain: true
@@ -148,16 +149,32 @@ binary_sensor:
           is_state('binary_sensor.woonkamer_beweging_microwave', 'on') 
           }}
 
-#      iemand_thuis:
-#        friendly_name: "someone home" 
-#        entity_id:
-#          - device_tracker.phonemarc
-#          - device_tracker.phonekoosje
+      someone_home: 
+        friendly_name: "iemand_thuis"
+        entity_id: 
+           - device_tracker.phonekoosje
+           - device_tracker.phonemarc
+           - device_tracker.phoneroosmarijn
+           - device_tracker.tabletmarc
+           - device_tracker.tabletkinderen
+           - device_tracker.tablet_koosje
+           - device_tracker.wk_chromecast
+           - device_tracker.wk_televisie
+           - device_tracker.laptop_marc
 #        device_class: presence
-#        value_template: >- 
-#          {{ is_state('device_tracker.phonemarc', 'home') or 
-#          is_state(device_tracker.phonekoosje', 'home')
-#          }}
+        value_template: >- 
+          {{ is_state('device_tracker.phonekoosje', 'home') or 
+             is_state('device_tracker.phonemarc', 'home') or 
+             is_state('device_tracker.phoneroosmarijn', 'home') or 
+             is_state('device_tracker.tabletmarc', 'home') or 
+             is_state('device_tracker.tabletkinderen', 'home') or 
+             is_state('device_tracker.tablet_koosje', 'home') or 
+             is_state('device_tracker.wk_chromecast', 'home') or 
+             is_state('device_tracker.wk_televisie', 'home') or 
+             is_state('device_tracker.laptop_marc', 'home' )
+          }}
+
+
 
 
 #sensor:
