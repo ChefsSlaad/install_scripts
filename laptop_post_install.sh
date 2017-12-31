@@ -16,7 +16,8 @@ sudo apt-get -y --force-yes upgrade
 #install apps
 sudo apt-get -y install \
     git gitk gitg virtualbox virtualbox-guest-additions-iso curl gparted \
-    dkms google-chrome-stable screen python3-pip nfs-common
+    dkms google-chrome-stable screen python3-pip nfs-common \
+    pycharm
 
 # install the citrix reciever  .deb package
 ### define later
