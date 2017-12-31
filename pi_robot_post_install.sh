@@ -33,12 +33,12 @@ echo
 ###################################
 #         Basic Update            #
 ###################################
-sed -i 's/127.0.0.1	localhost/127.0.0.1	robot1/' /etc/hosts
+sudo sed -i 's/127.0.0.1	localhost/127.0.0.1	robot1/' /etc/hosts
 echo updating system
 sudo dpkg --configure -a > /dev/null
 sudo apt-get -qq update  > /dev/null
 sudo apt-get -qq dist-upgrade > /dev/null
-sudo apt-get -qq upgrade > /dev/null
+#sudo apt-get -qq upgrade > /dev/null
 
 ###################################
 #      install and unistall apps  #
@@ -51,7 +51,7 @@ sudo apt-get purge dns-root-data
 echo installing new apps
 sudo apt-get -qq install \
     ssh git gitk gitg curl gparted \
-    dkms python3-pip nmap \
+    dkms python3-pip python3-bottle nmap \
     dnsmasq hostapd bridge-utils	
 
 sudo apt-get -y -qq remove \
@@ -67,7 +67,6 @@ sudo systemctl stop hostapd
 
 echo installing python libraries
 sudo pip3 install \
-	
 
 ###################################
 #      Updating dotfiles          #
@@ -134,8 +133,15 @@ sudo systemctl enable autohotspot.service
 
 sudo chmod +x /usr/bin/autohotspotN
 
+crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allready present' || (crontab -l 2>/dev/null; echo "*/5 * * * * sudo /usr/bin/autohotspotN") | crontab -
 
 
+###################################################
+#      Setting Up pi_robot                        #
+###################################################
+
+
+sudo chmod a+r /usr/local/lib/netscape/mime.types
 
     
 ###################################

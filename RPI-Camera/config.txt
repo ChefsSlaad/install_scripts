@@ -1,0 +1,10 @@
+#This is edited config file for main installer. Put any extra options in here.
+rpicamdir="html"
+webserver="lighttpd"
+webport="80"
+user=""
+webpasswd=""
+autostart="yes"
+jpglink="no"
+phpversion="7"
+
