@@ -6,6 +6,18 @@
 ## rename ssid on the fly
 
 
+###################################
+#  defining the parameters        #
+###################################
+
+# currently assumes that all git projects are in /home/<user>/projects/
+script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # get the pathname of the script
+
+
+. robot.config # load the config file
+devicename="$(name)"  # default devicename is robot_1
+wpa_passwd="$(wpa_password)" #default password is robowars
+
 
 ###################################
 #         set hostname           #
@@ -15,9 +27,8 @@ echo
 echo setting hostname
 echo
 
-echo 'robot1' | sudo tee /etc/hostname
-
-sed -i 's/127.0.0.1	localhost/127.0.0.1	robot1/' /etc/hosts
+echo "$devicename" | sudo tee /etc/hostname
+sed -i 's/127.0.0.1	localhost/127.0.0.1	$devicename/' /etc/hosts
 
 
 ###################################
@@ -90,7 +101,7 @@ echo downloading the github files
 echo
 ## remember to use ssh
 git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
-
+git -C ~/projects clone git@github.com:marcwagner/pi-robot.git
 
 
 ###################################
@@ -120,6 +131,11 @@ sudo cp projects/install_scripts/ap_config/sysctl.conf /etc/sysctl.conf
 #sudo cp projects/install_scripts/ap_config/interfaces /etc/network/interfaces
 
 
+sudo sed -i 's/ssid=robot_1/ssid=$(devicename)/' /etc/hostapd/hostapd.conf
+sudo sed -i 's/wpa_passphrase=robowars/wpa_passphrase=$(wpa_passwd)/' /etc/hostapd/hostapd.conf
+
+
+
 ###################################################
 #      Setting Up Station as systemd service      #
 ###################################################
@@ -129,9 +145,9 @@ echo configuring hotspot switching service
 
 sudo cp projects/install_scripts/ap_config/autohotspotN  /usr/bin/autohotspotN
 sudo cp projects/install_scripts/ap_config/autohotspot.service /etc/systemd/system/autohotspot.service
-sudo systemctl enable autohotspot.service
 
 sudo chmod +x /usr/bin/autohotspotN
+sudo systemctl enable autohotspot.service
 
 crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allready present' || (crontab -l 2>/dev/null; echo "*/5 * * * * sudo /usr/bin/autohotspotN") | crontab -
 
@@ -143,11 +159,17 @@ crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allrea
 
 sudo chmod a+r /usr/local/lib/netscape/mime.types
 
+sudo mv /var/www/html/index.php /var/www/html/camera-config.php
+sudo cp projects/pi-robot/pi-robot_web_interface/min.php /var/www/html/index.php
+sudo cp projects/pi-robot/pi-robot_web_interface/uconfig /var/www/html/uconfig
+sudo cp -r projects/pi-robot/pi-robot_web_interface/image /var/www/html/
+
+sudo chown -R www-data:www-data image index.php uconfig
+
     
 ###################################
 #      cleaning up home dir       #
 ###################################
-
 
 rm -rf python_games/
 
