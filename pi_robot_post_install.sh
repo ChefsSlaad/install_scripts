@@ -15,8 +15,8 @@ script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # get the pathna
 config_file="robot.config"
 
 . "$(script_path)"/"$(config_file)" # load the config file
-devicename="$(name)"  # default devicename is robot_1
-wpa_passwd="$(wpa_password)" #default password is robowars
+devicename=$(name)  # default devicename is robot_1
+wpa_passwd=$(wpa_password) #default password is robowars
 
 devicename="robot_1"  # default devicename is robot_1
 wpa_passwd="robowars" #default password is robowars
