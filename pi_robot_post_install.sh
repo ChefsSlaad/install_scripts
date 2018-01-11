@@ -14,7 +14,7 @@
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # get the pathname of the script
 
 
-. robot.config # load the config file
+. $(script_path)/robot.config # load the config file
 devicename="$(name)"  # default devicename is robot_1
 wpa_passwd="$(wpa_password)" #default password is robowars
 
@@ -100,8 +100,8 @@ echo
 echo downloading the github files
 echo
 ## remember to use ssh
-git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
-git -C ~/projects clone git@github.com:marcwagner/pi-robot.git
+git -C ~/projects clone https://github.com/marcwagner/pi-robot.git
+git -C ~/projects clone https://github.com/marcwagner/install_scripts.git
 
 
 ###################################
