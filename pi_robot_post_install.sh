@@ -12,9 +12,9 @@
 
 # currently assumes that all git projects are in /home/<user>/projects/
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # get the pathname of the script
+config_file="robot.config"
 
-
-. $(script_path)/robot.config # load the config file
+. "$(script_path)"/"$(config_file)" # load the config file
 devicename="$(name)"  # default devicename is robot_1
 wpa_passwd="$(wpa_password)" #default password is robowars
 
