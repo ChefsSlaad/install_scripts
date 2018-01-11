@@ -18,6 +18,10 @@ config_file="robot.config"
 devicename="$(name)"  # default devicename is robot_1
 wpa_passwd="$(wpa_password)" #default password is robowars
 
+devicename="robot_1"  # default devicename is robot_1
+wpa_passwd="robowars" #default password is robowars
+
+
 
 ###################################
 #         set hostname           #
