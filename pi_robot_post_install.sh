@@ -28,7 +28,7 @@ echo setting hostname
 echo
 
 echo "$devicename" | sudo tee /etc/hostname
-sed -i 's/127.0.0.1	localhost/127.0.0.1	$devicename/' /etc/hosts
+sudo sed -i 's/127.0.0.1	localhost/127.0.0.1	$devicename/' /etc/hosts
 
 
 ###################################
@@ -44,7 +44,7 @@ echo
 ###################################
 #         Basic Update            #
 ###################################
-sudo sed -i 's/127.0.0.1	localhost/127.0.0.1	robot1/' /etc/hosts
+
 echo updating system
 sudo dpkg --configure -a > /dev/null
 sudo apt-get -qq update  > /dev/null
