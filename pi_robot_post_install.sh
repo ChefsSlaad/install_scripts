@@ -14,7 +14,7 @@
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # get the pathname of the script
 config_file="robot.config"
 
-. "$(script_path)"/"$(config_file)" # load the config file
+. $(script_path)/$(config_file) # load the config file
 devicename=$(name)  # default devicename is robot_1
 wpa_passwd=$(wpa_password) #default password is robowars
 
@@ -106,7 +106,7 @@ echo
 ## remember to use ssh
 git -C ~/projects clone https://github.com/marcwagner/pi-robot.git
 git -C ~/projects clone https://github.com/marcwagner/install_scripts.git
-
+git -C ~/projects clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.git
 
 ###################################
 #      Setting Up Accespoint      #
@@ -162,6 +162,8 @@ crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allrea
 
 
 sudo chmod a+r /usr/local/lib/netscape/mime.types
+
+cp projects/install_scripts/RPI_Camera/config.txt projects/RPi_Cam_Web_Interface/config.txt
 
 sudo mv /var/www/html/index.php /var/www/html/camera-config.php
 sudo cp projects/pi-robot/pi-robot_web_interface/min.php /var/www/html/index.php
