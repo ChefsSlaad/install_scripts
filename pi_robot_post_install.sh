@@ -164,7 +164,7 @@ crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allrea
 sudo chmod a+r /usr/local/lib/netscape/mime.types
 
 cp projects/install_scripts/RPI_Camera/config.txt projects/RPi_Cam_Web_Interface/config.txt
-cd projects/RPI_Cam_Web_Interface
+cd projects/RPi_Cam_Web_Interface
 sudo ./install.sh
 cd ~
 
@@ -177,7 +177,6 @@ sudo chown -R www-data:www-data /var/www/html/image \
                                 /var/www/html/index.php \
                                 /var/www/html/uconfig \
                                 /var/www/html/raspimjpeg
-
     
 ###################################
 #      cleaning up home dir       #
