@@ -164,7 +164,7 @@ crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allrea
 sudo chmod a+r /usr/local/lib/netscape/mime.types
 
 cp projects/install_scripts/RPI_Camera/config.txt projects/RPi_Cam_Web_Interface/config.txt
-
+sudo projects/RPi_Cam_Web_Interface/install.sh
 sudo mv /var/www/html/index.php /var/www/html/camera-config.php
 sudo cp projects/pi-robot/pi-robot_web_interface/min.php /var/www/html/index.php
 sudo cp projects/pi-robot/pi-robot_web_interface/uconfig /var/www/html/uconfig
