@@ -173,7 +173,10 @@ sudo cp projects/pi-robot/pi-robot_web_interface/min.php /var/www/html/index.php
 sudo cp projects/pi-robot/pi-robot_web_interface/uconfig /var/www/html/uconfig
 sudo cp -r projects/pi-robot/pi-robot_web_interface/image /var/www/html/
 
-sudo chown -R www-data:www-data image index.php uconfig
+sudo chown -R www-data:www-data /var/www/html/image \
+                                /var/www/html/index.php \
+                                /var/www/html/uconfig \
+                                /var/www/html/raspimjpeg
 
     
 ###################################
