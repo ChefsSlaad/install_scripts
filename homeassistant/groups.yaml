@@ -22,4 +22,4 @@ woonkamer_licht:
     - switch.servieskast
     - light.boekenkast_links
     - light.boekenkast_rechts
-
+    - light.kerstboom

@@ -355,3 +355,48 @@ raspberrypi_2:
   picture:
   track: false
   vendor: unknown
+
+androidbe2417a2035e8b78:
+  hide_if_away: false
+  icon:
+  mac: DC:66:72:6B:27:29
+  name: android-be2417a2035e8b78
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+6c0b841312d9:
+  hide_if_away: false
+  icon:
+  mac: 6C:0B:84:13:12:D9
+  name: '*'
+  picture:
+  track: false
+  vendor: unknown
+
+raspberrypi_3:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:40:18:9B
+  name: raspberrypi
+  picture:
+  track: false
+  vendor: Raspberry Pi Foundation
+
+phonemarc_2:
+  hide_if_away: false
+  icon:
+  mac: C0:EE:FB:05:2D:90
+  name: phone-marc
+  picture:
+  track: false
+  vendor: OnePlus Tech (Shenzhen) Ltd
+
+0808c294c5ae:
+  hide_if_away: false
+  icon:
+  mac: 08:08:C2:94:C5:AE
+  name: 0808c294c5ae
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
