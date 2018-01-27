@@ -14,6 +14,7 @@
 #http://www.raspberryconnect.com
 
 wifidev="wlan0" #device name to use. Default is wlan0.
+ethdev="eth0"
 #use the command: iw dev ,to see wifi interface name 
 
 IFSdef=$IFS
@@ -39,7 +40,7 @@ ssidsmac=("${ssids[@]}" "${mac[@]}") #combines ssid and MAC for checking
 createAdHocNetwork()
 {
     ip link set dev "$wifidev" down
-    ip a add 192.168.50.5/24 brd + dev "$wifidev"
+    ip a add 192.168.50.1/24 brd + dev "$wifidev"
     ip link set dev "$wifidev" up
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
     iptables -A FORWARD -i eth0 -o "$wifidev" -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -47,11 +48,13 @@ createAdHocNetwork()
     systemctl start dnsmasq
     systemctl start hostapd
     echo 1 > /proc/sys/net/ipv4/ip_forward
+    route add default gw 10.0.0.1 $ethdev
 }
 
 KillHotspot()
 {
     echo "Shutting Down Hotspot"
+    sudo route del default gw 10.0.0.1 $ethdev
     ip link set dev "$wifidev" down
     systemctl stop hostapd
     systemctl stop dnsmasq

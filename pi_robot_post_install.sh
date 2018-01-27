@@ -14,9 +14,9 @@
 script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # get the pathname of the script
 config_file="robot.config"
 
-. $(script_path)/$(config_file) # load the config file
-devicename=$(name)  # default devicename is robot_1
-wpa_passwd=$(wpa_password) #default password is robowars
+. $script_path/$config_file # load the config file
+devicename=$name  # default devicename is robot_1
+wpa_passwd=$wpa_password #default password is robowars
 
 devicename="robot_1"  # default devicename is robot_1
 wpa_passwd="robowars" #default password is robowars
@@ -135,8 +135,8 @@ sudo cp projects/install_scripts/ap_config/sysctl.conf /etc/sysctl.conf
 #sudo cp projects/install_scripts/ap_config/interfaces /etc/network/interfaces
 
 
-sudo sed -i 's/ssid=robot_1/ssid=$(devicename)/' /etc/hostapd/hostapd.conf
-sudo sed -i 's/wpa_passphrase=robowars/wpa_passphrase=$(wpa_passwd)/' /etc/hostapd/hostapd.conf
+sudo sed -i 's/ssid=robot_1/ssid=$devicename/' /etc/hostapd/hostapd.conf
+sudo sed -i 's/wpa_passphrase=robowars/wpa_passphrase=$wpa_passwd/' /etc/hostapd/hostapd.conf
 
 
 
@@ -166,7 +166,7 @@ sudo chmod a+r /usr/local/lib/netscape/mime.types
 
 cp projects/install_scripts/RPI-Camera/config.txt projects/RPi_Cam_Web_Interface/
 cd projects/RPi_Cam_Web_Interface
-sudo ./install.sh
+sudo ./install.sh -q
 cd ~
 
 sudo mv /var/www/html/index.php /var/www/html/camera-config.php
