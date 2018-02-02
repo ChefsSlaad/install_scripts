@@ -1,5 +1,5 @@
 - id: sunset_lights_on
-  alias: "Lichten aan bij thuiskomst" 
+  alias: "Lichten aan bij zonsondergang" 
   trigger:
     platform: sun
     event: sunset
@@ -43,6 +43,14 @@
   trigger:
     platform: time
     at: '08:00:00'
+  condition:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
 #  condition:
 #    condition: state
 #    entity_id: group.koosjeenmarc
@@ -50,6 +58,21 @@
   action:
     service: homeassistant.turn_off
     entity_id: group.woonkamer_licht
+
+- id: sunrise_lights_off
+  alias: "Lichten uit bij zonsopkomst" 
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "+01:00:00"
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht    
+
 
 - id: sunrise_alarm
   alias: langzaam wakker worden
