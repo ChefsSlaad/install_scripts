@@ -25,7 +25,8 @@ echo installing new apps
 sudo apt-get -qq install \
     ssh git gitk gitg curl gparted \
     dkms python3-pip rygel nmap \
-    nfs-kernel-server
+    nfs-kernel-server \
+    isc-dhcp-server
 
 sudo apt-get -y -qq remove \
 
@@ -142,6 +143,26 @@ sudo mkdir /etc/pihole/
 sudo cp ~/projects/install_scripts/pihole/setupVars.conf /etc/pihole/setupVars.conf
 echo - downloading and running the pihole setup script
 curl -L https://install.pi-hole.net | sudo bash /dev/stdin --unattended
+
+
+
+
+###################################
+#         install dhcp server     #
+###################################
+
+echo setting up dhcp server
+act_eth_device=$(ip link show | grep 'state UP' | awk '{print substr($2, 1, length($2)-1)}' | sed -n 1p)
+
+
+echo setting dchp server to listen op port $act_eth_device
+sudo sed -i 's/INTERFACESv4=""/INTERFACESv4="$act_eth_device"/' /etc/default/isc-dhcp-server
+echo configuring dhcp server
+sudo cp ~/projects/install_scripts/dhcp_server/dhcpd.conf /etc/dhcpd/dhcpd.conf
+sudo cp ~/projects/install_scripts/dhcp_server/interfaces /etc/network/interfaces
+
+echo restarting dhcp server
+systemctl restart isc-dhcp-server
 
 
 
