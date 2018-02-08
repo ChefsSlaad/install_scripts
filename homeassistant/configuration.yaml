@@ -50,7 +50,21 @@ logbook:
 
 # Weather Prediction
 sensor:
-  platform: yr
+  - platform: yr
+
+  - platform: buienradar
+    monitored_conditions:
+      - conditiondetailed
+      - humidity
+      - temperature
+      - windspeed
+      - windforce
+      - winddirection
+      - pressure
+      - visibility
+      - precipitation
+      - irradiance
+      
 
 
 # Track the sun
@@ -59,6 +73,8 @@ sun:
 # Text to speech
 tts:
   platform: google
+
+
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -110,12 +126,12 @@ light:
     state_topic: "home/woonkamer/bank_schermerlamp"
     command_topic: "home/woonkamer/bank_schermerlamp/set"
     retain: true
-  - platform: mqtt
-    name: kerstboom
-    icon: mdi:pine-tree
-    state_topic: "home/woonkamer/kerstboom"
-    command_topic: "home/woonkamer/kerstboom/set"
-    retain: true
+#  - platform: mqtt
+#    name: kerstboom
+#    icon: mdi:pine-tree
+#    state_topic: "home/woonkamer/kerstboom"
+#    command_topic: "home/woonkamer/kerstboom/set"
+#    retain: true
     
     
   - platform: flux_led
@@ -215,19 +231,6 @@ media_player:
     host: 192.168.1.31
 
 
-#switch:
-# -  platform: command_line
-#    switches: 
-#      wk_servieskast:
-#        friendly_name: servieskast
-#        command_on: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.35 --on"
-#        command_off: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.35 --off"
-#        command_state: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.35 --status"
-#      wk_boekenkast:
-#        friendly_name: boekenkast
-#        command_on: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --on"
-#        command_off: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --off"
-#        command_state: "/home/homeassistant/scripts/switch_broadlink_simplified.py 192.168.1.36 --status"
 
 switch:
   - platform: broadlink
@@ -243,10 +246,4 @@ switch:
 #    type:  sp2
 #    icon: mdi:lightbulb
 #    friendly_name: 'bank schemerlamp'
-
-input_boolean:
-  wake_up_slowly_active:
-    name: ochtend_alarm_aan
-    initial: on
-    icon: mdi:alarm-check
 
