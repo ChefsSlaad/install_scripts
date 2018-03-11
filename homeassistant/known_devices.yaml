@@ -35,13 +35,32 @@ phoneroosmarijn:
   track: true
   vendor: Xiaomi Communications Co Ltd
 
+phonecharlotte:
+  hide_if_away: false
+  icon:
+  mac: C0:EE:FB:05:2D:90
+  name: phone-charlotte
+  picture:
+  track: true
+  vendor: OnePlus Tech (Shenzhen) Ltd
+
+phonekoosje2:
+  hide_if_away: false
+  icon:
+  mac: 20:47:DA:B0:70:2C
+  name: phone-koosje2
+  picture:
+  track: true
+  vendor: Xiaomi Communications Co Ltd
+
+
 tabletmarc:
   hide_if_away: false
   icon:
   mac: B4:9D:0B:50:06:2A
   name: tablet-marc
   picture:
-  track: true
+  track: false
   vendor: BQ
 
 Tablet_Koosje:
@@ -50,7 +69,7 @@ Tablet_Koosje:
   mac: 88:D7:F6:93:8C:80
   name: Tablet Koosje
   picture:
-  track: true
+  track: false
   vendor: ASUSTek COMPUTER INC.
 
 
@@ -60,7 +79,7 @@ tabletkinderen:
   mac: 88:9B:39:D8:39:E5
   name: tablet-kinderen
   picture:
-  track: true
+  track: false
   vendor: Samsung Electronics Co.,Ltd
 
 
@@ -107,119 +126,8 @@ laptop_marc:
   mac: FC:F8:AE:B8:6D:57
   name: laptop marc
   picture:
-  track: true
-  vendor: Intel Corporate
-
-
-c8f733fa6315:
-  hide_if_away: false
-  icon:
-  mac: C8:F7:33:FA:63:15
-  name: c8f733fa6315
-  picture:
   track: false
   vendor: Intel Corporate
-
-a43135d8b2b2:
-  hide_if_away: false
-  icon:
-  mac: A4:31:35:D8:B2:B2
-  name: a43135d8b2b2
-  picture:
-  track: false
-  vendor: Apple, Inc.
-
-esp_08d6a0:
-  hide_if_away: false
-  icon:
-  mac: A0:20:A6:08:D6:A0
-  name: ESP 08D6A0
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-
-accf2308bbdd:
-  hide_if_away: false
-  icon:
-  mac: AC:CF:23:08:BB:DD
-  name: accf2308bbdd
-  picture:
-  track: false
-  vendor: Hi-flying electronics technology Co.,Ltd
-
-
-3ca9f44adb04:
-  hide_if_away: false
-  icon:
-  mac: 3C:A9:F4:4A:DB:04
-  name: 3ca9f44adb04
-  picture:
-  track: false
-  vendor: Intel Corporate
-
-18fe34f0dabd:
-  hide_if_away: false
-  icon:
-  mac: 18:FE:34:F0:DA:BD
-  name: '*'
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-e05f45143a51:
-  hide_if_away: false
-  icon:
-  mac: E0:5F:45:14:3A:51
-  name: e05f45143a51
-  picture:
-  track: false
-  vendor: Apple, Inc.
-
-android2e886b94606cbb3d:
-  hide_if_away: false
-  icon:
-  mac: B0:A2:E7:8F:A6:83
-  name: android-2e886b94606cbb3d
-  picture:
-  track: false
-  vendor: Shenzhen TINNO Mobile Technology Corp.
-
-iphonevananneke:
-  hide_if_away: false
-  icon:
-  mac: 1C:91:48:63:DA:9E
-  name: iPhonevanAnneke
-  picture:
-  track: false
-  vendor: Apple, Inc.
-
-android38bbe61e2bf573ad:
-  hide_if_away: false
-  icon:
-  mac: C0:EE:FB:59:F3:3F
-  name: android-38bbe61e2bf573ad
-  picture:
-  track: false
-  vendor: OnePlus Tech (Shenzhen) Ltd
-
-40331a48e2d1:
-  hide_if_away: false
-  icon:
-  mac: 40:33:1A:48:E2:D1
-  name: 40331a48e2d1
-  picture:
-  track: false
-  vendor: Apple, Inc.
-
-iphonevansandor:
-  hide_if_away: false
-  icon:
-  mac: 5C:8D:4E:09:82:D0
-  name: iPhonevanSandor
-  picture:
-  track: false
-  vendor: Apple, Inc.
 
 wk_audio:
   hide_if_away: false
@@ -230,87 +138,6 @@ wk_audio:
   track: false
   vendor: Google, Inc.
 
-esp_15a921:
-  hide_if_away: false
-  icon:
-  mac: 60:01:94:15:A9:21
-  name: ESP 15A921
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-60a44cbac591:
-  hide_if_away: false
-  icon:
-  mac: 60:A4:4C:BA:C5:91
-  name: 60a44cbac591
-  picture:
-  track: false
-  vendor: ASUSTek COMPUTER INC.
-
-600194378c6c:
-  hide_if_away: false
-  icon:
-  mac: 60:01:94:37:8C:6C
-  name: 600194378c6c
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-esp_14fe68:
-  hide_if_away: false
-  icon:
-  mac: A0:20:A6:14:FE:68
-  name: ESP 14FE68
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-esp_1451f8:
-  hide_if_away: false
-  icon:
-  mac: A0:20:A6:14:51:F8
-  name: ESP 1451F8
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-esp_145a74:
-  hide_if_away: false
-  icon:
-  mac: A0:20:A6:14:5A:74
-  name: ESP 145A74
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-esp_35a044:
-  hide_if_away: false
-  icon:
-  mac: 2C:3A:E8:35:A0:44
-  name: ESP 35A044
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-robot2:
-  hide_if_away: false
-  icon:
-  mac: B8:27:EB:6B:63:B1
-  name: robot2
-  picture:
-  track: false
-  vendor: Raspberry Pi Foundation
-
-esp_68c953:
-  hide_if_away: false
-  icon:
-  mac: 60:01:94:68:C9:53
-  name: ESP 68C953
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
 iphonevanclaire:
   hide_if_away: false
   icon:
@@ -319,84 +146,3 @@ iphonevanclaire:
   picture:
   track: false
   vendor: Apple, Inc.
-
-60019466f714:
-  hide_if_away: false
-  icon:
-  mac: 60:01:94:66:F7:14
-  name: 60019466f714
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-raspberrypi:
-  hide_if_away: false
-  icon:
-  mac: B8:27:EB:1C:29:61
-  name: raspberrypi
-  picture:
-  track: false
-  vendor: Raspberry Pi Foundation
-
-raspberrypi_2:
-  hide_if_away: false
-  icon:
-  mac: B8:27:EB:BC:0B:D2
-  name: raspberrypi
-  picture:
-  track: false
-  vendor: unknown
-
-0028f8a9370b:
-  hide_if_away: false
-  icon:
-  mac: 00:28:F8:A9:37:0B
-  name: 0028f8a9370b
-  picture:
-  track: false
-  vendor: unknown
-
-androidbe2417a2035e8b78:
-  hide_if_away: false
-  icon:
-  mac: DC:66:72:6B:27:29
-  name: android-be2417a2035e8b78
-  picture:
-  track: false
-  vendor: Samsung Electronics Co.,Ltd
-
-6c0b841312d9:
-  hide_if_away: false
-  icon:
-  mac: 6C:0B:84:13:12:D9
-  name: '*'
-  picture:
-  track: false
-  vendor: unknown
-
-raspberrypi_3:
-  hide_if_away: false
-  icon:
-  mac: B8:27:EB:40:18:9B
-  name: raspberrypi
-  picture:
-  track: false
-  vendor: Raspberry Pi Foundation
-
-phonemarc_2:
-  hide_if_away: false
-  icon:
-  mac: C0:EE:FB:05:2D:90
-  name: phone-marc
-  picture:
-  track: false
-  vendor: OnePlus Tech (Shenzhen) Ltd
-
-0808c294c5ae:
-  hide_if_away: false
-  icon:
-  mac: 08:08:C2:94:C5:AE
-  name: 0808c294c5ae
-  picture:
-  track: false
-  vendor: Samsung Electronics Co.,Ltd

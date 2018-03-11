@@ -49,7 +49,7 @@ cd ${BACKUP_FOTO_DAILY}
 # check is SOURCE dir contains files. if not, exit the script
 if ls -1qA $SOURCE_FOTO | grep -q .; then  
     echo "$(date) foto backup started"  >> $LOGFILE
-else  echo "$(date) daily foto backup failed $SOURCE_FOTO is empty"  >> $LOGFILE
+else  echo "$(date) daily docs backup failed $SOURCE_FOTO is empty"  >> $LOGFILE
       exit 1
 fi
 
@@ -73,11 +73,12 @@ elif [ "${LAST_FOTO_MONTH}" != "${THIS_MONTH}" ]; then
 elif [ "${LAST_FOTO_DAILY}" != "${TODAY}" ]; then
     echo $(date) daily fotos backup started >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -aq --link-dest=${LAST_FOTO_PATH_D}/ ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_D}/ >> $BACKUP_OUT
+
 else
     echo $(date) fotos are up to date >> $LOGFILE
 fi
 
-#chmod u+w -Rf ${BACKUP_FOTO_DAILY}/*
+chmod --recursive u+w  ${BACKUP_FOTO_DAILY}/*
 [ -z "$FOTO_TO_DELETE" ] || rm -rf $FOTO_TO_DELETE
 
 echo $(date) fotos backup finished >> $LOGFILE
@@ -122,7 +123,7 @@ else
     echo $(date) documents are up to date >> $LOGFILE
 fi
 
-#chmod u+w -Rf ${BACKUP_DOCS_DAILY}/*
+chmod --recursive u+w ${BACKUP_DOCS_DAILY}/*
 [ -z "$DOCS_TO_DELETE" ] || rm -rf $DOCS_TO_DELETE
 
 echo $(date) documents backup finished >> $LOGFILE

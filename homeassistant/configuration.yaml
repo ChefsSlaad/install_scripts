@@ -12,20 +12,58 @@ homeassistant:
   time_zone: Europe/Amsterdam
 
 
-# Show links to resources in log and frontend
-# introduction:
-
 # Enables the frontend
 frontend:
 
 # Enables configuration UI
 config:
 
+#show a map
+map:
+
 http:
   # Uncomment this to add a password (recommended!)
-  # api_password: PASSWORD
-  # Uncomment this if you are using SSL or running in Docker etc
-  # base_url: example.duckdns.org:8123
+  api_password: !secret http_password
+  ssl_certificate: /etc/letsencrypt/live/de-wagnertjes.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/de-wagnertjes.duckdns.org/privkey.pem
+  base_url: de-wagnertjes.duckdns.org
+
+zone:
+  - name: Werk-Zeist
+    latitude: 52.094837
+    longitude: 5.222755
+    radius: 125
+    icon: mdi:briefcase
+
+  - name: Werk-Utrecht
+    latitude: 52.085937
+    longitude: 5.109296
+    radius: 150
+    icon: mdi:briefcase
+
+  - name: Smaragdplein
+    latitude: 52.072194
+    longitude: 5.124337
+    radius: 75
+    icon: mdi:basket
+
+  - name: Winkelcentrum Lunetten
+    latitude: 52.064861
+    longitude: 5.137264
+    radius: 75
+    icon: mdi:basket
+
+  - name: de klim
+    latitude: 52.060871 
+    longitude: 5.134294
+    radius: 75
+    icon: mdi:school
+
+  - name: OSG
+    latitude: 52.075642 
+    longitude: 5.241894
+    radius: 200
+    icon: mdi:school
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -34,7 +72,7 @@ http:
 # https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
+  include_used_components: true
 
 # Discover some devices automatically
 discovery:
@@ -64,7 +102,7 @@ sensor:
       - visibility
       - precipitation
       - irradiance
-      
+
 
 
 # Track the sun
@@ -86,7 +124,7 @@ mqtt:
 #  discovery: true
 #  discovery_prefix: homeassistant
 
- 
+
 
 # test mqtt light switch
 light:
@@ -112,6 +150,11 @@ light:
     brightness: true
     white_value: true
   - platform: mqtt
+    name: servieskast
+    state_topic: "home/woonkamer/servieskast"
+    command_topic: "home/woonkamer/servieskast/set"
+    retain: true
+  - platform: mqtt
     name: boekenkast rechts
     state_topic: "home/woonkamer/boekenkast/light/light1"
     command_topic: "home/woonkamer/boekenkast/light/light1/set"
@@ -122,9 +165,9 @@ light:
     command_topic: "home/woonkamer/boekenkast/light/light2/set"
     retain: true
   - platform: mqtt
-    name: schermerlamp
-    state_topic: "home/woonkamer/bank_schermerlamp"
-    command_topic: "home/woonkamer/bank_schermerlamp/set"
+    name: schemerlamp
+    state_topic: "home/woonkamer/bank_schemerlamp"
+    command_topic: "home/woonkamer/bank_schemerlamp/set"
     retain: true
 #  - platform: mqtt
 #    name: kerstboom
@@ -132,8 +175,8 @@ light:
 #    state_topic: "home/woonkamer/kerstboom"
 #    command_topic: "home/woonkamer/kerstboom/set"
 #    retain: true
-    
-    
+
+
   - platform: flux_led
     devices:
       192.168.1.71:
@@ -144,73 +187,62 @@ light:
 binary_sensor:
   - platform: mqtt
     name: woonkamer beweging microwave
-    device_class: motion  
+    device_class: motion
     state_topic: "home/woonkamer/boekenkast/sensor/microwave"
   - platform: mqtt
     name: woonkamer beweging pir
-    device_class: motion  
+    device_class: motion
     state_topic: "home/woonkamer/boekenkast/sensor/pir"
-  - platform: template 
-    sensors: 
-      woonkamer_movement: 
+  - platform: template
+    sensors:
+      woonkamer_movement:
         friendly_name: "woonkamer beweging"
-#        delay_off: 
-#          minutes: 5 
-        entity_id: 
+#        delay_off:
+#          minutes: 5
+        entity_id:
           - binary_sensor.woonkamer_beweging_microwave
           - binary_sensor.woonkamer_beweging_pir
         device_class: motion
-        value_template: >- 
-          {{ is_state('binary_sensor.woonkamer_beweging_pir', 'on') or 
-          is_state('binary_sensor.woonkamer_beweging_microwave', 'on') 
+        value_template: >-
+          {{ is_state('binary_sensor.woonkamer_beweging_pir', 'on') or
+             is_state('binary_sensor.woonkamer_beweging_microwave', 'on')
           }}
 
-      someone_home: 
+      someone_home:
         friendly_name: "iemand_thuis"
-        entity_id: 
+        entity_id:
            - device_tracker.phonekoosje
            - device_tracker.phonemarc
            - device_tracker.phoneroosmarijn
-           - device_tracker.tabletmarc
-           - device_tracker.tabletkinderen
-           - device_tracker.tablet_koosje
-           - device_tracker.wk_chromecast
-           - device_tracker.wk_televisie
-           - device_tracker.laptop_marc
+           - device_tracker.phonecharlotte
 #        device_class: presence
-        value_template: >- 
-          {{ is_state('device_tracker.phonekoosje', 'home') or 
-             is_state('device_tracker.phonemarc', 'home') or 
-             is_state('device_tracker.phoneroosmarijn', 'home') or 
-             is_state('device_tracker.tabletmarc', 'home') or 
-             is_state('device_tracker.tabletkinderen', 'home') or 
-             is_state('device_tracker.tablet_koosje', 'home') or 
-             is_state('device_tracker.wk_chromecast', 'home') or 
-             is_state('device_tracker.wk_televisie', 'home') or 
-             is_state('device_tracker.laptop_marc', 'home' )
+        value_template: >-
+          {{ is_state('device_tracker.phonekoosje', 'home') or
+             is_state('device_tracker.phonemarc', 'home') or
+             is_state('device_tracker.phoneroosmarijn', 'home') or
+             is_state('device_tracker.phonecharlotte', 'home')
           }}
 
+## track devices (mobile phones) for presence detetction
+#device_tracker:
+#  - platform: ddwrt
+#    host: 192.168.1.1
+#    track_new_devices: False
+#    consider_home: 300
+#    username: admin
+#    password: !secret router_password
 
-
-
-#sensor:
-  # Tracking entity to entity
-#  - platform: google_travel_time
-#    name: Phone To Home
-#    api_key: !secret google_device_tracker_api_key
-#    origin: device_tracker.phonemarc
-#    destination: zone.home
-
-
-# track devices (mobile phones) for presence detetction
 device_tracker:
-  - platform: ddwrt
-    host: 192.168.1.1
-    track_new_devices: False
-    consider_home: 300
-    username: admin
-    password: !secret router_password
-
+  - platform: nmap_tracker
+    hosts:
+      - 192.168.1.32
+      - 192.168.1.160
+      - 192.168.1.161
+      - 192.168.1.162
+      - 192.168.1.163
+    home_interval: 10
+  - platform: gpslogger
+    password: !secret gpslogger_password
 
 media_player:
   - platform: mpd
@@ -229,21 +261,3 @@ media_player:
     location: woonkamer
     friendly_name: cast woonkamer
     host: 192.168.1.31
-
-
-
-switch:
-  - platform: broadlink
-    host: 192.168.1.35
-    mac: B4:43:0D:B9:C1:DD
-    type:  sp2
-    icon: mdi:lightbulb
-    friendly_name: 'servieskast'
-
-#  - platform: broadlink
-#    host: 192.168.1.36
-#    mac: 34:EA:34:F1:0D:10
-#    type:  sp2
-#    icon: mdi:lightbulb
-#    friendly_name: 'bank schemerlamp'
-
