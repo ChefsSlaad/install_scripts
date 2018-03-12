@@ -103,6 +103,10 @@ sensor:
       - precipitation
       - irradiance
 
+  - platform: mqtt
+    name: foto backup"
+    state_topic: "home/server/sync-foto"
+
 
 
 # Track the sun
@@ -125,8 +129,6 @@ mqtt:
 #  discovery_prefix: homeassistant
 
 
-
-# test mqtt light switch
 light:
   - platform: mqtt_json
     name: woonkamer_tafel
@@ -188,7 +190,7 @@ binary_sensor:
   - platform: mqtt
     name: woonkamer beweging microwave
     device_class: motion
-    state_topic: "home/woonkamer/boekenkast/sensor/microwave"
+    state_topic: "home/woonkamer/boekenk    ast/sensor/microwave"
   - platform: mqtt
     name: woonkamer beweging pir
     device_class: motion
@@ -222,15 +224,6 @@ binary_sensor:
              is_state('device_tracker.phoneroosmarijn', 'home') or
              is_state('device_tracker.phonecharlotte', 'home')
           }}
-
-## track devices (mobile phones) for presence detetction
-#device_tracker:
-#  - platform: ddwrt
-#    host: 192.168.1.1
-#    track_new_devices: False
-#    consider_home: 300
-#    username: admin
-#    password: !secret router_password
 
 device_tracker:
   - platform: nmap_tracker

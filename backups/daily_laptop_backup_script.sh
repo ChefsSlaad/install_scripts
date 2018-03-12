@@ -10,6 +10,8 @@ BACKUP_DOCS_MONTH="/home/fotosync/documents/monthly"
 DOCS_TO_IGNORE="{\"My Music\",\"My Pictures\",\"My Videos\"}"
 LOGFILE="/home/fotosync/backup.log"
 BACKUP_OUT="/home/fotosync/output.log"
+docs_topic="home/server/sync-docs"
+foto_topic="home/server/sync-foto"
 docs_return="back-up failed"
 foto_return="back-up failed"
 
@@ -39,8 +41,8 @@ if [ -n "$(pgrep rsync)" ]; then
     echo $(date) daily backup could not start, a backup job is allready running >>$LOGFILE
     docs_return="in progress"
     foto_return="in progress"
-    /home/fotosync/mqtt_send.py "home/server/sync-docs" ${docs_return}
-    /home/fotosync/mqtt_send.py "home/server/sync-foto" ${foto_return}
+    /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
+    /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
     exit 0
 fi
 
@@ -55,7 +57,7 @@ if ls -1qA $SOURCE_FOTO | grep -q .; then
     echo "$(date) foto backup started"  >> $LOGFILE
 else  echo "$(date) daily docs backup failed $SOURCE_FOTO is empty"  >> $LOGFILE
     foto_return="$SOURCE_FOTO is empty"
-    /home/fotosync/mqtt_send.py "home/server/sync-foto" ${foto_return}
+    /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
     exit 1
 fi
 
@@ -90,8 +92,7 @@ chmod --recursive u+w  ${BACKUP_FOTO_DAILY}/*
 [ -z "$FOTO_TO_DELETE" ] || rm -rf $FOTO_TO_DELETE
 
 echo $(date) fotos backup finished >> $LOGFILE
-/home/fotosync/mqtt_send.py "home/server/sync-foto" ${foto_return}
-
+/home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
 
 
 ################################################
@@ -105,7 +106,7 @@ if ls -1qA $SOURCE_DOCS | grep -q .; then
      echo "$(date) documents backup started" >> $LOGFILE
 else echo "$(date) daily docs backup failed $SOURCE_DOCS is empty" >> $LOGFILE
       docs_return="$SOURCE_DOCS is empty"
-      /home/fotosync/mqtt_send.py "home/server/sync-docs" ${docs_return}
+      /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
       exit 1
 fi
 
@@ -140,4 +141,4 @@ chmod --recursive u+w ${BACKUP_DOCS_DAILY}/*
 [ -z "$DOCS_TO_DELETE" ] || rm -rf $DOCS_TO_DELETE
 
 echo $(date) documents backup finished >> $LOGFILE
-/home/fotosync/mqtt_send.py "home/server/sync-docs" ${docs_return}
+/home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"

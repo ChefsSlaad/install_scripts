@@ -38,6 +38,11 @@ weer:
     - sensor.yr_symbol
     - sun.sun
 
+server:
+  name: server
+  entities:
+    - sensor.foto_backup
+
 woonkamer_view:
   view: yes
   name: woonkamer
