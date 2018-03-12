@@ -1,25 +1,53 @@
-
 devices_present:
   icon: mdi:cellphone-wireless
   entities:
     - device_tracker.phonekoosje
     - device_tracker.phonemarc
     - device_tracker.phoneroosmarijn
-    - device_tracker.tabletmarc
-    - device_tracker.tabletkinderen
-    - device_tracker.tablet_koosje
-    - device_tracker.wk_chromecast
-    - device_tracker.wk_televisie
-    - device_tracker.laptop_marc
-        
-    
-    
-    
+    - device_tracker.phonecharlotte
+
 woonkamer_licht:
+  name: woonkamer licht
   icon: mdi:lightbulb
   entities:
-    - light.schermerlamp
-    - switch.servieskast
+    - light.schemerlamp
+    - light.servieskast
     - light.boekenkast_links
     - light.boekenkast_rechts
-    - light.kerstboom
+    - light.woonkamer_gordijn_lang
+
+woonkamer_muziek:
+  name: muziek
+  entities:
+    - media_player.woonkamer
+    - media_player.woonkamer_audio
+
+weer:
+  name: weer
+  entities:
+    - sensor.br_detailed_condition
+    - sensor.br_humidity
+    - sensor.br_irradiance
+    - sensor.br_precipitation
+    - sensor.br_pressure
+    - sensor.br_temperature
+    - sensor.br_visibility
+    - sensor.br_wind_direction
+    - sensor.br_wind_force
+    - sensor.br_wind_speed
+    - sensor.yr_symbol
+    - sun.sun
+
+woonkamer_view:
+  view: yes
+  name: woonkamer
+  entities:
+    - group.woonkamer_licht
+    - group.woonkamer_muziek
+
+scripts_view:
+  view: yes
+  name: all scripts and automations
+  entities:
+    - group.all_automations
+    - group.all_scripts
