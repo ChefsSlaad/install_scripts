@@ -90,6 +90,16 @@ logbook:
 sensor:
   - platform: moon
   - platform: yr
+  - platform: cert_expiry
+    host: de-wagnertjes.duckdns.org
+
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+      - type: load_1m
+      - type: since_last_boot
 
   - platform: buienradar
     monitored_conditions:
