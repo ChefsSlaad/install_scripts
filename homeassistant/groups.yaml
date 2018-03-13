@@ -44,6 +44,13 @@ server:
   entities:
     - sensor.foto_backup
     - sensor.document_backup
+    - sensor.since_last_boot
+    - sensor.ssl_certificate_expiry
+    - sensor.disk_use_percent_
+    - sensor.load_1m
+    - sensor.memory_free
+    - sensor.network_in
+    - sensor.network_out
 
 woonkamer_view:
   view: yes
