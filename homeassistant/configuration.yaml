@@ -97,6 +97,10 @@ sensor:
     resources:
       - type: disk_use_percent
         arg: /
+      - type: network_in
+        arg: enp3s0
+      - type: network_out
+        arg: enp3s0
       - type: memory_free
       - type: load_1m
       - type: since_last_boot
