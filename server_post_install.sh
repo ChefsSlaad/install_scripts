@@ -84,8 +84,8 @@ echo - creating user fotosync
 sudo useradd -m -d /home/fotosync fotosync
 
 echo - adding mounts to fstab 
-echo '//192.168.1.130/fotos /media/fotos         cifs    vers=1.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
-echo '//192.168.1.130/Documents /media/documents  cifs vers=1.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab 
+echo '//192.168.1.180/fotos /media/fotos         cifs    vers=1.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
+echo '//192.168.1.180/Documents /media/documents  cifs vers=1.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab 
 echo - creating mount points
 sudo mkdir /media/fotos && sudo chown fotosync:fotosync /media/fotos
 sudo mkdir /media/documents && sudo chown fotosync:fotosync /media/documents
@@ -99,8 +99,10 @@ sudo mkdir /home/fotosync/documents/daily
 sudo mkdir /home/fotosync/fotos/monthly
 sudo mkdir /home/fotosync/fotos/daily
 
-echo - copying scripts
-cp ~/projects/install_scripts/backups/* /home/fotosync/scripts/
+echo - linking scripts
+
+sudo ln -s ~/projects/install_scripts/backups/* \
+                 /home/fotosync/scripts/
 
 echo - setting the correct file ownerships
 sudo chown -R fotosync:fotosync /home/fotosync/*

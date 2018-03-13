@@ -14,7 +14,7 @@ def check_args_and_publish():
         topic = arguments[1]
         message = arguments[2]
         print('publishing', message, 'to topic', topic)
-        client.publish(topic, message)
+        client.publish(topic, message, retain=True)
 
     return topic, message
     

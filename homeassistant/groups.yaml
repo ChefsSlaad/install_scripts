@@ -37,11 +37,13 @@ weer:
     - sensor.br_wind_speed
     - sensor.yr_symbol
     - sun.sun
+    - sensor.moon
 
 server:
   name: server
   entities:
     - sensor.foto_backup
+    - sensor.document_backup
 
 woonkamer_view:
   view: yes

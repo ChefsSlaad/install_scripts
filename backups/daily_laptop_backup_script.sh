@@ -85,7 +85,7 @@ elif [ "${LAST_FOTO_DAILY}" != "${TODAY}" ]; then
     foto_return="daily backup started"
 else
     echo $(date) fotos are up to date >> $LOGFILE
-    foto_return="fotos are up to date"
+    foto_return="up to date"
 fi
 
 chmod --recursive u+w  ${BACKUP_FOTO_DAILY}/*
@@ -134,7 +134,7 @@ elif [ "${LAST_DOCS_DAILY}" != "${TODAY}" ]; then
     docs_return="daily backup started"
 else
     echo $(date) documents are up to date >> $LOGFILE
-    docs_return="everything up to date"
+    docs_return="up to date"
 fi
 
 chmod --recursive u+w ${BACKUP_DOCS_DAILY}/*

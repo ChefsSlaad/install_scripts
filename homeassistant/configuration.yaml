@@ -88,6 +88,7 @@ logbook:
 
 # Weather Prediction
 sensor:
+  - platform: moon
   - platform: yr
 
   - platform: buienradar
@@ -104,9 +105,11 @@ sensor:
       - irradiance
 
   - platform: mqtt
-    name: foto backup"
+    name: "foto backup"
     state_topic: "home/server/sync-foto"
-
+  - platform: mqtt
+    name: "document backup"
+    state_topic: "home/server/sync-docs"
 
 
 # Track the sun
