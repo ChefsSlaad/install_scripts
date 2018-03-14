@@ -52,13 +52,6 @@ server:
     - sensor.network_in_enp3s0
     - sensor.network_out_enp3s0
 
-woonkamer_view:
-  view: yes
-  name: woonkamer
-  entities:
-    - group.woonkamer_licht
-    - group.woonkamer_muziek
-
 automations:
   name: automations
   entities:
@@ -77,6 +70,12 @@ scripts:
     - script.stop_lights_on_bedroom
     - script.turn_lights_on
 
+woonkamer_view:
+  view: yes
+  name: woonkamer
+  entities:
+    - group.woonkamer_licht
+    - group.woonkamer_muziek
 
 scripts_view:
   view: yes
