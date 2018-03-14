@@ -83,4 +83,7 @@ scripts_view:
   entities:
     - group.automations
     - group.scripts
+    - group.all_automations
+    - group.all_scripts
+    
 
