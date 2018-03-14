@@ -94,25 +94,16 @@
     service: homeassistant.turn_on
     entity_id: script.slow_lights_on_bedroom
     
- id: lights_on_when_dark
+- id: lights_on_when_dark
   alias: "donker buiten.. lichten aan" 
   trigger:
     platform: numeric_state
     entity_id: sensor.br_irradiance
     below:100
   condition:
-  - condition: state
-    entity_id: device_tracker.phonemarc
-    state: 'home'  
+    - condition: state
+      entity_id: device_tracker.phonemarc
+      state: 'home'  
   action:
     service: homeassistant.turn_on
     entity_id: group.woonkamer_licht
-
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'home'
-  action:
-    service: homeassistant.turn_off
-    entity_id: group.woonkamer_licht       
-    
