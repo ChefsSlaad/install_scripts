@@ -59,9 +59,29 @@ woonkamer_view:
     - group.woonkamer_licht
     - group.woonkamer_muziek
 
+automations:
+  name: automations
+  entities:
+    - automation.lichten_aan_bij_zonsondergang
+    - automation.lichten_aan_om_630
+    - automation.lichten_uit_bij_vertrek
+    - automation.lichten_uit_bij_zonsopkomst
+    - automation.lichten_uit_om_2230
+    - automation.langzaam_wakker_worden
+
+scripts:
+  name: scripts
+  entities:
+    - script.play_a_song 
+    - script.slow_lights_on_bedroom
+    - script.stop_lights_on_bedroom
+    - script.turn_lights_on
+
+
 scripts_view:
   view: yes
-  name: all scripts and automations
+  name: scripts and automations
   entities:
-    - group.all_automations
-    - group.all_scripts
+    - group.automations
+    - group.scripts
+
