@@ -1,0 +1,49 @@
+
+# check the ssl certificate age
+  - platform: cert_expiry
+    host: de-wagnertjes.duckdns.org
+# moon sensor
+  - platform: moon
+#weather sensor
+  - platform: yr
+
+# check weather and prediction 
+  - platform: buienradar
+    monitored_conditions:
+      - conditiondetailed
+      - humidity
+      - temperature
+      - windspeed
+      - windforce
+      - winddirection
+      - pressure
+      - visibility
+      - precipitation
+      - irradiance
+
+# check system states for the server
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /
+      - type: network_in
+        arg: enp3s0
+      - type: network_out
+        arg: enp3s0
+      - type: memory_free
+      - type: load_1m
+      - type: since_last_boot
+
+
+# check if backups have run correctly
+  - platform: mqtt
+    name: "foto backup"
+    state_topic: "home/server/sync-foto"
+
+  - platform: mqtt
+    name: "document backup"
+    state_topic: "home/server/sync-docs"
+
+# printer
+
+

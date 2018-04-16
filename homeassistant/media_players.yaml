@@ -1,0 +1,16 @@
+  - platform: mpd
+    location: keuken
+    friendly_name: muziek keuken
+    host: 192.168.1.50
+  - platform: mpd
+    location: slaapkamer
+    friendly_name: muziek slaapkamer
+    host: 192.168.1.70
+  - platform: cast
+    location: woonkamer
+    friendly_name: muziek woonkamer
+    host: 192.168.1.30
+  - platform: cast
+    location: woonkamer
+    friendly_name: cast woonkamer
+    host: 192.168.1.31

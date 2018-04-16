@@ -1,77 +1,58 @@
-- id: sunset_lights_on
-  alias: "Lichten aan bij zonsondergang" 
-  trigger:
-    platform: sun
-    event: sunset
-    offset: "-01:00:00"
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'home'
-  action:
-    service: homeassistant.turn_on
-    entity_id: group.woonkamer_licht
 
-- id: night_lights_off
-  alias: "Lichten uit om 22:30"
-  trigger:
+- id: time_to_sleep
+  alias: bedtijd 
+  trigger: 
     platform: time
-    hours: 22   
-    minutes: 30
-    seconds: 00
-  action: 
-    service: homeassistant.turn_off
-    entity_id: group.woonkamer_licht
+    at: '22:30:00'
+  condition:
+    - condition: state
+      entity_id: input_select.resident_state
+      state: 'Home'      
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.resident_state
+      option: 'Sleeping'
 
-
-- id: morning_lights_on
-  alias: "Lichten aan om 6:30"
-  trigger:
+- id: time_to_wake_up
+  alias: opstaan 
+  trigger: 
     platform: time
     at: '06:30:00'
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'home'
-  action:
-    service: homeassistant.turn_on
-    entity_id: group.woonkamer_licht
-
-
-- id: morning_lights_off
-  alias: Lichten uit bij vertrek
-  trigger:
-    platform: time
-    at: '08:00:00'
   condition:
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'not_home'
+    - condition: state
+      entity_id: input_select.resident_state
+      state: 'Sleeping'      
   action:
-    service: homeassistant.turn_off
-    entity_id: group.woonkamer_licht
+    service: input_select.select_option
+    data:
+      entity_id: input_select.resident_state
+      option: 'Home'
 
-- id: sunrise_lights_off
-  alias: "Lichten uit bij zonsopkomst" 
-  trigger:
-    platform: sun
-    event: sunrise
-    offset: "+01:00:00"
-#  condition:
-#    condition: state
-#    entity_id: group.koosjeenmarc
-#    state: 'home'
+- id: some_arrives
+  alias: aankomen 
+  trigger: 
+    platform: state
+    entity_id: group.someone_home
+    to: home 
   action:
-    service: homeassistant.turn_off
-    entity_id: group.woonkamer_licht    
+    service: input_select.select_option
+    data:
+      entity_id: input_select.resident_state
+      option: Home
+
+- id: some_leaves
+  alias: vertrekken 
+  trigger: 
+    platform: state
+    entity_id: group.someone_home
+    to: not_home
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.resident_state
+      option: Away
+
 
 
 - id: sunrise_alarm
@@ -80,30 +61,67 @@
     platform: time
     at: '05:59:00'
   condition:
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-#      - condition: state
-#        entity_id: input_boolean.wake_up_slowly_active
-#        state: on
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state
+      entity_id: input_select.resident_state
+      state: 'Sleeping'  
   action:
     service: homeassistant.turn_on
     entity_id: script.slow_lights_on_bedroom
+    
+
+- id: lights_off_when_not_home
+  alias: "niemand thuis" 
+  trigger: 
+    platform: state
+    entity_id: input_select.resident_state
+    from: 'Home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht
+
+
+- id: lights_on_when_arrive_home_and_dark
+  alias: "iemand komt thuis en het is donker buiten" 
+  trigger: 
+    platform: state
+    entity_id: input_select.resident_state
+    to: 'Home'
+  condition:
+    condition: numeric_state
+    entity_id: sensor.br_irradiance
+    below: 150
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+
     
 - id: lights_on_when_dark
   alias: "donker buiten.. lichten aan" 
   trigger:
     platform: numeric_state
     entity_id: sensor.br_irradiance
-    below: 100
+    below: 150
   condition:
-    - condition: state
-      entity_id: device_tracker.phonemarc
-      state: 'home'  
+    condition: state
+    entity_id: input_select.resident_state
+    state: 'Home'  
   action:
     service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+    
+- id: lights_off_when_light_outside
+  alias: "zon buiten.. lichten uit" 
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.br_irradiance
+    above: 150
+  action:
+    service: homeassistant.turn_off
     entity_id: group.woonkamer_licht

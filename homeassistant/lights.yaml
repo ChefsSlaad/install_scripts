@@ -1,0 +1,50 @@
+  - platform: mqtt_json
+    name: woonkamer_tafel
+    state_topic: "home/woonkamer/tafel"
+    command_topic: "home/woonkamer/tafel/set"
+    rgb: true
+    brightness: true
+    white_value: true
+  - platform: mqtt_json
+    name: woonkamer_gordijn_kort
+    state_topic: "home/woonkamer/gordijn_kort"
+    command_topic: "home/woonkamer/gordijn_kort/set"
+    rgb: true
+    brightness: true
+    white_value: true
+  - platform: mqtt_json
+    name: woonkamer_gordijn_lang
+    state_topic: "home/woonkamer/gordijn_lang"
+    command_topic: "home/woonkamer/gordijn_lang/set"
+    rgb: true
+    brightness: true
+    white_value: true
+    retain: true
+  - platform: mqtt
+    name: servieskast
+    state_topic: "home/woonkamer/servieskast"
+    command_topic: "home/woonkamer/servieskast/set"
+    retain: true
+  - platform: mqtt
+    name: boekenkast rechts
+    state_topic: "home/woonkamer/boekenkast/light/light1"
+    command_topic: "home/woonkamer/boekenkast/light/light1/set"
+    retain: true
+  - platform: mqtt
+    name: boekenkast links
+    state_topic: "home/woonkamer/boekenkast/light/light2"
+    command_topic: "home/woonkamer/boekenkast/light/light2/set"
+    retain: true
+  - platform: mqtt
+    name: schemerlamp
+    state_topic: "home/woonkamer/bank_schemerlamp"
+    command_topic: "home/woonkamer/bank_schemerlamp/set"
+    retain: true
+
+
+
+  - platform: flux_led
+    devices:
+      192.168.1.71:
+        name: slaapkamer_gordijn
+        mode: 'rgb'

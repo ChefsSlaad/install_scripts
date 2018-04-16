@@ -1,10 +1,19 @@
 devices_present:
+  name: wie is waar
   icon: mdi:cellphone-wireless
   entities:
+    - input_select.resident_state
     - device_tracker.phonekoosje
     - device_tracker.phonemarc
     - device_tracker.phoneroosmarijn
     - device_tracker.phonecharlotte
+
+someone_home:
+  name: iemand thuis
+  view: no
+  entities:
+    - device_tracker.phonekoosje
+    - device_tracker.phonemarc
 
 woonkamer_licht:
   name: woonkamer licht
@@ -52,15 +61,28 @@ server:
     - sensor.network_in_enp3s0
     - sensor.network_out_enp3s0
 
+printer:
+  name: printer
+  entities:
+    - sensor.samsung_clp360_series_192168120
+    - sensor.samsung_clp360_series_192168120_toner_black
+    - sensor.samsung_clp360_series_192168120_toner_magenta
+    - sensor.samsung_clp360_series_192168120_toner_cyan
+    - sensor.samsung_clp360_series_192168120_toner_yellow
+    - sensor.samsung_clp360_series_192168120_tray_1
+
 automations:
   name: automations
   entities:
-    - automation.lichten_aan_bij_zonsondergang
-    - automation.lichten_aan_om_630
-    - automation.lichten_uit_bij_vertrek
-    - automation.lichten_uit_bij_zonsopkomst
-    - automation.lichten_uit_om_2230
+    - automation.aankomen
+    - automation.bedtijd
+    - automation.donker_buiten_lichten_aan
+    - automation.iemand_komt_thuis_en_het_is_donker_buiten
     - automation.langzaam_wakker_worden
+    - automation.niemand_thuis
+    - automation.opstaan
+    - automation.vertrekken
+    - automation.zon_buiten_lichten_uit
 
 scripts:
   name: scripts

@@ -1,0 +1,123 @@
+- id: sunset_lights_on
+  alias: "Lichten aan bij zonsondergang" 
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+
+- id: night_lights_off
+  alias: "Lichten uit om 22:30"
+  trigger:
+    platform: time
+    hours: 22   
+    minutes: 30
+    seconds: 00
+  action: 
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht
+
+
+- id: morning_lights_on
+  alias: "Lichten aan om 6:30"
+  trigger:
+    platform: time
+    at: '06:30:00'
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+
+
+- id: morning_lights_off
+  alias: Lichten uit bij vertrek
+  trigger:
+    platform: time
+    at: '08:00:00'
+  condition:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'not_home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht
+
+- id: sunrise_lights_off
+  alias: "Lichten uit bij zonsopkomst" 
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "+01:00:00"
+#  condition:
+#    condition: state
+#    entity_id: group.koosjeenmarc
+#    state: 'home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: group.woonkamer_licht    
+
+
+- id: sunrise_alarm
+  alias: langzaam wakker worden
+  trigger:
+    platform: time
+    at: '05:59:00'
+  condition:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+#      - condition: state
+#        entity_id: input_boolean.wake_up_slowly_active
+#        state: on
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.slow_lights_on_bedroom
+    
+- id: lights_on_when_dark
+  alias: "donker buiten.. lichten aan" 
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.br_irradiance
+    below: 150
+  condition:
+    - condition: state
+      entity_id: binary_sensor.someone_home
+      state: 'on'  
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht
+    
+- id: lights_off_when_light
+  alias: "licht buiten.. lichten uit" 
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.br_irradiance
+    above: 150
+  condition:
+    - condition: state
+      entity_id: binary_sensor.someone_home
+      state: 'on'  
+  action:
+    service: homeassistant.turn_on
+    entity_id: group.woonkamer_licht

@@ -1,18 +1,9 @@
 
-printer:
-  hide_if_away: false
-  icon:
-  mac: 00:15:99:B3:E7:EE
-  name: printer
-  picture:
-  track: false
-  vendor: Samsung Electronics Co.,Ltd
-
 phonemarc:
   hide_if_away: false
   icon:
   mac: 94:65:2D:A3:A0:2D
-  name: phone-marc
+  name: Marc
   picture:
   track: true
   vendor: OnePlus Tech (Shenzhen) Ltd
@@ -20,17 +11,17 @@ phonemarc:
 phonekoosje:
   hide_if_away: false
   icon:
-  mac: 54:14:73:66:19:B6
-  name: phone-koosje
+  mac: 20:47:DA:B0:70:2C
+  name: Koosje
   picture:
   track: true
-  vendor: "Wingtech Group (HongKong\xEF\xBC\u2030Limited"
+  vendor: Xiaomi Communications Co Ltd
 
 phoneroosmarijn:
   hide_if_away: false
   icon:
   mac: 20:82:C0:3C:F5:79
-  name: phone-roosmarijn
+  name: Roosmarijn
   picture:
   track: true
   vendor: Xiaomi Communications Co Ltd
@@ -39,7 +30,7 @@ phonecharlotte:
   hide_if_away: false
   icon:
   mac: C0:EE:FB:05:2D:90
-  name: phone-charlotte
+  name: Charlotte
   picture:
   track: true
   vendor: OnePlus Tech (Shenzhen) Ltd
@@ -47,12 +38,11 @@ phonecharlotte:
 phonekoosje2:
   hide_if_away: false
   icon:
-  mac: 20:47:DA:B0:70:2C
+  mac: 54:14:73:66:19:B6
   name: phone-koosje2
   picture:
   track: true
-  vendor: Xiaomi Communications Co Ltd
-
+  
 
 tabletmarc:
   hide_if_away: false
@@ -110,7 +100,6 @@ wk_boekenkast:
   track: false
   vendor: HangZhou Gubei Electronics Technology Co.,Ltd
 
-
 wk_servieskast:
   hide_if_away: false
   icon:
@@ -138,11 +127,3 @@ wk_audio:
   track: false
   vendor: Google, Inc.
 
-iphonevanclaire:
-  hide_if_away: false
-  icon:
-  mac: 70:3E:AC:C2:5B:71
-  name: iPhonevanClaire
-  picture:
-  track: false
-  vendor: Apple, Inc.

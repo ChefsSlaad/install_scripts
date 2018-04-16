@@ -56,8 +56,10 @@ cd ${BACKUP_FOTO_DAILY}
 if ls -1qA $SOURCE_FOTO | grep -q .; then  
     echo "$(date) foto backup started"  >> $LOGFILE
 else  echo "$(date) daily docs backup failed $SOURCE_FOTO is empty"  >> $LOGFILE
-    foto_return="$SOURCE_FOTO is empty"
+    foto_return="$SOURCE_FOTO is empty"    
+    docs_return="$SOURCE_DOCS is empty"
     /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
+    /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
     exit 1
 fi
 

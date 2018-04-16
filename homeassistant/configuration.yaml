@@ -10,8 +10,35 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Europe/Amsterdam
+  customize:
+    # hide the following proup
+    group.someone_home:
+      hidden: true
+    # pretty printer icons
+    sensor.samsung_clp360_series_192168120:
+      friendly_name: samsung CLP-360
+      icon: mdi:printer
+    sensor.samsung_clp360_series_192168120_toner_black:
+      friendly_name: black
+      icon: mdi:water
+    sensor.samsung_clp360_series_192168120_toner_magenta:
+      friendly_name: magenta
+      icon: mdi:water
+    sensor.samsung_clp360_series_192168120_toner_cyan:
+      friendly_name: cyan
+      icon: mdi:water
+    sensor.samsung_clp360_series_192168120_toner_yellow:
+      friendly_name: yellow
+      icon: mdi:water
+    sensor.samsung_clp360_series_192168120_tray_1:    
+      hidden: true
 
+    sensor.document_backup:
+      icon: mdi:file-document
+    sensor.foto_backup:
+      icon: mdi:file-image
 
+      
 # Enables the frontend
 frontend:
 
@@ -28,48 +55,7 @@ http:
   ssl_key: /etc/letsencrypt/live/de-wagnertjes.duckdns.org/privkey.pem
   base_url: de-wagnertjes.duckdns.org
 
-zone:
-  - name: Werk-Zeist
-    latitude: 52.094837
-    longitude: 5.222755
-    radius: 125
-    icon: mdi:briefcase
-
-  - name: Werk-Utrecht
-    latitude: 52.085937
-    longitude: 5.109296
-    radius: 150
-    icon: mdi:briefcase
-
-  - name: Smaragdplein
-    latitude: 52.072194
-    longitude: 5.124337
-    radius: 75
-    icon: mdi:basket
-
-  - name: Winkelcentrum Lunetten
-    latitude: 52.064861
-    longitude: 5.137264
-    radius: 75
-    icon: mdi:basket
-
-  - name: de klim
-    latitude: 52.060871 
-    longitude: 5.134294
-    radius: 75
-    icon: mdi:school
-
-  - name: OSG
-    latitude: 52.075642 
-    longitude: 5.241894
-    radius: 200
-    icon: mdi:school
-
 # Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
@@ -86,46 +72,6 @@ history:
 # View all events in a logbook
 logbook:
 
-# Weather Prediction
-sensor:
-  - platform: moon
-  - platform: yr
-  - platform: cert_expiry
-    host: de-wagnertjes.duckdns.org
-
-  - platform: systemmonitor
-    resources:
-      - type: disk_use_percent
-        arg: /
-      - type: network_in
-        arg: enp3s0
-      - type: network_out
-        arg: enp3s0
-      - type: memory_free
-      - type: load_1m
-      - type: since_last_boot
-
-  - platform: buienradar
-    monitored_conditions:
-      - conditiondetailed
-      - humidity
-      - temperature
-      - windspeed
-      - windforce
-      - winddirection
-      - pressure
-      - visibility
-      - precipitation
-      - irradiance
-
-  - platform: mqtt
-    name: "foto backup"
-    state_topic: "home/server/sync-foto"
-  - platform: mqtt
-    name: "document backup"
-    state_topic: "home/server/sync-docs"
-
-
 # Track the sun
 sun:
 
@@ -133,114 +79,70 @@ sun:
 tts:
   platform: google
 
+#enable MQTT server
+mqtt:
 
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+sensor: !include sensors.yaml
+media_player: !include media_players.yaml
+light: !include lights.yaml
+zone: !include zones.yaml
 
 
-#enable MQTT server
-mqtt:
 #  discovery: true
 #  discovery_prefix: homeassistant
 
 
-light:
-  - platform: mqtt_json
-    name: woonkamer_tafel
-    state_topic: "home/woonkamer/tafel"
-    command_topic: "home/woonkamer/tafel/set"
-    rgb: true
-    brightness: true
-    white_value: true
-  - platform: mqtt_json
-    name: woonkamer_gordijn_kort
-    state_topic: "home/woonkamer/gordijn_kort"
-    command_topic: "home/woonkamer/gordijn_kort/set"
-    rgb: true
-    brightness: true
-    white_value: true
-  - platform: mqtt_json
-    name: woonkamer_gordijn_lang
-    state_topic: "home/woonkamer/gordijn_lang"
-    command_topic: "home/woonkamer/gordijn_lang/set"
-    rgb: true
-    brightness: true
-    white_value: true
-  - platform: mqtt
-    name: servieskast
-    state_topic: "home/woonkamer/servieskast"
-    command_topic: "home/woonkamer/servieskast/set"
-    retain: true
-  - platform: mqtt
-    name: boekenkast rechts
-    state_topic: "home/woonkamer/boekenkast/light/light1"
-    command_topic: "home/woonkamer/boekenkast/light/light1/set"
-    retain: true
-  - platform: mqtt
-    name: boekenkast links
-    state_topic: "home/woonkamer/boekenkast/light/light2"
-    command_topic: "home/woonkamer/boekenkast/light/light2/set"
-    retain: true
-  - platform: mqtt
-    name: schemerlamp
-    state_topic: "home/woonkamer/bank_schemerlamp"
-    command_topic: "home/woonkamer/bank_schemerlamp/set"
-    retain: true
+
+
+#binary_sensor:
 #  - platform: mqtt
-#    name: kerstboom
-#    icon: mdi:pine-tree
-#    state_topic: "home/woonkamer/kerstboom"
-#    command_topic: "home/woonkamer/kerstboom/set"
-#    retain: true
-
-
-  - platform: flux_led
-    devices:
-      192.168.1.71:
-        name: slaapkamer_gordijn
-        mode: 'rgb'
-
-
-binary_sensor:
-  - platform: mqtt
-    name: woonkamer beweging microwave
-    device_class: motion
-    state_topic: "home/woonkamer/boekenk    ast/sensor/microwave"
-  - platform: mqtt
-    name: woonkamer beweging pir
-    device_class: motion
-    state_topic: "home/woonkamer/boekenkast/sensor/pir"
-  - platform: template
-    sensors:
-      woonkamer_movement:
-        friendly_name: "woonkamer beweging"
+#    name: woonkamer beweging microwave
+#    device_class: motion
+#    state_topic: "home/woonkamer/boekenk    ast/sensor/microwave"
+#  - platform: mqtt
+#    name: woonkamer beweging pir
+#    device_class: motion
+#    state_topic: "home/woonkamer/boekenkast/sensor/pir"
+#  - platform: template
+#    sensors:
+#      woonkamer_movement:
+#        friendly_name: "woonkamer beweging"
 #        delay_off:
 #          minutes: 5
-        entity_id:
-          - binary_sensor.woonkamer_beweging_microwave
-          - binary_sensor.woonkamer_beweging_pir
-        device_class: motion
-        value_template: >-
-          {{ is_state('binary_sensor.woonkamer_beweging_pir', 'on') or
-             is_state('binary_sensor.woonkamer_beweging_microwave', 'on')
-          }}
+#        entity_id:
+#          - binary_sensor.woonkamer_beweging_microwave
+#          - binary_sensor.woonkamer_beweging_pir
+#        device_class: motion
+#        value_template: >-
+#          {{ is_state('binary_sensor.woonkamer_beweging_pir', 'on') or
+#             is_state('binary_sensor.woonkamer_beweging_microwave', 'on')
+#          }}
 
-      someone_home:
-        friendly_name: "iemand_thuis"
-        entity_id:
-           - device_tracker.phonekoosje
-           - device_tracker.phonemarc
-           - device_tracker.phoneroosmarijn
-           - device_tracker.phonecharlotte
+#      someone_home:
+#        friendly_name: "iemand_thuis"
+#        entity_id:
+#           - device_tracker.phonekoosje
+#           - device_tracker.phonemarc
 #        device_class: presence
-        value_template: >-
-          {{ is_state('device_tracker.phonekoosje', 'home') or
-             is_state('device_tracker.phonemarc', 'home') or
-             is_state('device_tracker.phoneroosmarijn', 'home') or
-             is_state('device_tracker.phonecharlotte', 'home')
-          }}
+#        value_template: >-
+#          {{ is_state('device_tracker.phonekoosje', 'home') or
+#             is_state('device_tracker.phonemarc', 'home')
+#          }}
+
+input_select:
+  resident_state:
+    name: waar zijn we
+    options:
+     - Home
+     - Away
+     - Sleeping
+     - Going_Home
+    initial: Home
+    icon: mdi:home-account
 
 device_tracker:
   - platform: nmap_tracker
@@ -253,21 +155,9 @@ device_tracker:
     home_interval: 10
   - platform: gpslogger
     password: !secret gpslogger_password
+  - platform: google_maps
+    username: wagner.location.sharing@gmail.com@gmail.com
+    password: !secret google_location_sharing
+    
 
-media_player:
-  - platform: mpd
-    location: keuken
-    friendly_name: muziek keuken
-    host: 192.168.1.50
-  - platform: mpd
-    location: slaapkamer
-    friendly_name: muziek slaapkamer
-    host: 192.168.1.70
-  - platform: cast
-    location: woonkamer
-    friendly_name: muziek woonkamer
-    host: 192.168.1.30
-  - platform: cast
-    location: woonkamer
-    friendly_name: cast woonkamer
-    host: 192.168.1.31
+
