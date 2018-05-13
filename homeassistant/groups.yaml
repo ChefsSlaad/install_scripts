@@ -84,6 +84,11 @@ automations:
     - automation.vertrekken
     - automation.zon_buiten_lichten_uit
 
+postnl:
+  name: pakketten
+  entities:
+    - sensor.postnl
+
 scripts:
   name: scripts
   entities:

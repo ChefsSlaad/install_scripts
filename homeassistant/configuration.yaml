@@ -38,6 +38,18 @@ homeassistant:
     sensor.foto_backup:
       icon: mdi:file-image
 
+
+# Enables support for tracking state changes over time.
+history:
+  exclude:
+    entities:
+      - sensor.since_last_boot
+
+recorder:
+  exclude:
+    entities:
+      - sensor.since_last_boot
+
       
 # Enables the frontend
 frontend:
@@ -65,10 +77,7 @@ discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
-
-# Enables support for tracking state changes over time.
-history:
-
+      
 # View all events in a logbook
 logbook:
 
@@ -96,6 +105,11 @@ zone: !include zones.yaml
 #  discovery_prefix: homeassistant
 
 
+binary_sensor:
+  - platform: mqtt
+    name: hall beweging
+    device_class: motion
+    state_topic: "home/hall/motion_sensor"
 
 
 #binary_sensor:
@@ -158,6 +172,4 @@ device_tracker:
   - platform: google_maps
     username: wagner.location.sharing@gmail.com@gmail.com
     password: !secret google_location_sharing
-    
-
-
+   

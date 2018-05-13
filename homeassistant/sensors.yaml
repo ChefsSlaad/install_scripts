@@ -46,4 +46,8 @@
 
 # printer
 
-
+# postnl sensor
+  - platform: postnl
+    username: wagner.marc@gmail.com
+    password: !secret postnl_password
+    
