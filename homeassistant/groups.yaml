@@ -53,7 +53,7 @@ server:
   entities:
     - sensor.foto_backup
     - sensor.document_backup
-    - sensor.since_last_boot
+    - sensor.last_boot
     - sensor.ssl_certificate_expiry
     - sensor.disk_use_percent_
     - sensor.processor_use
