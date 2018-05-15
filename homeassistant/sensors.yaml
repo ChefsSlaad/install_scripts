@@ -31,8 +31,8 @@
       - type: network_out
         arg: enp3s0
       - type: memory_free
-      - type: load_1m
-      - type: since_last_boot
+      - type: processor_use
+      - type: last_boot
 
 
 # check if backups have run correctly

@@ -41,15 +41,8 @@ homeassistant:
 
 # Enables support for tracking state changes over time.
 history:
-  exclude:
-    entities:
-      - sensor.since_last_boot
 
 recorder:
-  exclude:
-    entities:
-      - sensor.since_last_boot
-
       
 # Enables the frontend
 frontend:

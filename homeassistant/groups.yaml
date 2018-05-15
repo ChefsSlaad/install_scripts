@@ -56,7 +56,7 @@ server:
     - sensor.since_last_boot
     - sensor.ssl_certificate_expiry
     - sensor.disk_use_percent_
-    - sensor.load_1m
+    - sensor.processor_use
     - sensor.memory_free
     - sensor.network_in_enp3s0
     - sensor.network_out_enp3s0
