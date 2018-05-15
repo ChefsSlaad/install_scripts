@@ -23,7 +23,7 @@ sudo apt-get -qq upgrade > /dev/null
 
 echo installing new apps
 sudo apt-get -qq install \
-    ssh git gitk gitg curl gparted \
+    ssh git git-secret gitk gitg curl gparted \
     dkms python3-pip rygel nmap \
     nfs-kernel-server \
     isc-dhcp-server
