@@ -1,0 +1,3 @@
+#!/bin/bash
+/home/marc/magic_mirror_pir_switch.py &> /dev/null & 
+exit 0

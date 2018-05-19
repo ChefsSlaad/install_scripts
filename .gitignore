@@ -1,3 +1,4 @@
 homeassistant/secrets.yaml
+magicmirror/config.js
 
 .gitsecret/keys/random_seed
