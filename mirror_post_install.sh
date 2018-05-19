@@ -60,17 +60,6 @@ git config --global user.name "Marc Wagner"
 echo downloading the github files
 git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
 
-workflow:
-- hostname
-- screen orientation
-- wifi powersave off
-- set screen background to black
-- install and run magic mirror
-- hint: DISPLAY=:0 nohup npm start &
-- install modules
-- copy config file
-- pir_switch script
-- restart and save mirror
 
 
 ###################################
@@ -130,19 +119,28 @@ echo setting up magic mirror
 echo '... downloading and installing software'
 bash -c "$(curl -sL https://raw.githubusercontent.com/MichMich/MagicMirror/master/installers/raspberry.sh)"
 
-echo '... downloading and installing software'
-pm2 stop mm.sh
+sudo npm install -g pm2
+ln -s ~/projects/install_scripts/magicmirror/mm.sh ~/mm.sh
+
 
 echo '... downloading and installing modules'
 git -C ~/MagicMirror/modules clone git@github.com:jclarke0000/MMM-MyWeather.git
 git -C ~/MagicMirror/modules clone git@github.com:Blastitt/DailyXKCD.git
 
+
+
 echo '... configuring modules'
 rm ~/MagicMirror/config/config.js
 ln -s ~/projects/install_scripts/magicmirror/config.js ~/MagicMirror/config/config.js
 
+echo '... starting up server'
+pm2 startup
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
 pm2 start mm.sh
-pm2 save mm.sh
+pm2 save
+
+
+
 
 ###################################
 #       setting up screen_pir     #
