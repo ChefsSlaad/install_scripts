@@ -44,13 +44,14 @@ def do_state_change(value):
 sleep(5)
 while True:
     switch_monitor_on_off(True)
-    try:
-        pir.wait_for_no_motion()
-        value = False
-        do_state_change(value)
-        pir.wait_for_motion()
-        value = True
-        do_state_change(value)
-        sleep(600)
-    except:
-        pass
+    pir.wait_for_no_motion()
+    value = False
+    print('no motion, switching off')
+    do_state_change(value)
+    pir.wait_for_motion()
+    value = True
+    print('motion, switching on')
+    do_state_change(value)
+    sleep(600)
+    
+        
