@@ -1,7 +1,7 @@
 #!/bin/bash
 /home/marc/magic_mirror_pir_switch.py &> /dev/null & 
 
-if pgrep "pgrep magic_mirror_pi" > /dev/null  
+if pgrep mm_switch.py > /dev/null
 then
     STATUS="active"
 else
@@ -11,15 +11,15 @@ fi
 # if action not supplied at the command prompt
 # display usae message and die
 [ $# -eq 0 ] && { echo "Usage: $0 start|stop|status"; exit 0; }
-	
+
 # start pir_script and exit script
-if [ $1 = "start" ];then  
+if [ $1 = "start" ];then
     if [ $STATUS = "active" ];then
         echo "allready active"
         exit 0
     else
         echo "starting pir_switch"
-        /home/marc/magic_mirror_pir_switch.py &> /dev/null &
+        /home/marc/mm_switch.py &> /dev/null &
         exit 0
     fi
 #stop pir_script and exit script
@@ -29,7 +29,7 @@ elif [ $1 =  "stop" ];then
         exit 0
     else 
         echo "stopping pir_switch"
-        pkill magic_mirror_pi
+        pkill mm_switch.py
         exit 0
     fi
 #status pir_script and exit script
