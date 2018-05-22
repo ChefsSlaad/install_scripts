@@ -1,0 +1,1 @@
+/home/pi/projects/install_scripts/magicmirror/magic_mirror_pir_switch.py
