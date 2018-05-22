@@ -16,11 +16,26 @@ mirror_command_topic = "home/hall/mirror/set"
 
 
 class mqtt_handler(mqtt):
-    def connect_and_subscribe(client_name, server, callback, topics):
+
+    def __init__(self, client_name):
+        super().__init__(client_name)
+        self.connected = False
+        self.server = None
+        self.callback = None
+        self.topics = []
+              
+    def __connect(self):
+        
+
+
+    def connect_and_subscribe(self, server, callback, topics):
         pass
     
-    def send_message(topic, message):
-        pass
+    def send_message(self, topic, message):
+        try 
+            self.publish(pir_topic, state)
+        except OSError
+            self.connected = False
 
 mqtt_server = '192.168.1.10'
 client_name = 'hall_monitor'
