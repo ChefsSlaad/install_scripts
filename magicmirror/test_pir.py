@@ -4,11 +4,14 @@ from gpiozero import OutputDevice, MotionSensor
 from time import sleep
 import paho.mqtt.client as mqtt
 
+mirror_cmd_topic   = 'home/hall/mirror/set'
+pir_state_topic    = "home/hall/motion_sensor"
+mirror_state_topic = "home/hall/mirror"
+mqtt_server = '192.168.1.10'
+client_name = 'hall_monitor'
 
-pir_topic = "home/hall/motion_sensor"
-mirror_topic = "home/hall/mirror"
-mirror_command_topic = "home/hall/mirror/set"
-
+mqqt_client = None
+monitor = None
 
 #workflow:
 #* set-up mqtt
@@ -25,7 +28,7 @@ class mqtt_handler(mqtt):
         self.topics = []
               
     def __connect(self):
-        
+        pass
 
 
     def connect_and_subscribe(self, server, callback, topics):
@@ -33,17 +36,12 @@ class mqtt_handler(mqtt):
     
     def send_message(self, topic, message):
         try 
-            self.publish(pir_topic, state)
+            self.publish(topic, state)
         except OSError
             self.connected = False
 
-mqtt_server = '192.168.1.10'
-client_name = 'hall_monitor'
  
  
-client = mqtt.Client(client_name)
-client.connect(mqtt_server)
-
     def publish_pir_change(value):
         if value: 
             state = 'ON'
@@ -51,7 +49,7 @@ client.connect(mqtt_server)
             state = 'OFF'
 
     client.connect(mqtt_server)
-    client.publish(pir_topic, state)
+    client.publish(pir_state_topic, state)
     client.disconnect()
 
 
@@ -61,6 +59,9 @@ class magic_mirror:
   
         self.motionsensor   = MotionSensor(pir_pin)
         self.monitor        = OutputDevice(monitor_pin, initial_value=True)
+        self.pir_tpc        = pir_tpc
+        self.mirror_tpc     = mirror_tpc
+        self.mirror_cmd_tpc = mirror_cmd_tpc
         self.state          = 'ON'
         self.motion         = 'OFF'
         
@@ -97,9 +98,25 @@ class magic_mirror:
         if change_monitor:
             self.switch_monitor_on_off(self.motionsensor.value)            
 
-      
+    def on_message(self, client, usrdata, message):
+        print(message.topic)
+        print(message.payload)
+        
+
+def initiate(client_name,mqtt_server, callback, pir_tpc, mirror_tpc, mirror_cmd_tpc):
+    mirror = magicmirror(pir_tpc, mirror_tpc, mirror_cmd_tpc)
+    client = mqtt.Client(client_name)
+    client.connect_and_subscribe(mqtt_server, callback, mirror.mirror_cmd_tpc)
+
+def run():
+    while True:
+        
+        
+
         
 if __name__ == "__main__":
+
+
     sleep(5)
     while True:
         switch_monitor_on_off(True)
