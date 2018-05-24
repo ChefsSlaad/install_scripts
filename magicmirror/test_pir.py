@@ -97,7 +97,7 @@ class magic_mirror:
             self.last_motion_tm = time()
         elif (time() - self.last_motion_tm) <  delay:
             self.motion = 'OFF'
-        print('last motion', round(self.last_motion_tm,0), 'since last motion' , round(time() - self.last_motion_tm,0)) 
+        print('last motion', round(self.last_motion_tm), 'since last motion' , round(time() - self.last_motion_tm)) 
         
         if change_monitor:
             self.switch_monitor_on_off(self.motionsensor.value)            
