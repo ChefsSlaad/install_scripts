@@ -93,18 +93,20 @@ media_player: !include media_players.yaml
 light: !include lights.yaml
 zone: !include zones.yaml
 
-
-#  discovery: true
-#  discovery_prefix: homeassistant
-
-
 binary_sensor:
   - platform: mqtt
     name: hall beweging
     device_class: motion
     state_topic: "home/hall/motion_sensor"
 
-
+switch:
+  - platform: mqtt
+    name: hall mirror
+    state_topic: "/home/hall/mirror"
+    command_topic: "home/hall/mirror/set"
+    payload_on: 'ON'
+    payload_off: 'OFF'
+    
 #binary_sensor:
 #  - platform: mqtt
 #    name: woonkamer beweging microwave
