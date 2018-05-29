@@ -45,6 +45,7 @@ class magic_mirror:
     def __connect(self):
         self._client.connect(self.server)
         self._client.subscribe(self.topic)  
+        self._client.on_message = self.on_message
         print('connecting to {} subscribing to {}'.format(self.server, self.topic))
         self.connected = True
         self._client.loop_start()
@@ -59,8 +60,6 @@ class magic_mirror:
         self._client.publish(topic, message)
         self.connected = True
         print('message succesfully sent')
-
-
 
     def switch_monitor_on_off(self, value):
 
@@ -100,7 +99,6 @@ class magic_mirror:
             self.switch_monitor_on_off(self.motion == 'ON')
         if self.motion != last_motion:
             self.send_message(self.motion_tpc, self.motion)
-
 
     def on_message(self, client, usrdata, message):
         payload = (message.payload).decode("utf-8")
