@@ -50,10 +50,10 @@ echo
 ###################################
 
 echo updating system
-sudo dpkg --configure -a > /dev/null
-sudo apt-get -qq update  > /dev/null
-sudo apt-get -qq dist-upgrade > /dev/null
-#sudo apt-get -qq upgrade > /dev/null
+sudo dpkg --configure -a 
+sudo apt-get --yes update
+sudo apt-get --yes dist-upgrade 
+#sudo apt-get --yes upgrade > 
 
 ###################################
 #      install and unistall apps  #
@@ -64,12 +64,12 @@ echo removing pre-installed apps
 sudo apt-get purge dns-root-data
 
 echo installing new apps
-sudo apt-get -qq install \
+sudo apt-get --yes install \
     ssh git gitk gitg curl gparted \
     dkms python3-pip python3-bottle nmap \
-    dnsmasq hostapd bridge-utils	
+#    dnsmasq hostapd bridge-utils	
 
-sudo apt-get -y -qq remove \
+sudo apt-get --yes remove \
 
 # stopping dsnmasq and hostapd
 sudo systemctl stop dnsmasq
@@ -81,7 +81,7 @@ sudo systemctl stop hostapd
 ###################################
 
 echo installing python libraries
-sudo pip3 install \
+# sudo pip3 install \
 
 ###################################
 #      Updating dotfiles          #
@@ -112,31 +112,31 @@ git -C ~/projects clone https://github.com/silvanmelchior/RPi_Cam_Web_Interface.
 #      Setting Up Accespoint      #
 ###################################
 
-echo
-echo Setting up Access point
-echo stopping Access point # allready done
-echo 
+#echo
+#echo Setting up Access point
+#echo stopping Access point # allready done
+#echo 
 #sudo systemctl stop dnsmasq
 #sudo systemctl stop hostapd
-sudo systemctl disable hostapd
-sudo systemctl disable dnsmasq
+#sudo systemctl disable hostapd
+#sudo systemctl disable dnsmasq
 
 
 
-echo
-echo replacing configuration files
-echo 
+#echo
+#echo replacing configuration files
+#echo 
 #sudo cp projects/install_scripts/ap_config/dhcpcd.conf /etc/dhcpcd.conf    
-sudo cp projects/install_scripts/ap_config/dnsmasq.conf /etc/dnsmasq.conf           # 
-sudo cp projects/install_scripts/ap_config/hostapd.conf /etc/hostapd/hostapd.conf   # access point config files
-sudo cp projects/install_scripts/ap_config/hostapd /etc/default/hostapd
-sudo cp projects/install_scripts/ap_config/sysctl.conf /etc/sysctl.conf
+#sudo cp projects/install_scripts/ap_config/dnsmasq.conf /etc/dnsmasq.conf           # 
+#sudo cp projects/install_scripts/ap_config/hostapd.conf /etc/hostapd/hostapd.conf   # access point config files
+#sudo cp projects/install_scripts/ap_config/hostapd /etc/default/hostapd
+#sudo cp projects/install_scripts/ap_config/sysctl.conf /etc/sysctl.conf
 #sudo cp projects/install_scripts/ap_config/iptables.ipv4.nat /etc/iptables.ipv4.nat
 #sudo cp projects/install_scripts/ap_config/interfaces /etc/network/interfaces
 
 
-sudo sed -i 's/ssid=robot_1/ssid=$devicename/' /etc/hostapd/hostapd.conf
-sudo sed -i 's/wpa_passphrase=robowars/wpa_passphrase=$wpa_passwd/' /etc/hostapd/hostapd.conf
+#sudo sed -i 's/ssid=robot_1/ssid=$devicename/' /etc/hostapd/hostapd.conf
+#sudo sed -i 's/wpa_passphrase=robowars/wpa_passphrase=$wpa_passwd/' /etc/hostapd/hostapd.conf
 
 
 
@@ -145,15 +145,15 @@ sudo sed -i 's/wpa_passphrase=robowars/wpa_passphrase=$wpa_passwd/' /etc/hostapd
 ###################################################
 
 
-echo configuring hotspot switching service
+#echo configuring hotspot switching service
 
-sudo cp projects/install_scripts/ap_config/autohotspotN  /usr/bin/autohotspotN
-sudo cp projects/install_scripts/ap_config/autohotspot.service /etc/systemd/system/autohotspot.service
+#sudo cp projects/install_scripts/ap_config/autohotspotN  /usr/bin/autohotspotN
+#sudo cp projects/install_scripts/ap_config/autohotspot.service /etc/systemd/system/autohotspot.service
 
-sudo chmod +x /usr/bin/autohotspotN
-sudo systemctl enable autohotspot.service
+#sudo chmod +x /usr/bin/autohotspotN
+#sudo systemctl enable autohotspot.service
 
-crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allready present' || (crontab -l 2>/dev/null; echo "*/5 * * * * sudo /usr/bin/autohotspotN") | crontab -
+#crontab -l | grep -q 'sudo /usr/bin/autohotspotN'  && echo 'crontab entry allready present' || (crontab -l 2>/dev/null; echo "*/5 * * * * sudo /usr/bin/autohotspotN") | crontab -
 
 
 ###################################################
