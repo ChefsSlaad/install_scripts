@@ -1,6 +1,11 @@
 #! /bin/bash
 
 
+echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+echo 'remember to install git'
+echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ## hostname
 ## dynamically config ap channel
 ## rename ssid on the fly
@@ -20,6 +25,16 @@ wpa_passwd=$wpa_password #default password is robowars
 
 devicename="robot_1"  # default devicename is robot_1
 wpa_passwd="robowars" #default password is robowars
+
+###################################
+#         set raspi-config        #
+###################################
+
+echo
+echo setting raspi-config
+echo
+
+sudo raspi-config
 
 
 
@@ -67,7 +82,9 @@ echo installing new apps
 sudo apt-get --yes install \
     ssh git gitk gitg curl gparted \
     dkms python3-pip python3-bottle nmap \
-#    dnsmasq hostapd bridge-utils	
+#    dnsmasq hostapd bridge-utils \
+    python3-gpiozero
+
 
 sudo apt-get --yes remove \
 
