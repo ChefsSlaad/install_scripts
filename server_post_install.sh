@@ -188,7 +188,9 @@ sudo ln -s ~/projects/install_scripts/homeassistant/automations.yaml \
 sudo ln -s ~/projects/install_scripts/homeassistant/groups.yaml \
                  /home/homeassistant/.homeassistant/groups.yaml 
 sudo ln -s ~/projects/install_scripts/homeassistant/known_devices.yaml \
-                 /home/homeassistant/.homeassistant/known_devices.yaml 
+                 /home/homeassistant/.homeassistant/known_devices.yaml
+sudo ln -s ~/projects/install_scripts/homeassistant/sene.yaml \
+                 /home/homeassistant/.homeassistant/scene.yaml 		 
 sudo ln -s ~/projects/install_scripts/homeassistant/secrets.yaml \
                  /home/homeassistant/.homeassistant/secrets.yaml 
 
