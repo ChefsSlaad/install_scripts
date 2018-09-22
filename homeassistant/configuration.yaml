@@ -83,7 +83,8 @@ tts:
 
 #enable MQTT server
 mqtt:
-
+  broker: 10.0.0.10
+  client_id: home_assistant
 
 group: !include groups.yaml
 automation: !include automations.yaml
