@@ -24,6 +24,7 @@ woonkamer_licht:
     - light.boekenkast_links
     - light.boekenkast_rechts
     - light.woonkamer_gordijn_lang
+    - light.woonkamer_gordijn_kort
 
 woonkamer_muziek:
   name: muziek
@@ -92,7 +93,7 @@ postnl:
 scripts:
   name: scripts
   entities:
-    - script.play_a_song 
+    - script.play_a_song
     - script.slow_lights_on_bedroom
     - script.stop_lights_on_bedroom
     - script.turn_lights_on
@@ -112,5 +113,3 @@ scripts_view:
     - group.scripts
     - group.all_automations
     - group.all_scripts
-    
-

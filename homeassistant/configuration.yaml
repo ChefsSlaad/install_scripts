@@ -30,7 +30,7 @@ homeassistant:
     sensor.samsung_clp360_series_192168120_toner_yellow:
       friendly_name: yellow
       icon: mdi:water
-    sensor.samsung_clp360_series_192168120_tray_1:    
+    sensor.samsung_clp360_series_192168120_tray_1:
       hidden: true
 
     sensor.document_backup:
@@ -43,7 +43,7 @@ homeassistant:
 history:
 
 recorder:
-      
+
 # Enables the frontend
 frontend:
 
@@ -70,7 +70,7 @@ discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
-      
+
 # View all events in a logbook
 logbook:
 
@@ -83,13 +83,13 @@ tts:
 
 #enable MQTT server
 mqtt:
-
+  broker: 10.0.0.10
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 sensor: !include sensors.yaml
-media_player: !include media_players.yaml
+scene: !include scenes.yaml
 light: !include lights.yaml
 zone: !include zones.yaml
 
@@ -102,11 +102,10 @@ binary_sensor:
 switch:
   - platform: mqtt
     name: hall mirror
-    state_topic: "/home/hall/mirror"
+    state_topic: "home/hall/mirror"
     command_topic: "home/hall/mirror/set"
-    payload_on: 'ON'
-    payload_off: 'OFF'
-    
+    retain: true
+
 #binary_sensor:
 #  - platform: mqtt
 #    name: woonkamer beweging microwave
@@ -156,15 +155,13 @@ input_select:
 device_tracker:
   - platform: nmap_tracker
     hosts:
-      - 192.168.1.32
-      - 192.168.1.160
-      - 192.168.1.161
-      - 192.168.1.162
-      - 192.168.1.163
+      - 10.0.0.160
+      - 10.0.0.161
+      - 10.0.0.162
+      - 10.0.0.163
     home_interval: 10
   - platform: gpslogger
     password: !secret gpslogger_password
   - platform: google_maps
     username: wagner.location.sharing@gmail.com@gmail.com
     password: !secret google_location_sharing
-   
