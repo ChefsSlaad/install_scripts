@@ -43,8 +43,8 @@
 
 
 
-#  - platform: flux_led
-#    devices:
-#      192.168.1.71:
-#        name: slaapkamer_gordijn
-#        mode: 'rgb'
+  - platform: flux_led
+    devices:
+      192.168.1.71:
+        name: slaapkamer_gordijn
+        mode: 'rgb'

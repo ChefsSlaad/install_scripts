@@ -8,7 +8,7 @@ from time import time, sleep
 mirror_cmd_topic   = "home/hall/mirror/set"
 mirror_state_topic = "home/hall/mirror"
 motion_state_topic = "home/hall/motion_sensor"
-mqtt_server = '192.168.1.10'
+mqtt_server = '10.0.0.10'
 client_name = 'hall_monitor'
 
 #workflow:
@@ -34,7 +34,7 @@ class magic_mirror:
         self.autonomous     = True # autonomous: respond to pir or not
         self.motion         = "OFF"
         self.last_motion_tm = time()
-        self.last_switched  = time() 
+        self.last_switched  = time()
         print('topics: motion: {}, mirror {} mirror_cmd {}'.format(self.motion_tpc, self.mirror_tpc, self.mirror_cmd_tpc))
 
 
@@ -44,7 +44,7 @@ class magic_mirror:
 
     def __connect(self):
         self._client.connect(self.server)
-        self._client.subscribe(self.topic)  
+        self._client.subscribe(self.topic)
         self._client.on_message = self.on_message
         print('connecting to {} subscribing to {}'.format(self.server, self.topic))
         self.connected = True
@@ -66,7 +66,7 @@ class magic_mirror:
         if value:
             self.state = "ON"
         else:
-            self.state = "OFF" 
+            self.state = "OFF"
         if self.monitor.value != value:
             self.monitor.value = value
             self.send_message(self.mirror_tpc, self.state)
@@ -79,7 +79,7 @@ class magic_mirror:
 
     def monitor_on(self):
         self.switch_monitor_on_off(True)
- 
+
     def monitor_off(self):
         self.switch_monitor_on_off(False)
 
@@ -107,7 +107,7 @@ class magic_mirror:
         self.autonomous = False
         if payload == 'ON':
             self.monitor_on()
-        else: 
+        else:
             self.monitor_off()
 
 
@@ -121,9 +121,8 @@ def run(mirror):
     mirror.check_motion()
     sleep(1)
 
-        
+
 if __name__ == "__main__":
     mirror = initiate(client_name, mqtt_server, motion_state_topic, mirror_state_topic, mirror_cmd_topic)
     while True:
         run(mirror)
-

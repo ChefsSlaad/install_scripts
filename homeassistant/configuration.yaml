@@ -83,8 +83,7 @@ tts:
 
 #enable MQTT server
 mqtt:
-  broker: 10.0.0.10
-  client_id: home_assistant
+
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -103,11 +102,10 @@ binary_sensor:
 switch:
   - platform: mqtt
     name: hall mirror
-    state_topic: "/home/hall/mirror"
+    state_topic: "home/hall/mirror"
     command_topic: "home/hall/mirror/set"
-    payload_on: 'ON'
-    payload_off: 'OFF'
-    
+    retain: true
+        
 #binary_sensor:
 #  - platform: mqtt
 #    name: woonkamer beweging microwave
