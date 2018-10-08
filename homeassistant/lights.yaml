@@ -20,6 +20,12 @@
     brightness: true
     white_value: true
     retain: true
+  - platform: mqtt_json
+    name: slaapkamer_gordijn
+    state_topic: "home/slaapkamer/gordijn"
+    command_topic: "home/slaapkamer/gordijn/set"
+    rgb: true
+    brightness: true
   - platform: mqtt
     name: servieskast
     state_topic: "home/woonkamer/servieskast"
@@ -40,11 +46,3 @@
     state_topic: "home/woonkamer/bank_schemerlamp"
     command_topic: "home/woonkamer/bank_schemerlamp/set"
     retain: true
-
-
-
-  - platform: flux_led
-    devices:
-      192.168.1.71:
-        name: slaapkamer_gordijn
-        mode: 'rgb'
