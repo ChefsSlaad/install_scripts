@@ -65,12 +65,23 @@ server:
 printer:
   name: printer
   entities:
-    - sensor.samsung_clp360_series_192168120
-    - sensor.samsung_clp360_series_192168120_toner_black
-    - sensor.samsung_clp360_series_192168120_toner_magenta
-    - sensor.samsung_clp360_series_192168120_toner_cyan
-    - sensor.samsung_clp360_series_192168120_toner_yellow
-    - sensor.samsung_clp360_series_192168120_tray_1
+    - sensor.printer
+    - sensor.printer_toner_black
+    - sensor.printer_toner_magenta
+    - sensor.printer_toner_cyan
+    - sensor.printer_toner_yellow
+    - sensor.printer_tray_1
+
+
+hide_printer:
+  name: hide_printer
+  entities:
+    - sensor.samsung_clp360_series_100020
+    - sensor.samsung_clp360_series_100020_toner_black
+    - sensor.samsung_clp360_series_100020_toner_magenta
+    - sensor.samsung_clp360_series_100020_toner_cyan
+    - sensor.samsung_clp360_series_100020_toner_yellow
+    - sensor.samsung_clp360_series_100020_tray_1
 
 automations:
   name: automations

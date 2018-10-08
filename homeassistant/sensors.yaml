@@ -7,7 +7,7 @@
 #weather sensor
   - platform: yr
 
-# check weather and prediction 
+# check weather and prediction
   - platform: buienradar
     monitored_conditions:
       - conditiondetailed
@@ -45,9 +45,18 @@
     state_topic: "home/server/sync-docs"
 
 # printer
+  - platform: syncthru
+    resource: http://10.0.0.20
+    name: printer
+    monitored_conditions:
+        - toner_black
+        - toner_cyan
+        - toner_magenta
+        - toner_yellow
+        - tray_1
+        - output_tray_0
 
 # postnl sensor
   - platform: postnl
     username: wagner.marc@gmail.com
     password: !secret postnl_password
-    
