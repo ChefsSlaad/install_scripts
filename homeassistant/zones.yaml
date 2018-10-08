@@ -1,12 +1,5 @@
 #### zones.yaml ####
 
-
-  - name: Werk-Zeist
-    latitude: 52.094837
-    longitude: 5.222755
-    radius: 125
-    icon: mdi:briefcase
-
   - name: Werk-Utrecht
     latitude: 52.085937
     longitude: 5.109296
@@ -26,14 +19,13 @@
     icon: mdi:basket
 
   - name: de klim
-    latitude: 52.060871 
+    latitude: 52.060871
     longitude: 5.134294
     radius: 75
     icon: mdi:school
 
   - name: OSG
-    latitude: 52.075642 
+    latitude: 52.075642
     longitude: 5.241894
     radius: 200
     icon: mdi:school
-
