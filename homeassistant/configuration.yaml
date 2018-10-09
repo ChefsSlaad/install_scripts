@@ -14,23 +14,35 @@ homeassistant:
     # hide the following proup
     group.someone_home:
       hidden: true
+    sensor.samsung_clp360_series_100020:
+      hidden: true
+    sensor.samsung_clp360_series_100020_toner_black:
+      hidden: true
+    sensor.samsung_clp360_series_100020_toner_magenta:
+      hidden: true
+    sensor.samsung_clp360_series_100020_toner_cyan:
+      hidden: true
+    sensor.samsung_clp360_series_100020_toner_yellow:
+      hidden: true
+    sensor.samsung_clp360_series_100020_tray_1:
+      hidden: true
+
     # pretty printer icons
-    sensor.samsung_clp360_series_192168120:
-      friendly_name: samsung CLP-360
+    sensor.printer:
       icon: mdi:printer
-    sensor.samsung_clp360_series_192168120_toner_black:
+    sensor.printer_toner_black:
       friendly_name: black
       icon: mdi:water
-    sensor.samsung_clp360_series_192168120_toner_magenta:
+    sensor.printer_toner_magenta:
       friendly_name: magenta
       icon: mdi:water
-    sensor.samsung_clp360_series_192168120_toner_cyan:
+    sensor.printer_toner_cyan:
       friendly_name: cyan
       icon: mdi:water
-    sensor.samsung_clp360_series_192168120_toner_yellow:
+    sensor.printer_toner_yellow:
       friendly_name: yellow
       icon: mdi:water
-    sensor.samsung_clp360_series_192168120_tray_1:
+    sensor.printer_tray_1:
       hidden: true
 
     sensor.document_backup:
@@ -89,7 +101,7 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 sensor: !include sensors.yaml
-media_player: !include media_players.yaml
+scene: !include scenes.yaml
 light: !include lights.yaml
 zone: !include zones.yaml
 

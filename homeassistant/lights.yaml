@@ -1,4 +1,10 @@
   - platform: mqtt_json
+    name: slaapkamer_gordijn
+    state_topic: "home/slaapkamer/gordijn"
+    command_topic: "home/slaapkamer/gordijn/set"
+    rgb: true
+    brightness: true
+  - platform: mqtt_json
     name: woonkamer_tafel
     state_topic: "home/woonkamer/tafel"
     command_topic: "home/woonkamer/tafel/set"
@@ -20,12 +26,6 @@
     brightness: true
     white_value: true
     retain: true
-  - platform: mqtt_json
-    name: slaapkamer_gordijn
-    state_topic: "home/slaapkamer/gordijn"
-    command_topic: "home/slaapkamer/gordijn/set"
-    rgb: true
-    brightness: true
   - platform: mqtt
     name: servieskast
     state_topic: "home/woonkamer/servieskast"
