@@ -68,7 +68,7 @@ git -C ~/projects clone git@github.com:pi-hole/pi-hole.git
 echo setting up nfs shares to laptop_marc
 
 echo - editing /etc/exports
-echo '/home/marc/ 192.168.1.183(rw,sync,no_root_squash,no_subtree_check) ' | sudo tee -a /etc/exports
+echo '/home/marc/ 10.0.0.183(rw,sync,no_root_squash,no_subtree_check) ' | sudo tee -a /etc/exports
 
 echo - starting nfs-server
 sudo systemctl start nfs-kernel-server.service
@@ -84,8 +84,8 @@ echo - creating user fotosync
 sudo useradd -m -d /home/fotosync fotosync
 
 echo - adding mounts to fstab 
-echo '//192.168.1.180/fotos /media/fotos         cifs    vers=2.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
-echo '//192.168.1.180/Documents /media/documents  cifs vers=2.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab 
+echo '//10.0.0.180/fotos /media/fotos         cifs    vers=2.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
+echo '//10.0.0.180/Documents /media/documents  cifs vers=2.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab 
 echo - creating mount points
 sudo mkdir /media/fotos && sudo chown fotosync:fotosync /media/fotos
 sudo mkdir /media/documents && sudo chown fotosync:fotosync /media/documents
@@ -205,6 +205,3 @@ echo - starting homeassistant service
 sudo systemctl --system daemon-reload
 sudo systemctl enable homeassistant@homeassistant.service
 sudo systemctl start homeassistant@homeassistant.service
-
-echo - setting up error_check script
-sudo su -c '(crontab -l 2>/dev/null; echo "*/10 * * * * /home/homeassistant/scripts/check_hass_errors.sh") | crontab -' root
