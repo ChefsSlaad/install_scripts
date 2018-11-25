@@ -14,6 +14,21 @@
       entity_id: input_select.resident_state
       option: 'Sleeping'
 
+- id: slow_lights_bedroom
+  alias: zon_op
+  trigger:
+    platform: time
+    at: '06:00:00'
+  condition:
+    - condition: state
+      entity_id: input_select.resident_state
+      state: 'Sleeping'
+  action:
+  - service: script.turn_on
+    data:
+      entity_id: script.slaapkamer_fade_in
+
+
 - id: time_to_wake_up
   alias: opstaan
   trigger:

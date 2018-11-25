@@ -107,7 +107,7 @@ zone: !include zones.yaml
 
 binary_sensor:
   - platform: mqtt
-    name: hall beweging
+    name: hall motion
     device_class: motion
     state_topic: "home/hall/motion_sensor"
 
@@ -173,7 +173,6 @@ device_tracker:
       - 10.0.0.163
     home_interval: 10
   - platform: gpslogger
-    password: !secret gpslogger_password
   - platform: google_maps
     username: wagner.location.sharing@gmail.com@gmail.com
     password: !secret google_location_sharing

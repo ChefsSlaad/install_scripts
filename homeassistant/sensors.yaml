@@ -46,8 +46,45 @@
 
 # printer
 
+# power use
+  - platform: mqtt
+    name: "last_update"
+    state_topic: "home/power_meter"
+    value_template: "{{value_json.date_time_str}}"
+  - platform: mqtt
+    name: "power_use"
+    state_topic: "home/power_meter"
+    unit_of_measurement: 'Ws'
+    value_template: "{{value_json.power_avg}}"
+  - platform: mqtt
+    state_topic: "home/power_meter"
+    name: "power_returning"
+    unit_of_measurement: 'kW'
+    value_template: "{{value_json.power_returning}}"
+  - platform: mqtt
+    state_topic: "home/power_meter"
+    name: "t1_delivered"
+    unit_of_measurement: 'kWh'
+    value_template: "{{value_json.tarif_1_delivered}}"
+  - platform: mqtt
+    state_topic: "home/power_meter"
+    name: "t2_delivered"
+    unit_of_measurement: 'kWh'
+    value_template: "{{value_json.tarif_2_delivered}}"
+  - platform: mqtt
+    state_topic: "home/power_meter"
+    name: "gas_use"
+    unit_of_measurement: 'Ls'
+    value_template: "{{value_json.gas_avg}}"
+  - platform: mqtt
+    state_topic: "home/power_meter"
+    name: "gas_delivered"
+    unit_of_measurement: 'm3'
+    value_template: "{{value_json.gas_delivered}}"
+
+
+
 # postnl sensor
   - platform: postnl
     username: wagner.marc@gmail.com
     password: !secret postnl_password
-    

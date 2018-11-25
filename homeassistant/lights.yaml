@@ -4,6 +4,10 @@
     command_topic: "home/slaapkamer/gordijn/set"
     rgb: true
     brightness: true
+    effect: true
+    effect_list:
+      - 'fade'
+
   - platform: mqtt_json
     name: woonkamer_tafel
     state_topic: "home/woonkamer/tafel"
@@ -11,6 +15,10 @@
     rgb: true
     brightness: true
     white_value: true
+    effect: true
+    effect_list:
+      - 'fade'
+
   - platform: mqtt_json
     name: woonkamer_gordijn_kort
     state_topic: "home/woonkamer/gordijn_kort"

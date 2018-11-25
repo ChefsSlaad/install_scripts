@@ -32,6 +32,24 @@ woonkamer_muziek:
     - media_player.woonkamer
     - media_player.woonkamer_audio
 
+hall:
+  name: hall
+  entities:
+    - binary_sensor.hall_motion
+    - switch.hall_mirror
+
+
+energie:
+  name: energie
+  entities:
+    - sensor.last_update
+    - sensor.power_use
+    - sensor.gas_use
+    - sensor.t1_delivered
+    - sensor.t2_delivered
+    - sensor.power_returning
+    - sensor.gas_delivered
+
 weer:
   name: weer
   entities:
@@ -84,6 +102,7 @@ automations:
     - automation.opstaan
     - automation.vertrekken
     - automation.zon_buiten_lichten_uit
+    - automation.zon_op
 
 postnl:
   name: pakketten
@@ -93,10 +112,9 @@ postnl:
 scripts:
   name: scripts
   entities:
-    - script.play_a_song 
-    - script.slow_lights_on_bedroom
-    - script.stop_lights_on_bedroom
-    - script.turn_lights_on
+    - script.slaapkamer_fade_in
+    - script.woonkamer_gordijnen
+
 
 woonkamer_view:
   view: yes
