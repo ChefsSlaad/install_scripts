@@ -118,9 +118,7 @@ switch:
     command_topic: "home/hall/mirror/set"
     retain: true
   - platform: wake_on_lan
-    name: laptop_koosje
-    mac_address: "AC:7B:A1:69:23:50"
-
+    mac_address: "AC-7B-A1-69-23-50"
 
 #binary_sensor:
 #  - platform: mqtt

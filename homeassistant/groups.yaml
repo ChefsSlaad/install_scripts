@@ -25,6 +25,8 @@ woonkamer_licht:
     - light.boekenkast_rechts
     - light.woonkamer_gordijn_lang
     - light.woonkamer_gordijn_kort
+    - light.tv_lamp
+    - light.kerstboom
 
 woonkamer_muziek:
   name: muziek

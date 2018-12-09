@@ -54,3 +54,13 @@
     state_topic: "home/woonkamer/bank_schemerlamp"
     command_topic: "home/woonkamer/bank_schemerlamp/set"
     retain: true
+  - platform: mqtt
+    name: tv_lamp
+    state_topic: "home/woonkamer/tv_lamp"
+    command_topic: "home/woonkamer/tv_lamp/set"
+    retain: true
+  - platform: mqtt
+    name: kerstboom
+    state_topic: "home/woonkamer/kerstboom"
+    command_topic: "home/woonkamer/kerstboom/set"
+    retain: true
