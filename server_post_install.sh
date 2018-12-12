@@ -26,7 +26,8 @@ sudo apt-get -qq install \
     ssh git git-secret gitk gitg curl gparted \
     dkms python3-pip rygel nmap \
     nfs-kernel-server \
-    isc-dhcp-server
+    isc-dhcp-server\
+    mosquitto mosquitto-clients
 
 sudo apt-get -y -qq remove \
 
