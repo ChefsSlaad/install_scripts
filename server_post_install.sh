@@ -1,6 +1,16 @@
 #! /bin/bash
 
 ###################################
+#     aditional steps             #
+###################################
+# - add dehydrated certificate for hass https://www.splitbrain.org/blog/2017-08/10-homeassistant_duckdns_letsencrypt
+#      - remember to mod the files before running scripts
+#      - permissions?
+# - export hass files
+
+
+
+###################################
 #         add repositories        #
 ###################################
 
