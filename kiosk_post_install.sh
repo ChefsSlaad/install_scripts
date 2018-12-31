@@ -15,8 +15,6 @@ echo purging unneeded apps
 sudo apt-get purge wolfram-engine scratch scratch2 nuscratch sonic-pi idle3 -y
 sudo apt-get purge smartsim java-common minecraft-pi libreoffice* -y
 
-
-
 ###################################
 #      install and unistall apps  #
 ###################################
@@ -35,7 +33,6 @@ echo updating system
 sudo dpkg --configure -a > /dev/null
 sudo apt-get -qq update  > /dev/null
 sudo apt-get -qq upgrade > /dev/null
-
 
 
 ###################################
@@ -58,22 +55,12 @@ echo -e '# configuration for magic mirror\ndisplay_rotate=1\navoid_warnings=1' |
 
 echo '...disabling screensaver and screen_blanking'
 
-echo -e 'consoleblank=0' | sudo tee -a /boot/cmdline.txt
-rm ~/.xscreensaver
-ln -s ~/projects/install_scripts/magicmirror/.xscreensaver ~/.xscreensaver
+#echo -e 'consoleblank=0' | sudo tee -a /boot/cmdline.txt
+#rm ~/.xscreensaver
+#ln -s ~/projects/install_scripts/magicmirror/.xscreensaver ~/.xscreensaver
 # xscreensaver does not need a restart because it automatically reloads if the config file has changed
 
-echo '...disabling power manager for wifi'
-cat << EOF | sudo tee -a /etc/network/if-up.d/off-power-manager
-#!/bin/sh
-# off-power-manager - Disable the internal power manager of the (built-in) wlan0 device
-# Added by MagicMirrorSetup
-iw dev wlan0 set power_save off
-EOF
-
-sudo chmod 755 /etc/network/if-up.d/off-power-manager
-sudo /etc/init.d/networking restart
-
+iwconfig wlan0 power off
 
 ###################################
 #       setting up VNC server     #
@@ -88,9 +75,6 @@ mkdir ~/.vnc
 ln -s ~/projects/install_scripts/magicmirror/passwd ~/.vnc/passwd
 
 x11vnc --usepw
-
-
-
 
 
 #####################################
@@ -111,7 +95,11 @@ unclutter -idle 0.5 -root &
 # lcd_rotate=2
 
 
-installing snips voice platform
+
+
+#####################################
+# installing snips voice platform   #
+#####################################
 
 sudo apt-get update
 sudo apt-get install -y dirmngr
@@ -119,6 +107,13 @@ sudo bash -c  'echo "deb https://raspbian.snips.ai/$(lsb_release -cs) stable mai
 sudo apt-key adv --keyserver pgp.mit.edu --recv-keys D4F50CDCA10A2849
 sudo apt-get update
 sudo apt-get install -y snips-platform-voice
+
+
+#####################################
+#     installing services           #
+#####################################
+
+mkdir ~/scripts
 
 
 
