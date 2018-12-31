@@ -118,8 +118,19 @@ cd ~/scripts
 
 wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/pi@mm_switch.service
 wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/mm_switch.py
+wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/pi@kiosk.service
+wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/kiosk.sh
 
+wget https://github.com/marcwagner/p1_python/raw/master/pi@p1_reader.service
+wget https://github.com/marcwagner/p1_python/raw/master/p1_reader.py
+wget https://github.com/marcwagner/p1_python/raw/master/serial_reader.py
+wget https://github.com/marcwagner/p1_python/raw/master/converter.py
 
+activating all the service files
+sudo chown root:root pi@*
+sudo mv pi@* /etc/systemd/system/
 
-
-
+echo enabling services at boot
+sudo systemctl enable pi@kiosk.services pi@mm_switch.services pi@p1_reader.services
+sudo systemctl daemon-reload # Run if .service file has changed
+sudo systemctl restart pi@kiosk.services pi@mm_switch.services pi@p1_reader.services
