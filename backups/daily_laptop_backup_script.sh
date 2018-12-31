@@ -39,10 +39,10 @@ fi
 # and exit accordingly
 if [ -n "$(pgrep rsync)" ]; then  
     echo $(date) daily backup could not start, a backup job is allready running >>$LOGFILE
-    docs_return="in progress"
-    foto_return="in progress"
-    /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
-    /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
+#    docs_return="in progress"
+#    foto_return="in progress"
+#    /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
+#    /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
     exit 0
 fi
 
@@ -77,23 +77,26 @@ if [ -z "${LAST_FOTO_DAILY}" ]; then
     foto_return="daily backup started"
     ionice -c 3 nice -n +19 rsync -a --progress ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_M}/
     ionice -c 3 nice -n +19 rsync -a --link-dest=${TODY_FOTO_PATH_M}/ ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_D}/ >> $BACKUP_OUT
+    /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
 elif [ "${LAST_FOTO_MONTH}" != "${THIS_MONTH}" ]; then
     echo $(date) monthly fotos backup started >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -aq --link-dest=${LAST_FOTO_PATH_M}/ ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_M}/ >> $BACKUP_OUT
     foto_return="monthly backup started"
+    /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
 elif [ "${LAST_FOTO_DAILY}" != "${TODAY}" ]; then
     echo $(date) daily fotos backup started >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -aq --link-dest=${LAST_FOTO_PATH_D}/ ${SOURCE_FOTO}/ ${TODY_FOTO_PATH_D}/ >> $BACKUP_OUT
     foto_return="daily backup started"
+    /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
 else
     echo $(date) fotos are up to date >> $LOGFILE
-    foto_return="up to date"
 fi
 
 chmod --recursive u+w  ${BACKUP_FOTO_DAILY}/*
 [ -z "$FOTO_TO_DELETE" ] || rm -rf $FOTO_TO_DELETE
 
 echo $(date) fotos backup finished >> $LOGFILE
+foto_return="up to date"
 /home/fotosync/scripts/mqtt_send.py ${foto_topic} "${foto_return}"
 
 
@@ -126,21 +129,24 @@ if [ -z "${LAST_DOCS_DAILY}" ]; then
     ionice -c 3 nice -n +19 rsync -a --progress ${SOURCE_DOCS} ${TODY_DOCS_PATH_M}/
     ionice -c 3 nice -n +19 rsync -a --link-dest=${TODY_DOCS_PATH_M}/ ${SOURCE_DOCS}/ ${TODY_DOCS_PATH_D}/ >> $BACKUP_OUT
     docs_return="initial backup started"
+    /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
 elif [ "${LAST_DOCS_MONTH}" != "${THIS_MONTH}" ]; then
     echo $(date) monthly documents backup started >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -aq --link-dest=${LAST_DOCS_PATH_M}/ ${SOURCE_DOCS} ${TODY_DOCS_PATH_M}/ >> $BACKUP_OUT
     docs_return="monthly backup started"
+    /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
 elif [ "${LAST_DOCS_DAILY}" != "${TODAY}" ]; then
     echo $(date) daily documents backup started >> $LOGFILE
     ionice -c 3 nice -n +19 rsync -aq --exclude=$DOCS_TO_IGNORE --link-dest=${LAST_DOCS_PATH_D}/ ${SOURCE_DOCS}/ ${TODY_DOCS_PATH_D}/ >> $BACKUP_OUT
     docs_return="daily backup started"
+    /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"
 else
     echo $(date) documents are up to date >> $LOGFILE
-    docs_return="up to date"
 fi
 
 chmod --recursive u+w ${BACKUP_DOCS_DAILY}/*
 [ -z "$DOCS_TO_DELETE" ] || rm -rf $DOCS_TO_DELETE
 
 echo $(date) documents backup finished >> $LOGFILE
+docs_return="up to date"
 /home/fotosync/scripts/mqtt_send.py ${docs_topic} "${docs_return}"

@@ -1,49 +1,87 @@
-
 - id: time_to_sleep
-  alias: bedtijd 
-  trigger: 
+  alias: bedtijd
+  trigger:
     platform: time
     at: '22:30:00'
   condition:
     - condition: state
       entity_id: input_select.resident_state
-      state: 'Home'      
+      state: 'Home'
   action:
     service: input_select.select_option
     data:
       entity_id: input_select.resident_state
       option: 'Sleeping'
 
+
+- id: slow_lights_bedroom
+  alias: zon_op
+  trigger:
+    platform: time
+    at: '06:00:00'
+  condition:
+    - condition: state
+      entity_id: input_select.resident_state
+      state: 'Sleeping'
+  action:
+  - service: script.turn_on
+    data:
+      entity_id: script.slaapkamer_fade_in
+
+
 - id: time_to_wake_up
-  alias: opstaan 
-  trigger: 
+  alias: opstaan
+  trigger:
     platform: time
     at: '06:30:00'
   condition:
     - condition: state
       entity_id: input_select.resident_state
-      state: 'Sleeping'      
+      state: 'Sleeping'
   action:
     service: input_select.select_option
     data:
       entity_id: input_select.resident_state
       option: 'Home'
 
+
+- id: movement_indoors
+  alias: beweging thuis
+  trigger:
+    platform: mqtt
+    topic: home/hall/motion_sensor
+    payload: 'on'
+  condition:
+    condition: time
+    after: '6:00:00'
+    before: '22:00:00'
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.resident_state
+      option: 'Home'
+
+
 - id: some_arrives
-  alias: aankomen 
-  trigger: 
+  alias: aankomen
+  trigger:
     platform: state
     entity_id: group.someone_home
-    to: home 
+    to: home
+  condition:
+    condition: time
+    after: '6:00:00'
+    before: '22:30:00'
   action:
     service: input_select.select_option
     data:
       entity_id: input_select.resident_state
       option: Home
 
+
 - id: some_leaves
-  alias: vertrekken 
-  trigger: 
+  alias: vertrekken
+  trigger:
     platform: state
     entity_id: group.someone_home
     to: not_home
@@ -54,31 +92,9 @@
       option: Away
 
 
-
-- id: sunrise_alarm
-  alias: langzaam wakker worden
-  trigger:
-    platform: time
-    at: '05:59:00'
-  condition:
-    - condition: time
-      weekday:
-        - mon
-        - tue
-        - wed
-        - thu
-        - fri
-    - condition: state
-      entity_id: input_select.resident_state
-      state: 'Sleeping'  
-  action:
-    service: homeassistant.turn_on
-    entity_id: script.slow_lights_on_bedroom
-    
-
 - id: lights_off_when_not_home
-  alias: "niemand thuis" 
-  trigger: 
+  alias: "niemand thuis"
+  trigger:
     platform: state
     entity_id: input_select.resident_state
     from: 'Home'
@@ -88,8 +104,8 @@
 
 
 - id: lights_on_when_arrive_home_and_dark
-  alias: "iemand komt thuis en het is donker buiten" 
-  trigger: 
+  alias: "iemand komt thuis en het is donker buiten"
+  trigger:
     platform: state
     entity_id: input_select.resident_state
     to: 'Home'
@@ -98,12 +114,12 @@
     entity_id: sensor.br_irradiance
     below: 150
   action:
-    service: homeassistant.turn_on
-    entity_id: group.woonkamer_licht
+    service: scene.turn_on
+    entity_id: scene.evening_light
 
-    
+
 - id: lights_on_when_dark
-  alias: "donker buiten.. lichten aan" 
+  alias: "donker buiten.. lichten aan"
   trigger:
     platform: numeric_state
     entity_id: sensor.br_irradiance
@@ -111,17 +127,18 @@
   condition:
     condition: state
     entity_id: input_select.resident_state
-    state: 'Home'  
+    state: 'Home'
   action:
-    service: homeassistant.turn_on
-    entity_id: group.woonkamer_licht
-    
+    service: scene.turn_on
+    entity_id: scene.evening_light
+
+
 - id: lights_off_when_light_outside
-  alias: "zon buiten.. lichten uit" 
+  alias: "zon buiten.. lichten uit"
   trigger:
     platform: numeric_state
     entity_id: sensor.br_irradiance
-    above: 150
+    above: 170
   action:
     service: homeassistant.turn_off
     entity_id: group.woonkamer_licht

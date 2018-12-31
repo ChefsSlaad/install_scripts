@@ -1,144 +1,46 @@
-turn_lights_on:
-  sequence:
-      # This is written using the Script Syntax
-    - service: homeassistant.turn_on
-      entity_id: group.woonkamer_licht
-
-play_a_song:
-  sequence:
-  - service: media_player.play_media
-    data:
-      entity_id: media_player.keuken
-      media_content_type: music
-      media_content_id: http://192.168.1.10:8000/music/Bastille%20-%20All%20This%20Bad%20Blood/CD1/mp3tag.m3u
-
-  - service: media_player.volume_set
-    data:
-      entity_id: media_player.keuken
-      volume_level: 0.20
-
-stop_lights_on_bedroom:
+  slaapkamer_fade_in:
     sequence:
-    - service: homeassistant.turn_off
-      data:
-        entry_id: script.slow_lights_on_bedroom
-    - service: homeassistant.turn_off
-      data:
-        entity_id: light.slaapkamer_gordijn
+      - service: light.turn_on
+        data:
+          entity_id: light.slaapkamer_gordijn
+          rgb_color: [255,64,0]
+          brightness: 1
+      - service: light.turn_on
+        data:
+          entity_id: light.slaapkamer_gordijn
+          rgb_color: [255,64,0]
+          brightness: 48
+          transition: 300
+          effect: "fade"
 
-
-
-
-
-slow_lights_on_bedroom:
-  sequence:
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [1,1,0]
-        brightness: 0
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [4,2,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [8,4,0]
-    - delay: 0:0:05    
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [12,6,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [16,8,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [20,10,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [24,12,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [28,14,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [32,16,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [36,18,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [40,20,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [44,22,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [48,24,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [52,26,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [56,28,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [60,30,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [64,32,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [68,34,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [72,36,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [76,38,0]
-    - delay: 0:0:05
-    - service: homeassistant.turn_on
-      data:
-        entity_id: light.slaapkamer_gordijn
-        rgb_color: [80,40,0]
-    - delay: 0:05:00
-    - service: homeassistant.turn_off
-      data:
-        entity_id: light.slaapkamer_gordijn
+  woonkamer_gordijnen:
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.woonkamer_gordijn_kort
+          rgb_color: [255,128,0]
+          brightness: 1
+          white_value: 0
+      - service: light.turn_on
+        data:
+          entity_id: light.woonkamer_gordijn_lang
+          rgb_color: [255,128,0]
+          brightness: 1
+          white_value: 0
+      - service: light.turn_on
+        data:
+          entity_id: light.woonkamer_gordijn_kort
+          rgb_color: [255,128,0]
+          brightness: 120
+          white_value: 0
+          transition: 300
+          effect: "fade"
+      - service: light.turn_on
+        data:
+          entity_id: light.woonkamer_gordijn_lang
+          rgb_color: [255,128,0]
+          brightness: 120
+          white_value: 0
+          transition: 300
+          effect: "fade"
 

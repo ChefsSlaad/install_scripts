@@ -1,4 +1,3 @@
-
 phonemarc:
   hide_if_away: false
   icon:
@@ -15,6 +14,7 @@ phonekoosje:
   name: Koosje
   picture:
   track: true
+  consider_home: 600
   vendor: Xiaomi Communications Co Ltd
 
 phoneroosmarijn:
@@ -41,8 +41,7 @@ phonekoosje2:
   mac: 54:14:73:66:19:B6
   name: phone-koosje2
   picture:
-  track: true
-  
+  track: false
 
 tabletmarc:
   hide_if_away: false
@@ -79,7 +78,7 @@ wk_chromecast:
   mac: 6C:AD:F8:68:FE:C2
   name: wk chromecast
   picture:
-  track: true
+  track: false
   vendor: AzureWave Technology Inc.
 
 wk_televisie:
@@ -88,7 +87,7 @@ wk_televisie:
   mac: D0:AE:EC:10:D3:16
   name: wk televisie
   picture:
-  track: true
+  track: false
   vendor: Alpha Networks Inc.
 
 wk_boekenkast:
