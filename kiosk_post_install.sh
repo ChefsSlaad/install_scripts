@@ -114,6 +114,12 @@ sudo apt-get install -y snips-platform-voice
 #####################################
 
 mkdir ~/scripts
+cd ~/scripts
+
+wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/pi@mm_switch.service
+wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/mm_switch.py
+
+
 
 
 
