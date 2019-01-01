@@ -35,6 +35,15 @@ sudo apt-get -qq update  > /dev/null
 sudo apt-get -qq upgrade > /dev/null
 
 
+
+###################################
+#      install python libraries   #
+###################################
+
+echo installing python libraries
+sudo pip3 install \
+     paho.mqtt
+
 ###################################
 #      configuring the host       #
 ###################################
