@@ -20,6 +20,9 @@ echo purging unneeded apps
 sudo apt-get purge wolfram-engine scratch scratch2 nuscratch sonic-pi idle3 -y
 sudo apt-get purge smartsim java-common minecraft-pi libreoffice* -y
 
+rm -rf ~/Documents ~/magPi ~/Music ~/Pictures ~/Public ~/Templates ~/Videos
+
+
 ###################################
 #      install and unistall apps  #
 ###################################
