@@ -1,10 +1,15 @@
 #kiosk script
 
+#get the latest version of this file:
+# wget https://github.com/marcwagner/install_scripts/raw/master/kiosk_post_install.sh
+
 ###################################
 #         setting up users        #
 ###################################
 
 echo setting up user accounts
+# nothing - use user pi to auto-login
+
 
 ###################################
 #         Basic cleanup          #
