@@ -8,8 +8,9 @@ Type=simple
 ExecStart=/home/pi/scripts/kiosk.sh &> /dev/null &
 Restart=always
 RestartSec=5
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
 
 [Install]
-WantedBy=multi-user.target
-
+WantedBy=graphical.target
 

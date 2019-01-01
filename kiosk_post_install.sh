@@ -28,8 +28,8 @@ rm -rf ~/Documents ~/magPi ~/Music ~/Pictures ~/Public ~/Templates ~/Videos
 ###################################
 
 echo installing new apps
-sudo apt-get -qq install \
-    ssh git git-secret gitk gitg curl \
+sudo apt-get install \
+    ssh git gitk gitg curl \
     dkms python3-pip nmap \
     nfs-kernel-server \
     xdotool unclutter sed
@@ -50,7 +50,7 @@ sudo apt-get -qq upgrade > /dev/null
 
 echo installing python libraries
 sudo pip3 install \
-     paho.mqtt
+     paho-mqtt
 
 ###################################
 #      configuring the host       #
@@ -61,6 +61,10 @@ echo -e 'magic-mirror' | sudo tee /etc/hostname
 echo -e '127.0.0.1     magic-mirror' | sudo tee -a /etc/hosts
 
 
+#####################################
+#   some screensaver stuff          #
+#####################################
+
 echo '... setting screen orientation'
 echo -e '# configuration for magic mirror\ndisplay_rotate=1\navoid_warnings=1' | sudo tee -a /boot/config.txt
 
@@ -69,15 +73,14 @@ echo -e '# configuration for magic mirror\ndisplay_rotate=1\navoid_warnings=1' |
 #  display_rotate=1
 #  avoid_warnings=1
 
-
 echo '...disabling screensaver and screen_blanking'
 
-#echo -e 'consoleblank=0' | sudo tee -a /boot/cmdline.txt
-#rm ~/.xscreensaver
-#ln -s ~/projects/install_scripts/magicmirror/.xscreensaver ~/.xscreensaver
-# xscreensaver does not need a restart because it automatically reloads if the config file has changed
+mkdir -p /home/pi/.config/lxsession/LXDE-pi/
+touch /home/pi/.config/lxsession/LXDE-pi/autostart
 
-iwconfig wlan0 power off
+echo -e '@lxpanel --profile LXDE-pi\n@pcmanfm --desktop --profile LXDE-pi\n#@xscreensaver -no-splash\n@point-rpi\n@bash /home/pi/scripts/kiosk.sh' |  tee -a /home/pi/.config/lxsession/LXDE-pi/autostart
+
+sudo iwconfig wlan0 power off
 
 ###################################
 #       setting up VNC server     #
@@ -99,18 +102,6 @@ x11vnc --usepw
 #####################################
 
 unclutter -idle 0.5 -root &
-
-#####################################
-#   some screen namenament stuff    #
-#####################################
-
-#sed -i 's/"@xscreensaver -no-splash"/"#@xscreensaver -no-splash"/'
-#@bash /home/kiosk/kiosk.sh
-
-## rotate screen:
-# /boot/config.txt
-# lcd_rotate=2
-
 
 
 
@@ -135,19 +126,18 @@ cd ~/scripts
 
 wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/pi@mm_switch.service
 wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/mm_switch.py
-wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/pi@kiosk.service
-wget https://github.com/marcwagner/install_scripts/raw/master/magicmirror/kiosk.sh
 
 wget https://github.com/marcwagner/p1_python/raw/master/pi@p1_reader.service
 wget https://github.com/marcwagner/p1_python/raw/master/p1_reader.py
 wget https://github.com/marcwagner/p1_python/raw/master/serial_reader.py
 wget https://github.com/marcwagner/p1_python/raw/master/converter.py
 
-activating all the service files
+echo activating all the service files
+chmod +x p1_reader.py mm_switch.py
 sudo chown root:root pi@*
 sudo mv pi@* /etc/systemd/system/
 
 echo enabling services at boot
-sudo systemctl enable pi@kiosk.services pi@mm_switch.services pi@p1_reader.services
+sudo systemctl enable pi@mm_switch.service pi@p1_reader.service
 sudo systemctl daemon-reload # Run if .service file has changed
-sudo systemctl restart pi@kiosk.services pi@mm_switch.services pi@p1_reader.services
+sudo systemctl start pi@mm_switch.service pi@p1_reader.service
