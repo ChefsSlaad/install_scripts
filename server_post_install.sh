@@ -1,5 +1,24 @@
 #! /bin/bash
 
+
+HOSTNAME="keukenprinses"
+TIMEZONE="Europe/Amsterdam"
+###################################
+#     aditional steps             #
+###################################
+# - add dehydrated certificate for hass https://www.splitbrain.org/blog/2017-08/10-homeassistant_duckdns_letsencrypt
+#      - remember to mod the files before running scripts
+#      - permissions?
+# - export hass files
+
+
+###################################
+#         add repositories        #
+###################################
+
+sudo timedatectl set-timezone $TIMEZONE
+sudo hostnamectl set-hostname $HOSTNAME
+
 ###################################
 #         add repositories        #
 ###################################
@@ -24,9 +43,11 @@ sudo apt-get -qq upgrade > /dev/null
 echo installing new apps
 sudo apt-get -qq install \
     ssh git git-secret gitk gitg curl gparted \
+    cifs-utils unison\
     dkms python3-pip rygel nmap \
     nfs-kernel-server \
-    isc-dhcp-server
+    isc-dhcp-server\
+    mosquitto mosquitto-clients
 
 sudo apt-get -y -qq remove \
 
@@ -37,7 +58,9 @@ sudo apt-get -y -qq remove \
 
 echo installing python libraries
 sudo pip3 install \
-	homeassistant
+	homeassistant \
+  libssl-dev libpython-dev libffi-dev pywebpush \ #html push notifications
+
 
 ###################################
 #      Updating dotfiles          #
@@ -49,8 +72,8 @@ sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' ~/.bashrc
 ###################################
 #      Setting up Github          #
 ###################################
-    
-mkdir ~/projects 
+
+mkdir ~/projects
 
 echo setting up github
 git config --global user.email "wagner.marc@gmail.com"
@@ -60,6 +83,17 @@ git config --global user.name "Marc Wagner"
 echo downloading the github files
 git -C ~/projects clone git@github.com:marcwagner/install_scripts.git
 git -C ~/projects clone git@github.com:pi-hole/pi-hole.git
+
+
+###################################
+#    Setting up sources directory #
+###################################
+
+sudo mkdir --parents /sources/source
+sudo mkdir --parents /sources/external
+
+echo '//10.0.0.1/share /sources/external         cifs    vers=1.0,credentials=/etc/samba/sources-mount,noexec,user   0       0' | sudo tee -a /etc/fstab
+
 
 
 ###################################
@@ -83,21 +117,19 @@ echo installing foto backup system
 echo - creating user fotosync
 sudo useradd -m -d /home/fotosync fotosync
 
-echo - adding mounts to fstab 
-echo '//10.0.0.180/fotos /media/fotos         cifs    vers=2.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
-echo '//10.0.0.180/Documents /media/documents  cifs vers=2.0,username=foto_sync,password=Foto_1234,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab 
+echo - adding mounts to fstab
+echo '//10.0.0.180/fotos /media/fotos         cifs    vers=2.0,credentials=/etc/samba/sources-mount,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
+echo '//10.0.0.180/Documents /media/documents  cifs vers=2.0,credentials=/etc/samba/sources-mount,uid=1001,x-systemd.automount,noauto,noexec,user   0       0' | sudo tee -a /etc/fstab
 echo - creating mount points
 sudo mkdir /media/fotos && sudo chown fotosync:fotosync /media/fotos
 sudo mkdir /media/documents && sudo chown fotosync:fotosync /media/documents
 
 echo - creating home dir folder structure
 sudo mkdir /home/fotosync/scripts
-sudo mkdir /home/fotosync/documents
-sudo mkdir /home/fotosync/fotos
-sudo mkdir /home/fotosync/documents/monthly
-sudo mkdir /home/fotosync/documents/daily
-sudo mkdir /home/fotosync/fotos/monthly
-sudo mkdir /home/fotosync/fotos/daily
+sudo mkdir --parents /home/fotosync/documents/monthly
+sudo mkdir --parents /home/fotosync/documents/daily
+sudo mkdir --parents /home/fotosync/fotos/monthly
+sudo mkdir --parents /home/fotosync/fotos/daily
 
 echo - linking scripts
 
@@ -182,17 +214,17 @@ sudo mkdir /home/homeassistant/scripts/
 echo - copying congiguration files
 cd /home/homeassistant/.homeassistant/
 sudo ln -s ~/projects/install_scripts/homeassistant/configuration.yaml \
-                 /home/homeassistant/.homeassistant/configuration.yaml 
+                 /home/homeassistant/.homeassistant/configuration.yaml
 sudo ln -s ~/projects/install_scripts/homeassistant/automations.yaml \
-                 /home/homeassistant/.homeassistant/automations.yaml 
+                 /home/homeassistant/.homeassistant/automations.yaml
 sudo ln -s ~/projects/install_scripts/homeassistant/groups.yaml \
-                 /home/homeassistant/.homeassistant/groups.yaml 
+                 /home/homeassistant/.homeassistant/groups.yaml
 sudo ln -s ~/projects/install_scripts/homeassistant/known_devices.yaml \
                  /home/homeassistant/.homeassistant/known_devices.yaml
 sudo ln -s ~/projects/install_scripts/homeassistant/sene.yaml \
-                 /home/homeassistant/.homeassistant/scene.yaml 		 
+                 /home/homeassistant/.homeassistant/scene.yaml
 sudo ln -s ~/projects/install_scripts/homeassistant/secrets.yaml \
-                 /home/homeassistant/.homeassistant/secrets.yaml 
+                 /home/homeassistant/.homeassistant/secrets.yaml
 
 sudo chown -h homeassistant:homeassistant /home/homeassistant/.homeassistant/*.yaml
 

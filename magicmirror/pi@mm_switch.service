@@ -5,11 +5,9 @@ After=network.target
 [Service]
 user=%i
 Type=simple
-ExecStart=/home/pi/mm_switch.py &> /dev/null &
+ExecStart=/home/pi/scripts/mm_switch.py &> /dev/null &
 Restart=always
 RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
-
-

@@ -1,0 +1,16 @@
+[Unit]
+Description=kiosk activation script
+After=network.target
+
+[Service]
+user=%i
+Type=simple
+ExecStart=/home/pi/scripts/kiosk.sh &> /dev/null &
+Restart=always
+RestartSec=5
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
+
+[Install]
+WantedBy=graphical.target
+
