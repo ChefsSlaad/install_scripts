@@ -1,0 +1,15 @@
+[Unit]
+Description=Chromium Dashboard
+Requires=graphical.target
+After=graphical.target
+[Service]
+Environment=DISPLAY=:0.0
+Environment=XAUTHORITY=/home/marc/.Xauthority
+ExecStartPre=/home/marc/kiosk/kiosk.sh
+ExecStart=/usr/bin/chromium-browser --noerrdialogs --disable-infobars --kiosk https://de-wagnertjes.nl/lovelace/hall?kiosk
+Restart=on-abort
+User=%i
+Group=%i
+[Install]
+WantedBy=graphical.target
+

@@ -1,12 +1,15 @@
 [Unit]
-Description=temperature and humidity reader
+Description=p1 smart meter reader
 After=network.target
 
 [Service]
+User=%i
 Type=simple
-ExecStart=/home/marc/temp_humid_sensor/temp_humid.py &
+ExecStart=/home/marc/p1_reader/p1_reader.py &
 Restart=always
 RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
+
+
